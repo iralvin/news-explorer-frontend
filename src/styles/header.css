@@ -1,0 +1,21 @@
+.header__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  width: 80%;
+  max-height: 80px;
+}
+
+.header__nav-menu-list {
+  display: flex;
+  list-style: none;
+}
+
+.header__nav-menu-list-item{
+    margin-right: 75px;
+}
+
+.header__nav-menu-list-item:last-of-type{
+    margin-right: 0;
+}
