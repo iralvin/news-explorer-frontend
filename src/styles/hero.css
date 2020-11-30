@@ -1,0 +1,12 @@
+.hero {
+  min-height: 576px;
+  background-image: url("../images/georgia-bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #fff;
+}
+
+.hero__title {
+  margin: 0;
+  padding-top: 160px;
+}
