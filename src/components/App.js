@@ -3,12 +3,21 @@ import "../App.css";
 
 import Header from "./Header";
 import Hero from "./Hero";
+import About from "./About";
+import Footer from "./Footer";
+import PopupWithForm from "./PopupWithForm";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
+      <PopupWithForm />
+
       <Hero />
+      <About />
+      <Footer />
+
+
       {/*       
       <Header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

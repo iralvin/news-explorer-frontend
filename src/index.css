@@ -1,10 +1,14 @@
 @import url("./styles/normalize.css");
 @import url("./styles/fonts.css");
-@import url("./styles//header.css");
-@import url("./styles//hero.css");
+@import url("./styles/header.css");
+@import url("./styles/hero.css");
+@import url("./styles/inputfield.css");
+@import url("./styles/about.css");
+@import url("./styles/footer.css");
+@import url("./styles/popup.css");
 
-body {
-  margin: 0 auto;
+ body {
+  margin: auto;
   width: 1440px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -12,8 +16,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+/*
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+.section {
+  width: 1440px;
+  margin: 0 auto;
 }

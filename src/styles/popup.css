@@ -1,0 +1,17 @@
+.popup {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  z-index: 1;
+}
+
+.popup__dialog-window {
+  width: 430px;
+  height: 380px;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+}
