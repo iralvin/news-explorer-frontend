@@ -1,22 +1,33 @@
-import logo from "../logo.svg";
-import "../App.css";
+import React from 'react';
+import logo from '../logo.svg';
+import '../App.css';
 
-import Header from "./Header";
-import Hero from "./Hero";
-import About from "./About";
-import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
+import Header from './Header';
+import Hero from './Hero';
+import About from './About';
+import Footer from './Footer';
+import SigninPopup from './SigninPopup';
+import PopupWithForm from './PopupWithForm';
 
 function App() {
-  return (
-    <div className="App">
-      {/* <Header /> */}
-      <PopupWithForm />
+  const [isPopupOpened, setIsPopupOpened] = React.useState(false);
 
-      <Hero />
+  function openPopup() {
+    setIsPopupOpened(true);
+  }
+
+  function closePopup(e) {
+    setIsPopupOpened(false);
+  }
+
+  return (
+    <div className='App'>
+      {/* <Header /> */}
+      <SigninPopup isOpened={isPopupOpened} closePopup={closePopup} />
+
+      <Hero onSignInClick={openPopup} />
       <About />
       <Footer />
-
 
       {/*       
       <Header className="App-header">

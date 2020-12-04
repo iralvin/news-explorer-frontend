@@ -1,7 +1,7 @@
 import React from "react";
 import aboutImg from "../images/georgia-bg.png"
 
-function About() {
+function About(props) {
   return (
     <div className="about section">
       <div className="about-container">

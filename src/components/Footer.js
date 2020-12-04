@@ -1,6 +1,6 @@
 import React from "react";
 
-function Footer() {
+function Footer(props) {
   return (
     <footer className="footer section">
       <div className="footer-container">

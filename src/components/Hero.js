@@ -3,10 +3,10 @@ import InputField from "./InputField";
 
 import Header from "./Header";
 
-function Hero() {
+function Hero(props) {
   return (
     <div className="hero section">
-      <Header />
+      <Header onSignInClick={props.onSignInClick}/>
       <div className="hero__title-container">
         <h1 className="hero__title">What's going on in the world?</h1>
         <p className="hero__subtitle">
