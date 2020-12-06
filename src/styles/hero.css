@@ -1,17 +1,17 @@
 .hero {
   min-height: 576px;
-  background-image: url("../images/georgia-bg.png");
+  background-image: url('../images/georgia-bg.png');
   background-repeat: no-repeat;
   background-position: center;
   color: #fff;
   display: flex;
   flex-direction: column;
-  padding-top: 0;
+  /* padding-top: 0; */
 }
 
 .hero__title-container {
   margin: 0 auto;
-  padding-top: 80px;
+  padding-top: 160px;
   width: 608px;
   text-align: left;
   display: flex;
@@ -50,16 +50,10 @@
   box-sizing: border-box;
   backdrop-filter: blur(8px);
   border-radius: 100px;
-  /* display: flex; */
-  /* justify-content: space-between; */
-
-  /* justify-content: center; */
-  /* vertical-align: middle; */
 }
 
-.hero__search-form{
+.hero__search-form {
   display: flex;
-
 }
 
 .hero__search-input {
@@ -67,20 +61,24 @@
   padding-left: 5px;
   border: none;
   width: 375px;
-  /* height: 22px; */
 }
 
 .hero__search-button {
   margin: -1px -1px 0 0;
-  /* padding: 0; */
   width: 168px;
-  /* align-content: flex-end; */
   height: 64px;
   background: #2f71e5;
   box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
   border: 0;
   border-radius: 100px;
   cursor: pointer;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffffff;
 }
 
 .hero__search-button:hover {

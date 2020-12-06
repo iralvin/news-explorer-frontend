@@ -1,25 +1,14 @@
 import React from 'react';
+import Navigation from './Navigation';
 
 function Header(props) {
   return (
-    <div>
-      <header className='header'>
-        <div className='header__container'>
-          <p className='header__logo'>NewsExplorer</p>
-          <nav className='header__nav-menu'>
-            <ul className='header__nav-menu-list'>
-              <li className='header__nav-menu-item header__nav-menu-item_home'>Home</li>
-              <li
-                className='header__nav-menu-item header__nav-menu-item_account'
-                onClick={props.onSignInClick}
-              >
-                Sign In
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-    </div>
+    <header className={`header ${props.savedNewsHeader}`}>
+      <div className='header__container'>
+        <p className='header__logo'>NewsExplorer</p>
+        <Navigation onSignInClick={props.onSignInClick}/>
+      </div>
+    </header>
   );
 }
 

@@ -1,6 +1,7 @@
 @import url('./styles/normalize.css');
 @import url('./styles/fonts.css');
 @import url('./styles/header.css');
+@import url("./styles/navigation.css");
 @import url('./styles/news-results.css');
 @import url('./styles/hero.css');
 @import url('./styles/preloader.css');

@@ -3,6 +3,7 @@ import logo from '../logo.svg';
 import '../App.css';
 
 import Header from './Header';
+import SavedNewsHeader from './SavedNewsHeader';
 import Hero from './Hero';
 import Preloader from './Preloader';
 import NewsCardsList from './NewsCardsList';
@@ -15,6 +16,7 @@ import PopupWithForm from './PopupWithForm';
 function App() {
   const [signinPopupIsOpen, setSigninPopupIsOpen] = React.useState(false);
   const [signupPopupIsOpen, setSignupPopupIsOpen] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   function openSigninPopup() {
     setSigninPopupIsOpen(true);
@@ -41,6 +43,9 @@ function App() {
       closePopups();
     }
   }
+  function onSubmit() {
+    setIsLoggedIn(true);
+  }
 
   React.useEffect(() => {
     window.addEventListener('keyup', escapeKeyPressed);
@@ -48,8 +53,8 @@ function App() {
 
   return (
     <div className='App'>
-      {/* <Header /> */}
       <SigninPopup
+        onSubmit={onSubmit}
         isOpened={signinPopupIsOpen}
         closePopup={closePopups}
         flairTextClick={flairTextClick}
@@ -59,27 +64,15 @@ function App() {
         closePopup={closePopups}
         flairTextClick={flairTextClick}
       />
-      <Hero onSignInClick={openSigninPopup} />
+
+      {/* <SavedNewsHeader /> */}
+      <Header onSignInClick={openSigninPopup}/>
+
+      <Hero  />
       <Preloader />
       <NewsCardsList />
       <About />
       <Footer />
-
-      {/*       
-      <Header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </Header> */}
     </div>
   );
 }
