@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer(props) {
   return (
-    <footer className="footer section">
+    <footer className="footer">
       <div className="footer-container">
         <p className="footer__copyright">© 2020 Alvin Wong</p>
         <nav className="footer__nav-menu">

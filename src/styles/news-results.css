@@ -1,0 +1,133 @@
+.news-results {
+  background-color: #f5f6f7;
+}
+
+.news-results__container {
+  width: 86%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-results__title {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto-Slab;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+  text-align: left;
+}
+
+.news-results__cards-list {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 64px auto 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 16px 16px;
+}
+
+.news-results__cards-item {
+  margin: auto;
+}
+
+.news-results__card {
+  width: 400px;
+  height: 576px;
+  border-radius: 10px;
+  background-color: #fff;
+  text-align: left;
+  position: relative;
+}
+
+.news-results__card-image {
+  width: 100%;
+  height: 272px;
+  border-radius: 10px 10px 0 0;
+
+  background-image: url('../images/georgia-bg.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.news-results__card-save-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  background-image: url('../images/bookmark-icon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 8px;
+  background-color: #fff;
+  position: absolute;
+
+  top: 24px;
+  right: 24px;
+}
+
+.news-results__card_text {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.news-results__card-date {
+  margin-top: 20px;
+  margin-bottom: 0;
+  font-family: Source-Sans-Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+}
+
+.news-results__card-title {
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-family: Roboto-Slab;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1a1b22;
+}
+
+.news-results__card-abstract {
+  margin-top: 16px;
+  margin-bottom: 0;
+  max-height: 110px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a1b22;
+
+  white-space: initial;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.news-results__card-source {
+  margin-top: 18px;
+  margin-bottom: 24px;
+  font-family: Roboto-Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #b6bcbf;
+}

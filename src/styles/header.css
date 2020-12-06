@@ -1,12 +1,11 @@
 .header {
-  /* width: 1440px; */
-  /* position: absolute; */
   height: 80px;
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
 }
 
 .header__container {
   width: 85%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -14,7 +13,6 @@
   color: #fff;
 }
 .header__logo {
-  display: inline;
   margin: auto 0;
   font-family: Roboto-Slab;
   font-style: normal;
@@ -22,8 +20,13 @@
   font-size: 20px;
   line-height: 24px;
 }
+.header__nav-menu{
+  margin: auto 0;
+}
 
 .header__nav-menu-list {
+  margin: 0;
+  padding: 0;
   display: flex;
   list-style: none;
   font-family: Roboto;
@@ -34,10 +37,10 @@
   color: #ffffff;
 }
 
-.header__nav-menu-list-item {
+.header__nav-menu-item {
   margin-right: 75px;
 }
 
-.header__nav-menu-list-item:last-of-type {
+.header__nav-menu-item:last-of-type {
   margin-right: 0;
 }
