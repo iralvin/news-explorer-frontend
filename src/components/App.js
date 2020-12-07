@@ -72,9 +72,11 @@ function App() {
         />
 
         {/* <SavedNewsHeader /> */}
-        <Header onSignInClick={openSigninPopup} isLoggedIn={isLoggedIn} />
+        {/* <Header onSignInClick={openSigninPopup} isLoggedIn={isLoggedIn} /> */}
 
-        <Hero />
+        <Hero 
+        onSignInClick={openSigninPopup} isLoggedIn={isLoggedIn} 
+        />
         {/* <Preloader /> */}
         <NewsCardsList isLoggedIn={isLoggedIn}/>
         <About />
