@@ -75,7 +75,7 @@ function App() {
         <Header onSignInClick={openSigninPopup} isLoggedIn={isLoggedIn} />
 
         <Hero />
-        <Preloader />
+        {/* <Preloader /> */}
         <NewsCardsList isLoggedIn={isLoggedIn}/>
         <About />
         <Footer />

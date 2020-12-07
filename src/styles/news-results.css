@@ -160,3 +160,19 @@
   text-transform: uppercase;
   color: #b6bcbf;
 }
+
+.news-results__show-more-button {
+  margin: 64px auto 0;
+  max-width: 288px;
+  padding: 20px 98px;
+  border: none;
+  background: #ffffff;
+  border-radius: 80px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+
+  color: #1a1b22;
+}
