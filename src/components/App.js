@@ -13,6 +13,8 @@ import SigninPopup from './SigninPopup';
 import SignupPopup from './SignupPopup';
 import PopupWithForm from './PopupWithForm';
 
+import CurrentUserContext from '../contexts/CurrentUserContext';
+
 function App() {
   const [signinPopupIsOpen, setSigninPopupIsOpen] = React.useState(false);
   const [signupPopupIsOpen, setSignupPopupIsOpen] = React.useState(false);
@@ -44,7 +46,10 @@ function App() {
     }
   }
   function onSubmit() {
+    console.log("app form submit")
+
     setIsLoggedIn(true);
+    closePopups();
   }
 
   React.useEffect(() => {
@@ -53,26 +58,28 @@ function App() {
 
   return (
     <div className='App'>
-      <SigninPopup
-        onSubmit={onSubmit}
-        isOpened={signinPopupIsOpen}
-        closePopup={closePopups}
-        flairTextClick={flairTextClick}
-      />
-      <SignupPopup
-        isOpened={signupPopupIsOpen}
-        closePopup={closePopups}
-        flairTextClick={flairTextClick}
-      />
+      <CurrentUserContext.Provider value="temp name">
+        <SigninPopup
+          onSubmit={onSubmit}
+          isOpened={signinPopupIsOpen}
+          closePopup={closePopups}
+          flairTextClick={flairTextClick}
+        />
+        <SignupPopup
+          isOpened={signupPopupIsOpen}
+          closePopup={closePopups}
+          flairTextClick={flairTextClick}
+        />
 
-      {/* <SavedNewsHeader /> */}
-      <Header onSignInClick={openSigninPopup}/>
+        {/* <SavedNewsHeader /> */}
+        <Header onSignInClick={openSigninPopup} isLoggedIn={isLoggedIn} />
 
-      <Hero  />
-      <Preloader />
-      <NewsCardsList />
-      <About />
-      <Footer />
+        <Hero />
+        <Preloader />
+        <NewsCardsList />
+        <About />
+        <Footer />
+      </CurrentUserContext.Provider>
     </div>
   );
 }

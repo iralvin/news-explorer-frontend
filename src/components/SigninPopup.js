@@ -44,7 +44,7 @@ function SigninPopup(props) {
           checkInputValidity={checkEmailInputValidity}
         />
         <InputField
-          minLength="8"
+          minLength='8'
           inputType='password'
           type='password'
           placeholder='Enter password'
