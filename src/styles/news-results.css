@@ -176,3 +176,7 @@
 
   color: #1a1b22;
 }
+
+.hidden{
+  display: none;
+}
