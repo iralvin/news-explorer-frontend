@@ -3,18 +3,6 @@ import NewsCard from './NewsCard';
 import data from '../constants/data.json';
 
 function NewsCardsList(props) {
-  const [isSignInFlagActive, setIsSignInFlagActive] = React.useState(false);
-
-  function checkLoginState() {
-    if (!props.isLoggedIn) {
-      setIsSignInFlagActive(true);
-    }
-  }
-
-  function disableSignInFlag() {
-    setIsSignInFlagActive(false);
-  }
-
   return (
     <div className='news-results section'>
       <div className='news-results__container'>
