@@ -76,7 +76,7 @@ function App() {
 
         <Hero />
         <Preloader />
-        <NewsCardsList />
+        <NewsCardsList isLoggedIn={isLoggedIn}/>
         <About />
         <Footer />
       </CurrentUserContext.Provider>
