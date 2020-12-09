@@ -1,0 +1,42 @@
+.nothing-found{
+    background: #F5F6F7;
+    /* height: 374px; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.nothing-found__image{
+    margin: 0 auto;
+    width: 96px;
+    height: 96px;
+    background-image: url("../images/not-found_v1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.nothing-found__title{
+    margin: 24px auto 0;
+    font-family: Roboto-Slab;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 30px;
+
+    
+    color: #1A1B22;
+}
+
+
+.nothing-found__text{
+    width: 356px;
+    margin: 16px auto 0;
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 18px;
+line-height: 24px;
+
+color: #B6BCBF;
+}

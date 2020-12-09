@@ -26,32 +26,31 @@ function SigninPopup(props) {
   }
 
   return (
-    <div className='popup__form_sign-in'>
-      <PopupWithForm
-        onSubmit={onSubmit}
-        isOpened={props.isOpened}
-        onClose={closePopup}
-        popupTitle='Sign In'
-        buttonText='Sign In'
-        flairText='Sign Up'
-        flairTextClick={props.flairTextClick}
-        isFormValid={emailvalidity && passwordValidity}
-      >
-        <InputField
-          inputType='email'
-          type='email'
-          placeholder='Enter email'
-          checkInputValidity={checkEmailInputValidity}
-        />
-        <InputField
-          minLength='8'
-          inputType='password'
-          type='password'
-          placeholder='Enter password'
-          checkInputValidity={checkPasswordInputValidity}
-        />
-      </PopupWithForm>
-    </div>
+    <PopupWithForm
+      className='popup__sign-in'
+      onSubmit={onSubmit}
+      isOpened={props.isOpened}
+      onClose={closePopup}
+      popupTitle='Sign In'
+      buttonText='Sign In'
+      flairText='Sign Up'
+      flairTextClick={props.flairTextClick}
+      isFormValid={emailvalidity && passwordValidity}
+    >
+      <InputField
+        inputType='email'
+        type='email'
+        placeholder='Enter email'
+        checkInputValidity={checkEmailInputValidity}
+      />
+      <InputField
+        minLength='8'
+        inputType='password'
+        type='password'
+        placeholder='Enter password'
+        checkInputValidity={checkPasswordInputValidity}
+      />
+    </PopupWithForm>
   );
 }
 

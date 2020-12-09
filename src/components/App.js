@@ -1,4 +1,6 @@
 import React from 'react';
+import { Route, Switch } from 'react-router';
+
 import logo from '../logo.svg';
 import '../App.css';
 
@@ -6,12 +8,15 @@ import Header from './Header';
 import SavedNewsHeader from './SavedNewsHeader';
 import Hero from './Hero';
 import Preloader from './Preloader';
+import NothingFound from './NothingFound';
 import NewsCardsList from './NewsCardsList';
 import About from './About';
 import Footer from './Footer';
 import SigninPopup from './SigninPopup';
 import SignupPopup from './SignupPopup';
 import PopupWithForm from './PopupWithForm';
+
+import searchedArticles from '../constants/searched-articles.json';
 
 import CurrentUserContext from '../contexts/CurrentUserContext';
 
@@ -46,7 +51,7 @@ function App() {
     }
   }
   function onSubmit() {
-    console.log("app form submit")
+    console.log('app form submit');
 
     setIsLoggedIn(true);
     closePopups();
@@ -58,7 +63,7 @@ function App() {
 
   return (
     <div className='App'>
-      <CurrentUserContext.Provider value="temp name">
+      <CurrentUserContext.Provider value='temp name'>
         <SigninPopup
           onSubmit={onSubmit}
           isOpened={signinPopupIsOpen}
@@ -71,15 +76,28 @@ function App() {
           flairTextClick={flairTextClick}
         />
 
-        {/* <SavedNewsHeader /> */}
         {/* <Header onSignInClick={openSigninPopup} isLoggedIn={isLoggedIn} /> */}
 
-        <Hero 
-        onSignInClick={openSigninPopup} isLoggedIn={isLoggedIn} 
-        />
+        <Switch>
+          <Route exact path='/'>
+            {/* ROUTE FOR HOME PAGE */}
+            <Hero onSignInClick={openSigninPopup} isLoggedIn={isLoggedIn} />
+            <NewsCardsList data={searchedArticles} isLoggedIn={isLoggedIn} />
+            <About />
+            {/* CLOSE ROUTE FOR HOME PAGE */}
+          </Route>
+
+          <Route path='/saved'>
+            {/* ROUTE FOR SAVED ARTICLES */}
+            <SavedNewsHeader isLoggedIn={isLoggedIn}/>
+            <NewsCardsList data={searchedArticles} isLoggedIn={isLoggedIn}/>
+          </Route>
+
+          {/* CLOSE ROUTE FOR SAVED ARTICLES */}
+        </Switch>
+
         {/* <Preloader /> */}
-        <NewsCardsList isLoggedIn={isLoggedIn}/>
-        <About />
+        {/* <NothingFound /> */}
         <Footer />
       </CurrentUserContext.Provider>
     </div>

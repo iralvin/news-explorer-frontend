@@ -19,7 +19,9 @@ function PopupWithForm(props) {
 
   return (
     <div
-      className={`popup section ${props.isOpened ? 'popup__opened' : ''}`}
+      className={`popup ${props.className} ${
+        props.isOpened ? 'popup__opened' : ''
+      }`}
       onClick={closePopup}
     >
       <div className='popup__dialog-window'>
@@ -37,7 +39,12 @@ function PopupWithForm(props) {
 
           {props.children}
 
-          <button className={`popup__submit ${props.isFormValid ? "" : "popup__submit_disabled"}`} disabled={!props.isFormValid}>
+          <button
+            className={`popup__submit ${
+              props.isFormValid ? '' : 'popup__submit_disabled'
+            }`}
+            disabled={!props.isFormValid}
+          >
             {props.buttonText}
           </button>
           <p className='popup__flair-text'>

@@ -5,10 +5,12 @@
 @import url('./styles/news-results.css');
 @import url('./styles/hero.css');
 @import url('./styles/preloader.css');
+@import url("./styles/nothing-found.css");
 @import url('./styles/inputfield.css');
 @import url('./styles/about.css');
 @import url('./styles/footer.css');
 @import url('./styles/popup.css');
+@import url("./styles/saved-news.css");
 
 body {
   box-sizing: border-box;

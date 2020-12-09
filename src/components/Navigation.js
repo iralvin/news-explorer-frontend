@@ -12,12 +12,40 @@ function Navigation(props) {
   //     loggedInTest();
   //   }, [props.IsLoggedIn]);
 
-  function viewSavedArticles() {}
+  function loginButton() {
+    return (
+      <button
+        className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass} circle-border`}
+        onClick={props.onSignInClick}
+      >
+        Sign In
+      </button>
+    );
+  }
+
+  function savedArticlesButton() {
+    return (
+      <button
+        className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
+        onClick={viewSavedArticles}
+      >
+        Saved articles
+      </button>
+    );
+  }
+
+  function viewSavedArticles() {
+    console.log('view saved articles');
+  }
 
   return (
     <ul className='navigation__menu-list'>
       <li className='navigation__menu-item navigation__menu-item_home '>
-        <button className='navigation__menu-item_button'>Home</button>
+        <button
+          className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
+        >
+          Home
+        </button>
       </li>
 
       <li
@@ -25,24 +53,32 @@ function Navigation(props) {
           props.isLoggedIn ? 'navigation__menu-item_account' : ''
         }`}
       >
-        <button
-          className={`navigation__menu-item_button ${
-            props.isLoggedIn ? '' : 'circle-border'
-          }`}
-          onClick={props.isLoggedIn ?  viewSavedArticles : props.onSignInClick}
+        {props.isLoggedIn ? savedArticlesButton() : loginButton()}
+        {/* <button
+          className={`navigation__menu-item_button navigation__menu-item_button_${
+            props.savedNewsClass
+          } ${props.isLoggedIn ? '' : 'circle-border'}`}
+          onClick={props.isLoggedIn ? viewSavedArticles : props.onSignInClick}
         >
           {props.isLoggedIn ? 'Saved articles' : 'Sign In'}
-        </button>
+        </button> */}
       </li>
 
       {props.isLoggedIn && (
         <li className='navigation__menu-item '>
           <button
-            className={`navigation__menu-item_button navigation__menu-item_button_user ${
-              props.isLoggedIn ? 'circle-border' : ''
+            className={`navigation__menu-item_button navigation__menu-item_button_${
+              props.savedNewsClass
+            } navigation__menu-item_button_user ${
+              props.isLoggedIn
+                ? `circle-border circle-border_${props.savedNewsClass}`
+                : ''
             }`}
           >
-            {currentUser} <span className='navigation__menu-item_logout'></span>
+            {currentUser}{' '}
+            <span
+              className={`navigation__menu-item_logout navigation__menu-item_logout_${props.savedNewsClass}`}
+            ></span>
           </button>
         </li>
       )}

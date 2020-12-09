@@ -1,6 +1,5 @@
 import React from 'react';
 import NewsCard from './NewsCard';
-import data from '../constants/data.json';
 
 function NewsCardsList(props) {
   const [displayedArticleCards, setDisplayedArticleCards] = React.useState([]);
@@ -9,16 +8,16 @@ function NewsCardsList(props) {
   );
 
   function showMoreArticles() {
-    setDisplayedArticleCards(data);
+    setDisplayedArticleCards(props.data);
     setShowMoreButtonDisabled(true)
   }
   function displayThreeArticles() {
-    setDisplayedArticleCards(data.slice(0, 3));
+    setDisplayedArticleCards(props.data.slice(0, 3));
   }
 
   React.useEffect(() => {
     displayThreeArticles();
-    if (data.length > 3) {
+    if (props.data.length > 3) {
       setShowMoreButtonDisabled(false);
     }
   }, []);

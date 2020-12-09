@@ -29,7 +29,7 @@ function Hero(props) {
       <div className='hero__search-container'>
         <form action='' className='hero__search-form' onSubmit={onSubmit}>
           {/* <InputField /> */}
-          <input type='text' className='hero__search-input' />
+          <input type='text' className='hero__search-input' placeholder="Enter topic"/>
           <button className='hero__search-button'>Search</button>
         </form>
       </div>

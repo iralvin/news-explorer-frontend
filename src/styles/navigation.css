@@ -22,7 +22,7 @@
 }
 
 .navigation__menu-item_button {
-    cursor: pointer;
+  cursor: pointer;
   background: none;
   border: none;
   color: #fff;
@@ -43,7 +43,7 @@
   margin-left: 20px;
   width: 24px;
   height: 24px;
-  background-image: url('../images/logout.png');
+  background-image: url('../images/logout-white.png');
 }
 
 .navigation__menu-item_account {
@@ -59,4 +59,18 @@
   border: 1px solid #ffffff;
   box-sizing: border-box;
   border-radius: 100px;
+}
+
+.navigation__menu-item_button_saved-news {
+  color: #000;
+}
+
+.circle-border_saved-news {
+  border: 1px solid #000;
+  border-radius: 100px;
+}
+
+.navigation__menu-item_logout_saved-news{
+  background-image: url('../images/logout-black.png');
+
 }
