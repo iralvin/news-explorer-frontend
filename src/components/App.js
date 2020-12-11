@@ -17,6 +17,7 @@ import SignupPopup from './SignupPopup';
 import PopupWithForm from './PopupWithForm';
 
 import searchedArticles from '../constants/searched-articles.json';
+import savedArticles from '../constants/saved-articles.json';
 
 import CurrentUserContext from '../contexts/CurrentUserContext';
 
@@ -24,6 +25,9 @@ function App() {
   const [signinPopupIsOpen, setSigninPopupIsOpen] = React.useState(false);
   const [signupPopupIsOpen, setSignupPopupIsOpen] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isViewingSavedArticles, setIsViewingSavedArticles] = React.useState(
+    false
+  );
 
   function openSigninPopup() {
     setSigninPopupIsOpen(true);
@@ -50,11 +54,23 @@ function App() {
       closePopups();
     }
   }
-  function onSubmit() {
+  function onLogin() {
     console.log('app form submit');
-
     setIsLoggedIn(true);
     closePopups();
+  }
+  function onRegister() {}
+  function onLogout() {
+    setIsLoggedIn(false);
+  }
+
+  function viewSavedArticles() {
+    console.log('view saved articles');
+    setIsViewingSavedArticles(true);
+  }
+
+  function viewHomePage() {
+    setIsViewingSavedArticles(false);
   }
 
   React.useEffect(() => {
@@ -65,7 +81,7 @@ function App() {
     <div className='App'>
       <CurrentUserContext.Provider value='temp name'>
         <SigninPopup
-          onSubmit={onSubmit}
+          onSubmit={onLogin}
           isOpened={signinPopupIsOpen}
           closePopup={closePopups}
           flairTextClick={flairTextClick}
@@ -81,16 +97,33 @@ function App() {
         <Switch>
           <Route exact path='/'>
             {/* ROUTE FOR HOME PAGE */}
-            <Hero onSignInClick={openSigninPopup} isLoggedIn={isLoggedIn} />
-            <NewsCardsList data={searchedArticles} isLoggedIn={isLoggedIn} />
+            <Hero
+              onLogout={onLogout}
+              onSignInClick={openSigninPopup}
+              isLoggedIn={isLoggedIn}
+              onSavedArticlesClick={viewSavedArticles}
+            />
+            <NewsCardsList
+              data={searchedArticles}
+              isLoggedIn={isLoggedIn}
+              savedArticles={savedArticles}
+            />
             <About />
             {/* CLOSE ROUTE FOR HOME PAGE */}
           </Route>
 
           <Route path='/saved'>
             {/* ROUTE FOR SAVED ARTICLES */}
-            <SavedNewsHeader isLoggedIn={isLoggedIn}/>
-            <NewsCardsList data={searchedArticles} isLoggedIn={isLoggedIn}/>
+            <SavedNewsHeader
+              onLogout={onLogout}
+              isLoggedIn={isLoggedIn}
+              onHomeClick={viewHomePage}
+            />
+            <NewsCardsList
+              data={savedArticles}
+              isLoggedIn={isLoggedIn}
+              isViewingSavedArticles={isViewingSavedArticles}
+            />
           </Route>
 
           {/* CLOSE ROUTE FOR SAVED ARTICLES */}
@@ -98,7 +131,7 @@ function App() {
 
         {/* <Preloader /> */}
         {/* <NothingFound /> */}
-        <Footer />
+        <Footer onHomeClick={viewHomePage} />
       </CurrentUserContext.Provider>
     </div>
   );

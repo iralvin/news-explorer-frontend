@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 import CurrentUserContext from '../contexts/CurrentUserContext';
 
 function Navigation(props) {
@@ -25,27 +27,32 @@ function Navigation(props) {
 
   function savedArticlesButton() {
     return (
-      <button
-        className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
-        onClick={viewSavedArticles}
+      <NavLink
+        to='/saved'
+        activeClassName='navigation__menu-item_active navigation__menu-item_active_black'
       >
-        Saved articles
-      </button>
+        <button
+          className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
+          onClick={props.onSavedArticlesClick}
+        >
+          Saved articles
+        </button>{' '}
+      </NavLink>
     );
-  }
-
-  function viewSavedArticles() {
-    console.log('view saved articles');
   }
 
   return (
     <ul className='navigation__menu-list'>
       <li className='navigation__menu-item navigation__menu-item_home '>
-        <button
-          className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
-        >
-          Home
-        </button>
+        {' '}
+        <NavLink to='/' activeClassName='navigation__menu-item_active'>
+          <button
+            className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
+            onClick={props.onHomeClick}
+          >
+            Home
+          </button>{' '}
+        </NavLink>
       </li>
 
       <li
@@ -66,20 +73,23 @@ function Navigation(props) {
 
       {props.isLoggedIn && (
         <li className='navigation__menu-item '>
-          <button
-            className={`navigation__menu-item_button navigation__menu-item_button_${
-              props.savedNewsClass
-            } navigation__menu-item_button_user ${
-              props.isLoggedIn
-                ? `circle-border circle-border_${props.savedNewsClass}`
-                : ''
-            }`}
-          >
-            {currentUser}{' '}
-            <span
-              className={`navigation__menu-item_logout navigation__menu-item_logout_${props.savedNewsClass}`}
-            ></span>
-          </button>
+          <NavLink to='/'>
+            <button
+              className={`navigation__menu-item_button navigation__menu-item_button_${
+                props.savedNewsClass
+              } navigation__menu-item_button_user ${
+                props.isLoggedIn
+                  ? `circle-border circle-border_${props.savedNewsClass}`
+                  : ''
+              }`}
+              onClick={props.onLogout}
+            >
+              {currentUser}{' '}
+              <span
+                className={`navigation__menu-item_logout navigation__menu-item_logout_${props.savedNewsClass}`}
+              ></span>
+            </button>
+          </NavLink>
         </li>
       )}
     </ul>

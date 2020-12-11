@@ -7,6 +7,9 @@ function Header(props) {
       <div className='header__container'>
         <p className='header__logo'>NewsExplorer</p>
         <Navigation
+          onLogout={props.onLogout}
+          onHomeClick={props.onHomeClick}
+          onSavedArticlesClick={props.onSavedArticlesClick}
           onSignInClick={props.onSignInClick}
           isLoggedIn={props.isLoggedIn}
           savedNewsClass={props.savedNewsClass}

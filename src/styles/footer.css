@@ -1,4 +1,4 @@
-.footer{
+.footer {
   height: 80px;
 }
 
@@ -18,7 +18,7 @@
   color: #b6bcbf;
 }
 
-.footer__nav-menu-list {
+.footer__nav-menu_list {
   list-style: none;
   display: flex;
   font-family: Roboto;
@@ -30,10 +30,35 @@
   color: #1a1b22;
 }
 
-.footer__nav-menu-item {
+.footer__nav-menu_item {
   margin-right: 25px;
 }
 
-.footer__nav-menu-item:last-of-type {
+.footer__nav-menu_item:last-of-type {
   margin-right: 0;
+}
+
+.footer__nav-menu_button {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-decoration: none;
+  color: #000;
+}
+
+.footer__nav-menu_icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.footer__nav-menu_icon_facebook {
+  background-image: url('../images/facebook-icon.png');
+}
+.footer__nav-menu_icon_github {
+  background-image: url('../images/github-icon.png');
 }

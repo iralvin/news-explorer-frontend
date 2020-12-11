@@ -53,6 +53,10 @@
 .navigation__menu-item_active {
   border-bottom: 5px solid #fff;
 }
+.navigation__menu-item_active_black{
+  border-bottom: 5px solid #000;
+
+}
 
 .circle-border {
   padding: 12px 18px;

@@ -8,8 +8,13 @@ function SavedNewsHeader(props) {
 
   return (
     <div className='saved-news'>
-      <Header savedNewsClass='saved-news' isLoggedIn={props.isLoggedIn} />
-      <div className='saved-news__subheader'>
+      <Header
+        onLogout={props.onLogout}
+        savedNewsClass='saved-news'
+        isLoggedIn={props.isLoggedIn}
+        onHomeClick={props.onHomeClick}
+      />
+      <div className='saved-news__subheader-container'>
         <p className='saved-news__subheader_text saved-news__subheader_text_title'>
           Saved articles
         </p>
