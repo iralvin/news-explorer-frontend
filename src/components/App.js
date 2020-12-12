@@ -1,7 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 
-import logo from '../logo.svg';
 import '../App.css';
 
 import Header from './Header';
@@ -16,8 +15,8 @@ import SigninPopup from './SigninPopup';
 import SignupPopup from './SignupPopup';
 import PopupWithForm from './PopupWithForm';
 
-import searchedArticles from '../constants/searched-articles.json';
-import savedArticles from '../constants/saved-articles.json';
+import searchedArticlesData from '../constants/searched-articles.json';
+import savedArticlesData from '../constants/saved-articles.json';
 
 import CurrentUserContext from '../contexts/CurrentUserContext';
 
@@ -28,6 +27,8 @@ function App() {
   const [isViewingSavedArticles, setIsViewingSavedArticles] = React.useState(
     false
   );
+  const [searchedArticles, setSearchedArticles] = React.useState([]);
+  const [savedArticles, setSavedArticles] = React.useState([]);
 
   function openSigninPopup() {
     setSigninPopupIsOpen(true);
@@ -73,8 +74,27 @@ function App() {
     setIsViewingSavedArticles(false);
   }
 
+  function onSaveArticleClick(article) {
+    console.log('article', article);
+    console.log('saving article to saved articles database');
+    setSavedArticles([article, ...savedArticles]);
+    // must get article data from article card
+  }
+
+  function onDeleteSavedArticle(articleToDelete) {
+    console.log('delete saved article');
+    const tempSavedArticles = savedArticles.filter((article) => {
+      if (article !== articleToDelete) {
+        return article;
+      }
+    });
+    setSavedArticles(tempSavedArticles);
+  }
+
   React.useEffect(() => {
     window.addEventListener('keyup', escapeKeyPressed);
+    setSearchedArticles(searchedArticlesData);
+    setSavedArticles(savedArticlesData);
   }, []);
 
   return (
@@ -107,6 +127,10 @@ function App() {
               data={searchedArticles}
               isLoggedIn={isLoggedIn}
               savedArticles={savedArticles}
+              onSaveArticle={(article) => {
+                onSaveArticleClick(article);
+              }}
+              onDeleteSavedArticle={() => {}}
             />
             <About />
             {/* CLOSE ROUTE FOR HOME PAGE */}
@@ -123,6 +147,10 @@ function App() {
               data={savedArticles}
               isLoggedIn={isLoggedIn}
               isViewingSavedArticles={isViewingSavedArticles}
+              onSaveArticle={() => {}}
+              onDeleteSavedArticle={(article) => {
+                onDeleteSavedArticle(article);
+              }}
             />
           </Route>
 

@@ -34,26 +34,17 @@ function NewsCardsList(props) {
           {displayedArticleCards.map((article, index) => {
             return (
               <NewsCard
+              onDeleteSavedArticle={(article) => {
+                props.onDeleteSavedArticle(article);
+              }}
+                onSaveArticle={(article)=> {props.onSaveArticle(article)}}
                 isSavedArticle={() => {
-                  console.log(
-                    'props.savedArticles.includes(article)',
-                    props.savedArticles.includes(article)
-                  );
-                  console.log(props.savedArticles);
-                  console.log(article);
                   if (props.isLoggedIn) {
-                    // return false
                     return props.savedArticles.some((savedArticle) => {
                       if (article._id === savedArticle._id) {
                         return true;
                       }
                     });
-                    // for (let i = 0; i < props.savedArticles.length; i++) {
-                    //   if (props.savedArticles[i]._id === article._id) {
-                    //     return true;
-                    //   }
-                    // }
-                    // return props.savedArticles.includes(article);
                   }
                   return false;
                 }}

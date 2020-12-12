@@ -15,6 +15,18 @@ function NewsCard(props) {
     setIsCardFlagActive(false);
   }
 
+  function onSaveArticle() {
+    // if (props.isLoggedIn) {
+      props.onSaveArticle(props.article);
+    // } else {
+    //   console.log('sign in to save article');
+    // }
+  }
+
+  function onDeleteArticle(){
+    props.onDeleteSavedArticle(props.article)
+  }
+
   return (
     <li className='news-results__card_item'>
       <div className='news-results__card'>
@@ -48,6 +60,7 @@ function NewsCard(props) {
               className='news-results__card_button news-results__card_button_trash-button'
               onMouseOver={checkLoginState}
               onMouseOut={disableSignInFlag}
+              onClick={onDeleteArticle}
             ></button>
           </>
         ) : (
@@ -67,6 +80,7 @@ function NewsCard(props) {
               }`}
               onMouseOver={checkLoginState}
               onMouseOut={disableSignInFlag}
+              onClick={onSaveArticle}
             ></button>
           </>
         )}
