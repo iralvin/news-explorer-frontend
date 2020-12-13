@@ -16,11 +16,11 @@ function NewsCard(props) {
   }
 
   function onSaveArticle() {
-    // if (props.isLoggedIn) {
+    if (props.isLoggedIn) {
       props.onSaveArticle(props.article);
-    // } else {
-    //   console.log('sign in to save article');
-    // }
+    } else {
+      console.log('sign in to save article');
+    }
   }
 
   function onDeleteArticle(){

@@ -22,9 +22,9 @@ function NewsCardsList(props) {
     }
   }, [props.data]);
 
-  React.useEffect(() => {
-    console.log('props.isViewingSavedArticles', props.isViewingSavedArticles);
-  }, [props.isViewingSavedArticles]);
+  // React.useEffect(() => {
+  //   console.log('props.isViewingSavedArticles', props.isViewingSavedArticles);
+  // }, [props.isViewingSavedArticles]);
 
   return (
     <div className='news-results section'>

@@ -7,7 +7,7 @@ function InputField(props) {
   function handleInputChange(e) {
     console.log(e.target.value);
     console.log(e.target.validity.valid);
-    // props.onChange(e);
+    props.onChange(e);
 
     if (!e.target.validity.valid) {
       setInputValidity(false);

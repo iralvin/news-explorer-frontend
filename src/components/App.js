@@ -29,6 +29,7 @@ function App() {
   );
   const [searchedArticles, setSearchedArticles] = React.useState([]);
   const [savedArticles, setSavedArticles] = React.useState([]);
+  const [currentUser, setCurrentUser] = React.useState({});
 
   function openSigninPopup() {
     setSigninPopupIsOpen(true);
@@ -60,7 +61,15 @@ function App() {
     setIsLoggedIn(true);
     closePopups();
   }
-  function onRegister() {}
+  function onRegister(email, name) {
+    setCurrentUser({
+      email,
+      name
+    });
+    setIsLoggedIn(true);
+    closePopups();
+  }
+
   function onLogout() {
     setIsLoggedIn(false);
   }
@@ -99,7 +108,7 @@ function App() {
 
   return (
     <div className='App'>
-      <CurrentUserContext.Provider value='temp name'>
+      <CurrentUserContext.Provider value={currentUser}>
         <SigninPopup
           onSubmit={onLogin}
           isOpened={signinPopupIsOpen}
@@ -107,6 +116,7 @@ function App() {
           flairTextClick={flairTextClick}
         />
         <SignupPopup
+          onSubmit={(email, name) => {onRegister(email, name)}}
           isOpened={signupPopupIsOpen}
           closePopup={closePopups}
           flairTextClick={flairTextClick}

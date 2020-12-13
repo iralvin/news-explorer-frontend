@@ -84,7 +84,7 @@ function Navigation(props) {
               }`}
               onClick={props.onLogout}
             >
-              {currentUser}{' '}
+              {currentUser.name || 'temp user'}{' '}
               <span
                 className={`navigation__menu-item_logout navigation__menu-item_logout_${props.savedNewsClass}`}
               ></span>

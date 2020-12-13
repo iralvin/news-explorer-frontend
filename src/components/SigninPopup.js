@@ -6,6 +6,8 @@ import InputField from './InputField';
 function SigninPopup(props) {
   const [emailvalidity, setEmailValidity] = React.useState(false);
   const [passwordValidity, setPasswordValidity] = React.useState(false);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   function closePopup(e) {
     // if (e.target.classList.contains('popup')) {
@@ -18,6 +20,14 @@ function SigninPopup(props) {
   }
   function checkPasswordInputValidity(inputValidity) {
     setPasswordValidity(inputValidity);
+  }
+
+  function onEmailChange(e) {
+    setEmail(e.target.value);
+  }
+
+  function onPasswordChange(e) {
+    setPassword(e.target.value);
   }
 
   function onSubmit() {
@@ -42,6 +52,7 @@ function SigninPopup(props) {
         type='email'
         placeholder='Enter email'
         checkInputValidity={checkEmailInputValidity}
+        onChange={onEmailChange}
       />
       <InputField
         minLength='8'
@@ -49,6 +60,7 @@ function SigninPopup(props) {
         type='password'
         placeholder='Enter password'
         checkInputValidity={checkPasswordInputValidity}
+        onChange={onPasswordChange}
       />
     </PopupWithForm>
   );
