@@ -3,10 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 
 import SavedNews from '../SavedNews/SavedNews';
 import Main from '../Main/Main';
-import Preloader from '../Preloader/Preloader';
-import NothingFound from '../NothingFound/NothingFound';
-import NewsCardsList from '../NewsCardsList/NewsCardsList';
-import About from '../About/About';
 import Footer from '../Footer/Footer';
 import SigninPopup from '../SigninPopup/SigninPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
@@ -31,11 +27,7 @@ function App() {
     setSigninPopupIsOpen(true);
   }
 
-  function openSignupPopup() {
-    setSignupPopupIsOpen(true);
-  }
-
-  function flairTextClick() {
+  function switchSigninSignup() {
     console.log('swapped sign in / sign up');
     setSigninPopupIsOpen(!signinPopupIsOpen);
     setSignupPopupIsOpen(!signupPopupIsOpen);
@@ -71,7 +63,6 @@ function App() {
   }
 
   function viewSavedArticles() {
-    console.log('view saved articles');
     setIsViewingSavedArticles(true);
   }
 
@@ -80,13 +71,10 @@ function App() {
   }
 
   function onSaveArticleClick(article) {
-    console.log('article', article);
-    console.log('saving article to saved articles database');
     setSavedArticles([article, ...savedArticles]);
   }
 
   function onDeleteSavedArticle(articleToDelete) {
-    console.log('delete saved article');
     const tempSavedArticles = savedArticles.filter((article) => {
       if (article !== articleToDelete) {
         return article;
@@ -108,7 +96,7 @@ function App() {
           onSubmit={onLogin}
           isOpened={signinPopupIsOpen}
           closePopup={closePopups}
-          flairTextClick={flairTextClick}
+          flairTextClick={switchSigninSignup}
         />
         <SignupPopup
           onSubmit={(email, name) => {
@@ -116,7 +104,7 @@ function App() {
           }}
           isOpened={signupPopupIsOpen}
           closePopup={closePopups}
-          flairTextClick={flairTextClick}
+          flairTextClick={switchSigninSignup}
         />
 
         <Switch>
@@ -126,8 +114,6 @@ function App() {
               onSignInClick={openSigninPopup}
               isLoggedIn={isLoggedIn}
               onSavedArticlesClick={viewSavedArticles}
-            />
-            <NewsCardsList
               data={searchedArticles}
               isLoggedIn={isLoggedIn}
               savedArticles={savedArticles}
@@ -138,7 +124,6 @@ function App() {
                 onDeleteSavedArticle(article);
               }}
             />
-            <About />
           </Route>
 
           <Route path='/saved'>
@@ -147,10 +132,6 @@ function App() {
               isLoggedIn={isLoggedIn}
               onHomeClick={viewHomePage}
               data={savedArticles}
-            />
-            <NewsCardsList
-              data={savedArticles}
-              isLoggedIn={isLoggedIn}
               isViewingSavedArticles={isViewingSavedArticles}
               onSaveArticle={(article) => {
                 onSaveArticleClick(article);
@@ -162,8 +143,6 @@ function App() {
           </Route>
         </Switch>
 
-        {/* <Preloader /> */}
-        {/* <NothingFound /> */}
         <Footer onHomeClick={viewHomePage} />
       </CurrentUserContext.Provider>
     </div>

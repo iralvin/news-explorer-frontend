@@ -11,6 +11,55 @@ function NewsCard(props) {
     }
   }
 
+  function setCardButton() {
+    if (props.isViewingSavedArticles) {
+      return (
+        <>
+          <div className='news-card__keyword_container'>
+            <p className='news-card__keyword_text'>{props.article.keyword}</p>
+          </div>
+          <div
+            className={`news-card__flag news-card__flag_trash ${
+              isCardFlagActive
+                ? 'news-card__flag_active news-card__flag_trash_active'
+                : ''
+            }`}
+          >
+            Remove from saved
+          </div>
+          <button
+            className='news-card__button news-card__button_trash-button'
+            onMouseOver={checkLoginState}
+            onMouseOut={disableSignInFlag}
+            onClick={onDeleteArticle}
+          ></button>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div
+            className={`news-card__flag news-card__flag_sign-in ${
+              isCardFlagActive
+                ? 'news-card__flag_active news-card__flag_sign-in_active'
+                : ''
+            }`}
+          >
+            Sign in to save articles
+          </div>
+          <button
+            className={`news-card__button news-card__button_save-button news-card__button_save-button_${
+              props.isSavedArticle() ? 'saved' : ''
+            }`}
+            onMouseOver={checkLoginState}
+            onMouseOut={disableSignInFlag}
+            onClick={onSaveArticle}
+          ></button>
+        </>
+      );
+    }
+  }
+
   function disableSignInFlag() {
     setIsCardFlagActive(false);
   }
@@ -30,56 +79,7 @@ function NewsCard(props) {
       <div className='news-card'>
         <div className='news-card__image'></div>
 
-        {/* <div
-          className={`news-card__sign-in-flag ${
-            isSignInFlagActive ? 'news-card__sign-in-flag_active' : ''
-          }`}
-        >
-          Sign in to save articles
-        </div> */}
-
-        {props.isViewingSavedArticles ? (
-          <>
-            <div className='news-card__keyword_container'>
-              <p className='news-card__keyword_text'>{props.article.keyword}</p>
-            </div>
-            <div
-              className={`news-card__flag news-card__flag_trash ${
-                isCardFlagActive
-                  ? 'news-card__flag_active news-card__flag_trash_active'
-                  : ''
-              }`}
-            >
-              Remove from saved
-            </div>
-            <button
-              className='news-card__button news-card__button_trash-button'
-              onMouseOver={checkLoginState}
-              onMouseOut={disableSignInFlag}
-              onClick={onDeleteArticle}
-            ></button>
-          </>
-        ) : (
-          <>
-            <div
-              className={`news-card__flag news-card__flag_sign-in ${
-                isCardFlagActive
-                  ? 'news-card__flag_active news-card__flag_sign-in_active'
-                  : ''
-              }`}
-            >
-              Sign in to save articles
-            </div>
-            <button
-              className={`news-card__button news-card__button_save-button news-card__button_save-button_${
-                props.isSavedArticle() ? 'saved' : ''
-              }`}
-              onMouseOver={checkLoginState}
-              onMouseOut={disableSignInFlag}
-              onClick={onSaveArticle}
-            ></button>
-          </>
-        )}
+        {setCardButton()}
 
         <div className='news-card__text-container'>
           <p className='news-card__date news-card__text news-card__text_date'>
