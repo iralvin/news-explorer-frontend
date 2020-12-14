@@ -13,7 +13,7 @@
     "title": "Sample 2 title for json mapping",
     "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "source": "sample source",
-    "keyword": "nature",
+    "keyword": "history",
 
     "_id": 2
   },
@@ -23,7 +23,7 @@
     "title": "saved article sample mapping",
     "abstract": "Lorem asdfasdfdipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "source": "sample source",
-    "keyword": "nature",
+    "keyword": "history",
     "_id": 11
   },
   {
@@ -47,7 +47,7 @@
     "title": "saved article sample mapping",
     "abstract": "Lorem ipsum dolor sit ametasdfasdfasdf, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "source": "sample source",
-    "keyword": "nature",
+    "keyword": "math",
     "_id": 14
   },
   {
@@ -55,7 +55,7 @@
     "title": "saved article sample mappasdfing",
     "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing easdflit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "source": "sample source",
-    "keyword": "nature",
+    "keyword": "history",
     "_id": 15
   },
   {
@@ -63,7 +63,7 @@
     "title": "saved article sample mapping",
     "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, seasdfasdfd do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "source": "sample source",
-    "keyword": "nature",
+    "keyword": "math",
     "_id": 16
   },
   {
@@ -71,7 +71,7 @@
     "title": "saveddfasdfasdfrticle asdfassample mapping",
     "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, asdfasdfsed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "source": "sample source",
-    "keyword": "nature",
+    "keyword": "science",
     "_id": 17
   }
 ]

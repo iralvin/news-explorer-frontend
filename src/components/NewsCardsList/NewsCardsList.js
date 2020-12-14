@@ -1,5 +1,5 @@
 import React from 'react';
-import NewsCard from './NewsCard';
+import NewsCard from '../NewsCard/NewsCard';
 
 function NewsCardsList(props) {
   const [displayedArticleCards, setDisplayedArticleCards] = React.useState([]);
@@ -22,22 +22,20 @@ function NewsCardsList(props) {
     }
   }, [props.data]);
 
-  // React.useEffect(() => {
-  //   console.log('props.isViewingSavedArticles', props.isViewingSavedArticles);
-  // }, [props.isViewingSavedArticles]);
-
   return (
-    <div className='news-results section'>
-      <div className='news-results__container'>
-        <h2 className='news-results__title'>Search results</h2>
-        <ul className='news-results__cards_list'>
+    <div className='news-list section'>
+      <div className='news-list__container'>
+        <h2 className='news-list__title'>Search results</h2>
+        <ul className='news-list__cards_list'>
           {displayedArticleCards.map((article, index) => {
             return (
               <NewsCard
-              onDeleteSavedArticle={(article) => {
-                props.onDeleteSavedArticle(article);
-              }}
-                onSaveArticle={(article)=> {props.onSaveArticle(article)}}
+                onDeleteSavedArticle={(article) => {
+                  props.onDeleteSavedArticle(article);
+                }}
+                onSaveArticle={(article) => {
+                  props.onSaveArticle(article);
+                }}
                 isSavedArticle={() => {
                   if (props.isLoggedIn) {
                     return props.savedArticles.some((savedArticle) => {
@@ -58,7 +56,7 @@ function NewsCardsList(props) {
         </ul>
 
         <button
-          className={`news-results__show-more-button ${
+          className={`news-list__show-more-button ${
             showMoreButtonDisabled ? 'hidden' : ''
           }`}
           onClick={showMoreArticles}

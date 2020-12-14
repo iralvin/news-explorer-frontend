@@ -20,7 +20,7 @@
 }
 
 .saved-news__subheader_text_descriptor {
-  font-family: Roboto Slab;
+  font-family: Roboto-Slab;
   font-style: normal;
   font-weight: normal;
   font-size: 40px;
@@ -28,7 +28,16 @@
 
   color: #1a1b22;
 }
+.saved-news__subheader_text_descriptor::first-letter{
+  text-transform: capitalize;
+}
 
 .saved-news__subheader_text_keywords {
   color: #1a1b22;
+}
+
+
+.saved-news__subheader_text_keywords_bold{
+  font-weight: bold;
+  /* text-transform: capitalize; */
 }

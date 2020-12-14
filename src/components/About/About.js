@@ -1,5 +1,4 @@
 import React from 'react';
-import aboutImg from '../images/georgia-bg.png';
 
 function About(props) {
   return (

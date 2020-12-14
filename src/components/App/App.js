@@ -1,24 +1,20 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import '../App.css';
+import SavedNews from '../SavedNews/SavedNews';
+import Main from '../Main/Main';
+import Preloader from '../Preloader/Preloader';
+import NothingFound from '../NothingFound/NothingFound';
+import NewsCardsList from '../NewsCardsList/NewsCardsList';
+import About from '../About/About';
+import Footer from '../Footer/Footer';
+import SigninPopup from '../SigninPopup/SigninPopup';
+import SignupPopup from '../SignupPopup/SignupPopup';
 
-import Header from './Header';
-import SavedNewsHeader from './SavedNewsHeader';
-import Hero from './Hero';
-import Preloader from './Preloader';
-import NothingFound from './NothingFound';
-import NewsCardsList from './NewsCardsList';
-import About from './About';
-import Footer from './Footer';
-import SigninPopup from './SigninPopup';
-import SignupPopup from './SignupPopup';
-import PopupWithForm from './PopupWithForm';
+import searchedArticlesData from '../../constants/searched-articles.json';
+import savedArticlesData from '../../constants/saved-articles.json';
 
-import searchedArticlesData from '../constants/searched-articles.json';
-import savedArticlesData from '../constants/saved-articles.json';
-
-import CurrentUserContext from '../contexts/CurrentUserContext';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function App() {
   const [signinPopupIsOpen, setSigninPopupIsOpen] = React.useState(false);
@@ -87,7 +83,6 @@ function App() {
     console.log('article', article);
     console.log('saving article to saved articles database');
     setSavedArticles([article, ...savedArticles]);
-    // must get article data from article card
   }
 
   function onDeleteSavedArticle(articleToDelete) {
@@ -116,18 +111,17 @@ function App() {
           flairTextClick={flairTextClick}
         />
         <SignupPopup
-          onSubmit={(email, name) => {onRegister(email, name)}}
+          onSubmit={(email, name) => {
+            onRegister(email, name);
+          }}
           isOpened={signupPopupIsOpen}
           closePopup={closePopups}
           flairTextClick={flairTextClick}
         />
 
-        {/* <Header onSignInClick={openSigninPopup} isLoggedIn={isLoggedIn} /> */}
-
         <Switch>
           <Route exact path='/'>
-            {/* ROUTE FOR HOME PAGE */}
-            <Hero
+            <Main
               onLogout={onLogout}
               onSignInClick={openSigninPopup}
               isLoggedIn={isLoggedIn}
@@ -140,31 +134,32 @@ function App() {
               onSaveArticle={(article) => {
                 onSaveArticleClick(article);
               }}
-              onDeleteSavedArticle={() => {}}
+              onDeleteSavedArticle={(article) => {
+                onDeleteSavedArticle(article);
+              }}
             />
             <About />
-            {/* CLOSE ROUTE FOR HOME PAGE */}
           </Route>
 
           <Route path='/saved'>
-            {/* ROUTE FOR SAVED ARTICLES */}
-            <SavedNewsHeader
+            <SavedNews
               onLogout={onLogout}
               isLoggedIn={isLoggedIn}
               onHomeClick={viewHomePage}
+              data={savedArticles}
             />
             <NewsCardsList
               data={savedArticles}
               isLoggedIn={isLoggedIn}
               isViewingSavedArticles={isViewingSavedArticles}
-              onSaveArticle={() => {}}
+              onSaveArticle={(article) => {
+                onSaveArticleClick(article);
+              }}
               onDeleteSavedArticle={(article) => {
                 onDeleteSavedArticle(article);
               }}
             />
           </Route>
-
-          {/* CLOSE ROUTE FOR SAVED ARTICLES */}
         </Switch>
 
         {/* <Preloader /> */}

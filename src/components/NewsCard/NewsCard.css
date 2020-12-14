@@ -1,42 +1,8 @@
-.news-results {
-  background-color: #f5f6f7;
-}
-
-.news-results__container {
-  width: 86%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.news-results__title {
-  margin: 0;
-  padding: 0;
-  font-family: Roboto-Slab;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 40px;
-  line-height: 46px;
-  color: #1a1b22;
-  text-align: left;
-}
-
-.news-results__cards_list {
-  width: 100%;
-  box-sizing: border-box;
-  margin: 64px auto 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 16px 16px;
-}
-
-.news-results__card_item {
+.news-card__item {
   margin: auto;
 }
 
-.news-results__card {
+.news-card {
   width: 400px;
   height: 576px;
   border-radius: 10px;
@@ -45,16 +11,16 @@
   position: relative;
 }
 
-.news-results__card_image {
+.news-card__image {
   width: 100%;
   height: 272px;
   border-radius: 10px 10px 0 0;
-  background-image: url('../images/georgia-bg.png');
+  background-image: url('../../images/georgia-bg.png');
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.news-results__flag {
+.news-card__flag {
   display: none;
   padding: 13px 20px;
   background: #ffffff;
@@ -72,17 +38,17 @@
   right: 70px;
 }
 
-.news-results__flag_sign-in {
+.news-card__flag_sign-in {
 }
 
-.news-results__flag_active {
+.news-card__flag_active {
   display: block;
 }
-.news-results__flag_sign-in_active {
+.news-card__flag_sign-in_active {
   /* display: block; */
 }
 
-.news-results__card_button {
+.news-card__button {
   width: 40px;
   height: 40px;
   padding: 0;
@@ -97,37 +63,37 @@
   top: 24px;
   right: 24px;
 }
-.news-results__card_button_save-button {
-  background-image: url('../images/bookmark.png');
+.news-card__button_save-button {
+  background-image: url('../../images/bookmark.png');
 }
 
-.news-results__card_button_save-button:hover {
-  background-image: url('../images/bookmark-hover.png');
+.news-card__button_save-button:hover {
+  background-image: url('../../images/bookmark-hover.png');
 }
 
-.news-results__card_button_save-button_saved {
-  background-image: url('../images/bookmark-saved.png');
+.news-card__button_save-button_saved {
+  background-image: url('../../images/bookmark-saved.png');
 }
 
-.news-results__card_button_trash-button {
-  background-image: url('../images/trash.png');
+.news-card__button_trash-button {
+  background-image: url('../../images/trash.png');
 }
 
-.news-results__card_button_trash-button:hover {
-  background-image: url('../images/trash-hover.png');
+.news-card__button_trash-button:hover {
+  background-image: url('../../images/trash-hover.png');
 }
 
-.news-results__card_text-container {
+.news-card__text-container {
   /* margin-left: 24px;
-  margin-right: 24px; */
+    margin-right: 24px; */
   margin: 20px 24px 24px;
 }
 
-.news-results__card_text {
+.news-card__text {
   margin: 0;
 }
 
-.news-results__card_date {
+.news-card__date {
   /* margin-top: 20px; */
   margin-bottom: 0;
   font-family: Source-Sans-Pro;
@@ -138,7 +104,7 @@
   color: #b6bcbf;
 }
 
-.news-results__card_title {
+.news-card__title {
   margin-top: 12px;
   /* margin-bottom: 0; */
   font-family: Roboto-Slab;
@@ -149,7 +115,7 @@
   color: #1a1b22;
 }
 
-.news-results__card_abstract {
+.news-card__abstract {
   margin-top: 16px;
   /* margin-bottom: 0; */
   max-height: 110px;
@@ -169,7 +135,7 @@
   -webkit-box-orient: vertical;
 }
 
-.news-results__card_source {
+.news-card__source {
   margin-top: 18px;
   /* margin-bottom: 24px; */
   font-family: Roboto-Slab;
@@ -182,7 +148,7 @@
   color: #b6bcbf;
 }
 
-.news-results__card_keyword_container {
+.news-card__keyword_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -202,24 +168,4 @@
   line-height: 24px;
   text-align: center;
   color: #000000;
-}
-
-.news-results__show-more-button {
-  margin: 64px auto 0;
-  max-width: 288px;
-  padding: 20px 98px;
-  border: none;
-  background: #ffffff;
-  border-radius: 80px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 24px;
-
-  color: #1a1b22;
-}
-
-.hidden {
-  display: none;
 }

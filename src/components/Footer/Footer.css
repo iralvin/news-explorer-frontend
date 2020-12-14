@@ -57,8 +57,8 @@
 }
 
 .footer__nav-menu_icon_facebook {
-  background-image: url('../images/facebook-icon.png');
+  background-image: url('../../images/facebook-icon.png');
 }
 .footer__nav-menu_icon_github {
-  background-image: url('../images/github-icon.png');
+  background-image: url('../../images/github-icon.png');
 }

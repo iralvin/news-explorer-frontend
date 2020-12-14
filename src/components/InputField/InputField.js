@@ -26,8 +26,6 @@ function InputField(props) {
   //   }, []);
 
   React.useEffect(() => {
-    // console.log("test")
-    // console.log(props.testFunction)
     props.checkInputValidity(inputValidity);
   }, [inputValidity, errorMessage]);
 
@@ -42,14 +40,11 @@ function InputField(props) {
         className={`popup__input popup__input_type_${props.inputType}`}
         autoComplete="false"
         // ref={props.refs}
-        // className="hero__search-input"
-        // className={props.inputClassName}
         // id={props.id}
         type={props.type}
-        // name={props.name}
+        name={props.inputType}
         placeholder={props.placeholder}
         minLength={props.minLength}
-        // maxLength={props.maxLength}
         required
         // value={props.value}
         onChange={handleInputChange}

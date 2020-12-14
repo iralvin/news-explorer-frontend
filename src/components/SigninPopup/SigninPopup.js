@@ -1,7 +1,7 @@
 import React from 'react';
 
-import PopupWithForm from './PopupWithForm';
-import InputField from './InputField';
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import InputField from '../InputField/InputField';
 
 function SigninPopup(props) {
   const [emailvalidity, setEmailValidity] = React.useState(false);

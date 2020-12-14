@@ -43,7 +43,7 @@
   margin-left: 20px;
   width: 24px;
   height: 24px;
-  background-image: url('../images/logout-white.png');
+  background-image: url('../../images/logout-white.png');
 }
 
 .navigation__menu-item_account {
@@ -53,9 +53,8 @@
 .navigation__menu-item_active {
   border-bottom: 5px solid #fff;
 }
-.navigation__menu-item_active_black{
+.navigation__menu-item_active_black {
   border-bottom: 5px solid #000;
-
 }
 
 .circle-border {
@@ -74,7 +73,6 @@
   border-radius: 100px;
 }
 
-.navigation__menu-item_logout_saved-news{
-  background-image: url('../images/logout-black.png');
-
+.navigation__menu-item_logout_saved-news {
+  background-image: url('../../images/logout-black.png');
 }

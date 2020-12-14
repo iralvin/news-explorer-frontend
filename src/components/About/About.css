@@ -1,0 +1,40 @@
+.about {
+  max-height: 624px;
+}
+.about-container {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.about__image {
+  min-width: 464px;
+  height: 464px;
+  border-radius: 1000px;
+  background-image: url('../../images/georgia-bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.about__text-container {
+  width: 600px;
+  margin-left: 56px;
+  text-align: left;
+}
+
+.about__subtitle {
+  font-family: Roboto-Slab;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  line-height: 46px;
+  color: #1a1b22;
+}
+.about__description {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+}
