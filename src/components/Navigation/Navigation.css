@@ -76,3 +76,86 @@
 .navigation__menu-item_logout_saved-news {
   background-image: url('../../images/logout-black.png');
 }
+
+.navigation__menu_mobile_button {
+  display: none;
+  margin: auto 0;
+  width: 24px;
+  height: 24px;
+  background-image: url('../../images/hamburger-white.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+.navigation__menu_mobile_button_saved-news {
+  background-image: url('../../images/hamburger-black.png');
+}
+
+.navigation__menu_mobile-underlay {
+  position: fixed;
+  top: 56px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-left: -16px;
+  z-index: 1;
+}
+
+@media screen and (max-width: 800px) {
+  .navigation__menu-item {
+    margin-right: 20px;
+  }
+  .navigation__menu-item_button {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .navigation__menu_mobile_button {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+
+  .navigation__menu-list {
+    display: none;
+  }
+
+  .navigation__menu-list_mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    padding: 0;
+    background: #1a1b22;
+    /* width: 100vw; */
+    /* height: 500px; */
+  }
+
+  .navigation__menu-list_mobile_saved-news {
+    background-color: #fff;
+  }
+
+  .navigation__menu-item_mobile {
+    /* margin: 0; */
+    margin: 16px;
+    max-width: 288px;
+  }
+
+  .navigation__menu-item_mobile:last-of-type {
+    margin-top: 16px;
+  }
+
+  .navigation__menu-item_account {
+  }
+
+  .navigation__menu-item_active {
+    border: none;
+  }
+  .navigation__menu-item_active_black {
+    border: none;
+  }
+}

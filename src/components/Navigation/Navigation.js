@@ -5,27 +5,31 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Navigation(props) {
   const currentUser = React.useContext(CurrentUserContext);
+  const [mobile, setMobile] = React.useState(false);
+  // const [windowWidth, setWindowWidth] = React.useState()
 
-  //   React.useEffect(() => {
-  //     function loggedInTest() {
-  //       console.log(props.isLoggedIn);
-  //       console.log('user logged in, test from nav component');
-  //     }
-  //     loggedInTest();
-  //   }, [props.IsLoggedIn]);
+  function onLogin() {
+    props.disableMobileMenu();
+    props.onSignInClick();
+  }
 
-  function loginButton() {
+  function onLogout() {
+    props.disableMobileMenu();
+    props.onLogout();
+  }
+
+  function createLoginButton() {
     return (
       <button
         className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass} circle-border`}
-        onClick={props.onSignInClick}
+        onClick={onLogin}
       >
         Sign In
       </button>
     );
   }
 
-  function savedArticlesButton() {
+  function createSavedArticlesButton() {
     return (
       <NavLink
         to='/saved'
@@ -41,38 +45,14 @@ function Navigation(props) {
     );
   }
 
-  return (
-    <ul className='navigation__menu-list'>
-      <li className='navigation__menu-item navigation__menu-item_home '>
-        {' '}
-        <NavLink to='/' activeClassName='navigation__menu-item_active'>
-          <button
-            className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
-            onClick={props.onHomeClick}
-          >
-            Home
-          </button>{' '}
-        </NavLink>
-      </li>
-
-      <li
-        className={`navigation__menu-item ${
-          props.isLoggedIn ? 'navigation__menu-item_account' : ''
-        }`}
-      >
-        {props.isLoggedIn ? savedArticlesButton() : loginButton()}
-        {/* <button
-          className={`navigation__menu-item_button navigation__menu-item_button_${
-            props.savedNewsClass
-          } ${props.isLoggedIn ? '' : 'circle-border'}`}
-          onClick={props.isLoggedIn ? viewSavedArticles : props.onSignInClick}
+  function createLogoutButton() {
+    if (props.isLoggedIn) {
+      return (
+        <li
+          className={`navigation__menu-item navigation__menu-item_${
+            props.mobile ? 'mobile' : ''
+          }`}
         >
-          {props.isLoggedIn ? 'Saved articles' : 'Sign In'}
-        </button> */}
-      </li>
-
-      {props.isLoggedIn && (
-        <li className='navigation__menu-item '>
           <NavLink to='/'>
             <button
               className={`navigation__menu-item_button navigation__menu-item_button_${
@@ -82,7 +62,7 @@ function Navigation(props) {
                   ? `circle-border circle-border_${props.savedNewsClass}`
                   : ''
               }`}
-              onClick={props.onLogout}
+              onClick={onLogout}
             >
               {currentUser.name || 'temp user'}{' '}
               <span
@@ -91,8 +71,96 @@ function Navigation(props) {
             </button>
           </NavLink>
         </li>
-      )}
-    </ul>
+      );
+    }
+  }
+
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('navigation__menu_mobile-underlay')) {
+      props.disableMobileMenu();
+    }
+  });
+
+  return (
+    <>
+      <ul className='navigation__menu-list'>
+        <li className='navigation__menu-item navigation__menu-item_home '>
+          {' '}
+          <NavLink to='/' activeClassName='navigation__menu-item_active'>
+            <button
+              className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
+              onClick={props.onHomeClick}
+            >
+              Home
+            </button>{' '}
+          </NavLink>
+        </li>
+
+        <li
+          className={`navigation__menu-item ${
+            props.isLoggedIn ? 'navigation__menu-item_account' : ''
+          }`}
+        >
+          {props.isLoggedIn ? createSavedArticlesButton() : createLoginButton()}
+        </li>
+
+        {createLogoutButton()}
+      </ul>
+
+      <>
+        <button
+          className={`navigation__menu_mobile_button navigation__menu_mobile_button_${props.savedNewsClass}`}
+          onClick={props.onHamburgerClick}
+        ></button>
+
+        {props.mobile && (
+          <div className='navigation__menu_mobile-underlay'>
+            <ul
+              className={`navigation__menu-list navigation__menu-list_${
+                props.mobile ? 'mobile' : ''
+              } navigation__menu-list_${
+                props.mobile ? 'mobile' : ''
+              }_${props.savedNewsClass}`}
+            >
+              <li
+                className={`navigation__menu-item navigation__menu-item_${
+                  props.mobile ? 'mobile' : ''
+                } navigation__menu-item_home navigation__menu-item_home_${
+                  props.mobile ? 'mobile' : ''
+                }`}
+              >
+                {' '}
+                <NavLink to='/' activeClassName='navigation__menu-item_active'>
+                  <button
+                    className={`navigation__menu-item_button navigation__menu-item_button_${
+                      props.savedNewsClass
+                    }
+                    navigation__menu-item_button_${
+                      props.mobile ? 'mobile' : ''
+                    }`}
+                    onClick={props.onHomeClick}
+                  >
+                    Home
+                  </button>{' '}
+                </NavLink>
+              </li>
+
+              <li
+                className={`navigation__menu-item  navigation__menu-item_${
+                  props.mobile ? 'mobile' : ''
+                } ${props.isLoggedIn ? 'navigation__menu-item_account' : ''}`}
+              >
+                {props.isLoggedIn
+                  ? createSavedArticlesButton()
+                  : createLoginButton()}
+              </li>
+
+              {createLogoutButton()}
+            </ul>
+          </div>
+        )}
+      </>
+    </>
   );
 }
 

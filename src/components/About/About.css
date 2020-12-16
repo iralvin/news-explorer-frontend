@@ -9,7 +9,7 @@
 
 .about__image {
   min-width: 464px;
-  height: 464px;
+  min-height: 464px;
   border-radius: 1000px;
   background-image: url('../../images/georgia-bg.png');
   background-repeat: no-repeat;
@@ -37,4 +37,35 @@
   font-size: 18px;
   line-height: 24px;
   color: #1a1b22;
+}
+
+@media screen and (max-width: 800px) {
+  .about__image {
+    margin: auto;
+    min-width: 232px;
+    min-height: 232px;
+  }
+  .about__subtitle {
+    margin: 0;
+    font-size: 30px;
+    line-height: 40px;
+  }
+  .about__description {
+    margin-top: 16px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .about-container {
+    flex-direction: column;
+    width: 288px;
+  }
+  .about__image {
+    min-width: 272px;
+    min-height: 272px;
+  }
+  .about__text-container{
+    width: 100%;
+    margin: 24px auto 0;
+  }
 }

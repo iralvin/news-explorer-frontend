@@ -12,10 +12,7 @@ function SignupPopup(props) {
   const [name, setName] = React.useState('');
 
   function closePopup(e) {
-    // if (e.target.classList.contains('popup')) {
     props.closePopup();
-    console.log('clicked outside popupwindow');
-    // }
   }
 
   function checkEmailInputValidity(inputValidity) {
@@ -41,7 +38,6 @@ function SignupPopup(props) {
   }
 
   function onSubmit() {
-    // e.preventDefault();
     props.onSubmit(email, name);
   }
 
@@ -79,6 +75,24 @@ function SignupPopup(props) {
           checkInputValidity={checkNameInputValidity}
           onChange={onNameChange}
         />
+
+        <button
+          className={`popup__submit ${
+            emailvalidity && passwordValidity && nameValidity ? '' : 'popup__submit_disabled'
+          }`}
+          disabled={!emailvalidity && passwordValidity && nameValidity}
+        >
+          Sign Up
+        </button>
+        <p className='popup__flair-text'>
+          or{' '}
+          <span
+            className='popup__flair-text popup__flair-text_button'
+            onClick={props.flairTextClick}
+          >
+            Sign In
+          </span>
+        </p>
       </PopupWithForm>
     </div>
   );

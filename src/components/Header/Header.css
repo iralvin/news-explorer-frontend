@@ -29,3 +29,31 @@
   background: #ffffff;
   box-shadow: inset 0px -1px 0px #d1d2d6;
 }
+
+@media screen and (max-width: 800px) {
+  .header {
+    height: 66px;
+  }
+
+  .header__container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .header {
+    height: 56px;
+  }
+
+  .header__mobile {
+    background-color: #1a1b22;
+  }
+  .header__mobile_saved-news{
+    background-color: #fff;
+  }
+
+  .header__logo {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

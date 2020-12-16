@@ -19,7 +19,7 @@
 
 .popup__dialog-window {
   width: 430px;
-  min-height: 380px;
+  /* min-height: 380px; */
   margin: auto;
   background: #ffffff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
@@ -72,6 +72,13 @@
 }
 .popup__input-title {
   text-transform: capitalize;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #2f71e5;
 }
 
 .popup__input-error {
@@ -110,4 +117,41 @@
 .popup__flair-text_button {
   cursor: pointer;
   color: #2f71e5;
+}
+
+@media screen and (max-width: 590px) {
+  .popup__dialog-window {
+    position: fixed;
+    top: 56px;
+    height: 100vh;
+    width: 100vw;
+  }
+  .popup__close-button {
+    left: 0;
+    /* transform: translate(50%, -100%); */
+  }
+
+  .popup__submit {
+    max-width: 100%;
+  }
+/* 
+  .popup_mobile {
+    top: 56px;
+  }
+
+  .popup__dialog-window_mobile {
+    border-radius: 0;
+    background: #1a1b22;
+    height: fit-content;
+  }
+
+  .popup__form_mobile {
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+  } */
+  /* .popup__title_mobile{
+    margin: 0;
+  padding: 0;
+  } */
 }

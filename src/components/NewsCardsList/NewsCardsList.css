@@ -23,7 +23,6 @@
 
 .news-list__cards_list {
   width: 100%;
-  box-sizing: border-box;
   margin: 64px auto 0;
   padding: 0;
   list-style: none;
@@ -50,4 +49,34 @@
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .news-list__title {
+    font-size: 30px;
+    line-height: 34px;
+  }
+
+  .news-list__container {
+    width: 90%;
+  }
+  .news-list__cards_list {
+    margin-top: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
+    gap: 8px 8px;
+  }
+
+  .news-list__show-more-button {
+    margin: 32px auto 0;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .news-list__cards_list {
+    margin-top: 58px;
+  }
+  .news-list__cards_list {
+    gap: 10px 10px;
+  }
+
 }
