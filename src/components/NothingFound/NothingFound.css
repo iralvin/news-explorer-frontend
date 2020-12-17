@@ -18,7 +18,7 @@
 
 .nothing-found__title{
     margin: 24px auto 0;
-    font-family: Roboto-Slab;
+    font-family: Roboto-Slab, Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 26px;
@@ -32,7 +32,7 @@
 .nothing-found__text{
     width: 356px;
     margin: 16px auto 0;
-    font-family: Roboto;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
 font-style: normal;
 font-weight: normal;
 font-size: 18px;

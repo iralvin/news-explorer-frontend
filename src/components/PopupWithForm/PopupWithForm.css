@@ -72,7 +72,7 @@
 }
 .popup__input-title {
   text-transform: capitalize;
-  font-family: Inter;
+  font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -83,7 +83,7 @@
 
 .popup__input-error {
   display: none;
-  font-family: Inter;
+  font-family: Inter, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -137,24 +137,5 @@
   .popup__submit {
     max-width: 100%;
   }
-  /* 
-  .popup_mobile {
-    top: 56px;
-  }
 
-  .popup__dialog-window_mobile {
-    border-radius: 0;
-    background: #1a1b22;
-    height: fit-content;
-  }
-
-  .popup__form_mobile {
-    margin: 0;
-    padding: 0;
-    height: fit-content;
-  } */
-  /* .popup__title_mobile{
-    margin: 0;
-  padding: 0;
-  } */
 }
