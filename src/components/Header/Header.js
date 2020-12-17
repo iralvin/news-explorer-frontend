@@ -16,8 +16,8 @@ function Header(props) {
 
   return (
     <header
-      className={`header header__${isMobileMenuOpen ? 'mobile' : ''} header__${
-        isMobileMenuOpen ? 'mobile' : ''
+      className={`header header__${isMobileMenuOpen || props.isPopupOpened ? 'mobile' : ''} header__${
+        isMobileMenuOpen || props.isPopupOpened ? 'mobile' : ''
       }_${props.savedNewsClass} header__${props.savedNewsClass}`}
     >
       <div className='header__container'>

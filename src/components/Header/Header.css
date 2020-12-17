@@ -42,10 +42,14 @@
 
 @media screen and (max-width: 700px) {
   .header {
+
     height: 56px;
   }
 
   .header__mobile {
+    position: fixed;
+    top:0;
+    z-index: 1;
     background-color: #1a1b22;
   }
   .header__mobile_saved-news {
