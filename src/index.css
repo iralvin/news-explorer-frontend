@@ -1,5 +1,23 @@
+@import url('./components/App/App.css');
+@import url('./styles/normalize.css');
+@import url('./vendor/fonts.css');
+@import url('./components/Header/Header.css');
+@import url('./components/Navigation/Navigation.css');
+@import url('./components/NewsCardsList/NewsCardsList.css');
+@import url('./components/NewsCard/NewsCard.css');
+@import url('./components/Main/Main.css');
+@import url('./components/Preloader/Preloader.css');
+@import url('./components/NothingFound/NothingFound.css');
+@import url('./components/InputField/InputField.css');
+@import url('./components/About/About.css');
+@import url('./components/Footer/Footer.css');
+@import url('./components/PopupWithForm/PopupWithForm.css');
+@import url('./components/SavedNews/SavedNews.css');
+
 body {
-  margin: 0;
+  box-sizing: border-box;
+  margin: auto;
+  max-width: 1440px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +25,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.section {
+  width: 100%;
+  margin: 0 auto;
+  padding: 80px 0;
+}
+
+@media screen and (max-width: 800px) {
+  .section {
+    padding: 40px 0;
+  }
 }
