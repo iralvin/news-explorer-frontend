@@ -14,11 +14,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-right: 75px;
+  margin: auto 20px;
+
 }
 
 .navigation__menu-item:last-of-type {
-  margin-right: 0;
 }
 
 .navigation__menu-item_button {
@@ -36,10 +36,11 @@
 
 .navigation__menu-item_button_user {
   display: flex;
+  justify-content: space-between;
 }
 
 .navigation__menu-item_logout {
-  display: block;
+  display: inline-block;
   margin-left: 20px;
   width: 24px;
   height: 24px;
@@ -51,17 +52,22 @@
 }
 
 .navigation__menu-item_active {
-  border-bottom: 5px solid #fff;
+  border-bottom: 3px solid #fff;
+  display: flex;
 }
 .navigation__menu-item_active_black {
-  border-bottom: 5px solid #000;
+  border-bottom: 3px solid #000;
 }
 
 .circle-border {
+  min-width: 175px;
   padding: 12px 18px;
   border: 1px solid #ffffff;
-  box-sizing: border-box;
   border-radius: 100px;
+}
+
+.circle-border_logged-in {
+  min-width: fit-content;
 }
 
 .navigation__menu-item_button_saved-news {
@@ -94,12 +100,14 @@
 }
 
 .navigation__menu_mobile-underlay {
+  display: none;
   position: fixed;
   top: 56px;
+  left: 0;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  margin-left: -16px;
+  /* margin-left: -16px; */
   z-index: 1;
 }
 
@@ -113,17 +121,23 @@
   }
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 700px) {
   .navigation__menu_mobile_button {
     display: block;
     width: 24px;
     height: 24px;
   }
 
+  .navigation__menu_mobile_button_opened {
+    background-image: url("../../images/close.png");
+  }
+
   .navigation__menu-list {
     display: none;
   }
-
+  .navigation__menu_mobile-underlay {
+    display: block;
+  }
   .navigation__menu-list_mobile {
     display: flex;
     flex-direction: column;
@@ -131,8 +145,6 @@
     text-align: left;
     padding: 0;
     background: #1a1b22;
-    /* width: 100vw; */
-    /* height: 500px; */
   }
 
   .navigation__menu-list_mobile_saved-news {
@@ -140,7 +152,6 @@
   }
 
   .navigation__menu-item_mobile {
-    /* margin: 0; */
     margin: 16px;
     max-width: 288px;
   }

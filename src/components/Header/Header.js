@@ -2,31 +2,33 @@ import React from 'react';
 import Navigation from '../Navigation/Navigation';
 
 function Header(props) {
-  const [mobile, setMobile] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   function enableMobileMenu() {
     console.log('setting mobile true');
-    setMobile(true);
+    setIsMobileMenuOpen(true);
   }
 
   function disableMobileMenu() {
     console.log('setting mobile false');
-    setMobile(false);
+    setIsMobileMenuOpen(false);
   }
 
   return (
     <header
-      className={`header header__${mobile ? 'mobile' : ''} header__${
-        mobile ? 'mobile' : ''
+      className={`header header__${isMobileMenuOpen ? 'mobile' : ''} header__${
+        isMobileMenuOpen ? 'mobile' : ''
       }_${props.savedNewsClass} header__${props.savedNewsClass}`}
     >
       <div className='header__container'>
         <p className='header__logo'>NewsExplorer</p>
 
         <Navigation
+          isPopupOpened={props.isPopupOpened}
+          closePopups={props.closePopups}
           onHamburgerClick={enableMobileMenu}
           disableMobileMenu={disableMobileMenu}
-          mobile={mobile}
+          isMobileMenuOpen={isMobileMenuOpen}
           onLogout={props.onLogout}
           onHomeClick={props.onHomeClick}
           onSavedArticlesClick={props.onSavedArticlesClick}

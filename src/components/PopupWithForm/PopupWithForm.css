@@ -120,21 +120,24 @@
 }
 
 @media screen and (max-width: 590px) {
-  .popup__dialog-window {
+  .popup {
     position: fixed;
     top: 56px;
+  }
+  .popup__dialog-window {
     height: 100vh;
     width: 100vw;
   }
   .popup__close-button {
-    left: 0;
-    /* transform: translate(50%, -100%); */
+    display: none;
+    transform: translate(-70%, -120%);
+    color: red;
   }
 
   .popup__submit {
     max-width: 100%;
   }
-/* 
+  /* 
   .popup_mobile {
     top: 56px;
   }

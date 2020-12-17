@@ -110,6 +110,8 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Main
+              isPopupOpened={signinPopupIsOpen || signupPopupIsOpen}
+              closePopups={closePopups}
               onLogout={onLogout}
               onSignInClick={openSigninPopup}
               isLoggedIn={isLoggedIn}
@@ -128,6 +130,8 @@ function App() {
 
           <Route path='/saved'>
             <SavedNews
+              isPopupOpened={signinPopupIsOpen || signupPopupIsOpen}
+              closePopups={closePopups}
               onLogout={onLogout}
               isLoggedIn={isLoggedIn}
               onHomeClick={viewHomePage}

@@ -49,6 +49,8 @@ function SavedNews(props) {
     <>
       <div className='saved-news'>
         <Header
+          isPopupOpened={props.isPopupOpened}
+          closePopups={props.closePopups}
           onLogout={props.onLogout}
           savedNewsClass='saved-news'
           isLoggedIn={props.isLoggedIn}

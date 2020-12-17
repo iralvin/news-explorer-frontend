@@ -18,14 +18,29 @@ function Navigation(props) {
     props.onLogout();
   }
 
+  function onMenuClick() {
+    if (props.isMobileMenuOpen || props.isPopupOpened) {
+      props.closePopups();
+      props.disableMobileMenu();
+    } else {
+      props.onHamburgerClick();
+    }
+  }
+
   function createLoginButton() {
     return (
-      <button
-        className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass} circle-border`}
-        onClick={onLogin}
+      <li
+        className={`navigation__menu-item ${
+          props.isLoggedIn ? 'navigation__menu-item_account' : ''
+        }`}
       >
-        Sign In
-      </button>
+        <button
+          className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass} circle-border`}
+          onClick={onLogin}
+        >
+          Sign In
+        </button>
+      </li>
     );
   }
 
@@ -34,13 +49,20 @@ function Navigation(props) {
       <NavLink
         to='/saved'
         activeClassName='navigation__menu-item_active navigation__menu-item_active_black'
+        style={{ textDecoration: 'none', display: 'flex' }}
       >
-        <button
-          className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
-          onClick={props.onSavedArticlesClick}
+        <li
+          className={`navigation__menu-item ${
+            props.isLoggedIn ? 'navigation__menu-item_account' : ''
+          }`}
         >
-          Saved articles
-        </button>{' '}
+          <button
+            className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
+            onClick={props.onSavedArticlesClick}
+          >
+            Saved articles
+          </button>{' '}
+        </li>
       </NavLink>
     );
   }
@@ -48,18 +70,22 @@ function Navigation(props) {
   function createLogoutButton() {
     if (props.isLoggedIn) {
       return (
-        <li
-          className={`navigation__menu-item navigation__menu-item_${
-            props.mobile ? 'mobile' : ''
-          }`}
+        <NavLink
+          exact
+          to='/'
+          style={{ textDecoration: 'none', display: 'flex' }}
         >
-          <NavLink to='/'>
+          <li
+            className={`navigation__menu-item navigation__menu-item_${
+              props.isMobileMenuOpen ? 'mobile' : ''
+            }`}
+          >
             <button
               className={`navigation__menu-item_button navigation__menu-item_button_${
                 props.savedNewsClass
               } navigation__menu-item_button_user ${
                 props.isLoggedIn
-                  ? `circle-border circle-border_${props.savedNewsClass}`
+                  ? `circle-border circle-border_logged-in circle-border_${props.savedNewsClass}`
                   : ''
               }`}
               onClick={onLogout}
@@ -69,8 +95,8 @@ function Navigation(props) {
                 className={`navigation__menu-item_logout navigation__menu-item_logout_${props.savedNewsClass}`}
               ></span>
             </button>
-          </NavLink>
-        </li>
+          </li>{' '}
+        </NavLink>
       );
     }
   }
@@ -84,59 +110,66 @@ function Navigation(props) {
   return (
     <>
       <ul className='navigation__menu-list'>
-        <li className='navigation__menu-item navigation__menu-item_home '>
-          {' '}
-          <NavLink to='/' activeClassName='navigation__menu-item_active'>
+        <NavLink
+          exact
+          to='/'
+          activeClassName='navigation__menu-item_active'
+          style={{ textDecoration: 'none', display: 'flex' }}
+        >
+          <li className='navigation__menu-item navigation__menu-item_home '>
+            {' '}
             <button
               className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
               onClick={props.onHomeClick}
             >
               Home
             </button>{' '}
-          </NavLink>
-        </li>
+          </li>
+        </NavLink>
 
-        <li
-          className={`navigation__menu-item ${
-            props.isLoggedIn ? 'navigation__menu-item_account' : ''
-          }`}
-        >
-          {props.isLoggedIn ? createSavedArticlesButton() : createLoginButton()}
-        </li>
+        {props.isLoggedIn ? createSavedArticlesButton() : createLoginButton()}
 
         {createLogoutButton()}
       </ul>
 
       <>
         <button
-          className={`navigation__menu_mobile_button navigation__menu_mobile_button_${props.savedNewsClass}`}
-          onClick={props.onHamburgerClick}
+          className={`navigation__menu_mobile_button navigation__menu_mobile_button_${
+            props.savedNewsClass
+          } navigation__menu_mobile_button_${
+            props.isMobileMenuOpen || props.isPopupOpened ? 'opened' : ''
+          }`}
+          onClick={onMenuClick}
         ></button>
 
-        {props.mobile && (
+        {props.isMobileMenuOpen && (
           <div className='navigation__menu_mobile-underlay'>
             <ul
               className={`navigation__menu-list navigation__menu-list_${
-                props.mobile ? 'mobile' : ''
+                props.isMobileMenuOpen ? 'mobile' : ''
               } navigation__menu-list_${
-                props.mobile ? 'mobile' : ''
+                props.isMobileMenuOpen ? 'mobile' : ''
               }_${props.savedNewsClass}`}
             >
               <li
                 className={`navigation__menu-item navigation__menu-item_${
-                  props.mobile ? 'mobile' : ''
+                  props.isMobileMenuOpen ? 'mobile' : ''
                 } navigation__menu-item_home navigation__menu-item_home_${
-                  props.mobile ? 'mobile' : ''
+                  props.isMobileMenuOpen ? 'mobile' : ''
                 }`}
               >
                 {' '}
-                <NavLink to='/' activeClassName='navigation__menu-item_active'>
+                <NavLink
+                  to='/'
+                  activeClassName='navigation__menu-item_active'
+                  style={{ textDecoration: 'none', display: 'flex' }}
+                >
                   <button
                     className={`navigation__menu-item_button navigation__menu-item_button_${
                       props.savedNewsClass
                     }
                     navigation__menu-item_button_${
-                      props.mobile ? 'mobile' : ''
+                      props.isMobileMenuOpen ? 'mobile' : ''
                     }`}
                     onClick={props.onHomeClick}
                   >
@@ -145,16 +178,9 @@ function Navigation(props) {
                 </NavLink>
               </li>
 
-              <li
-                className={`navigation__menu-item  navigation__menu-item_${
-                  props.mobile ? 'mobile' : ''
-                } ${props.isLoggedIn ? 'navigation__menu-item_account' : ''}`}
-              >
-                {props.isLoggedIn
-                  ? createSavedArticlesButton()
-                  : createLoginButton()}
-              </li>
-
+              {props.isLoggedIn
+                ? createSavedArticlesButton()
+                : createLoginButton()}
               {createLogoutButton()}
             </ul>
           </div>

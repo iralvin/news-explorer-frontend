@@ -15,6 +15,8 @@ function Main(props) {
     <>
       <div className='main'>
         <Header
+          isPopupOpened={props.isPopupOpened}
+          closePopups={props.closePopups}
           onLogout={props.onLogout}
           onSignInClick={props.onSignInClick}
           isLoggedIn={props.isLoggedIn}
