@@ -9,7 +9,7 @@
 
 .about__image {
   min-width: 464px;
-  min-height: 464px;
+  height: 464px;
   border-radius: 1000px;
   background-image: url('../../images/georgia-bg.png');
   background-repeat: no-repeat;
@@ -43,7 +43,7 @@
   .about__image {
     margin: auto;
     min-width: 232px;
-    min-height: 232px;
+    height: 232px;
   }
   .about__subtitle {
     margin: 0;

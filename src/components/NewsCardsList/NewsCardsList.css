@@ -36,7 +36,7 @@
   max-width: 288px;
   padding: 20px 98px;
   border: none;
-  background: #ffffff;
+  background-color: #ffffff;
   border-radius: 80px;
   font-family: Roboto;
   font-style: normal;
@@ -45,6 +45,13 @@
   line-height: 24px;
 
   color: #1a1b22;
+}
+.news-list__show-more-button:hover {
+  cursor: pointer;
+  background-color: rgb(241, 241, 241);
+}
+.news-list__show-more-button:focus {
+  outline: none;
 }
 
 .hidden {
@@ -80,5 +87,4 @@
 
     gap: 10px 10px;
   }
-
 }
