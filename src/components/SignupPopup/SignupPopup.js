@@ -38,7 +38,7 @@ function SignupPopup(props) {
   }
 
   function onSubmit() {
-    props.onSubmit(email, name);
+    props.onSubmit(email, password, name);
   }
 
   return (

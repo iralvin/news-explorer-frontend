@@ -6,6 +6,7 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import SigninPopup from '../SigninPopup/SigninPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
+import * as auth from '../../util/auth';
 
 import searchedArticlesData from '../../constants/searched-articles.json';
 import savedArticlesData from '../../constants/saved-articles.json';
@@ -49,13 +50,19 @@ function App() {
     setIsLoggedIn(true);
     closePopups();
   }
-  function onRegister(email, name) {
-    setCurrentUser({
-      email,
-      name
-    });
-    setIsLoggedIn(true);
-    closePopups();
+  function onRegister(email, password, name) {
+    auth
+      .register(email, password, name)
+      .then((user) => {
+        setCurrentUser(user)
+        setIsLoggedIn(true);
+        closePopups();
+        console.log('new user', user);
+      })
+      .catch((err) => {
+        console.log('failed to create user');
+      });
+
   }
 
   function onLogout() {
@@ -99,8 +106,8 @@ function App() {
           flairTextClick={switchSigninSignup}
         />
         <SignupPopup
-          onSubmit={(email, name) => {
-            onRegister(email, name);
+          onSubmit={(email, password, name) => {
+            onRegister(email, password, name);
           }}
           isOpened={signupPopupIsOpen}
           closePopup={closePopups}
