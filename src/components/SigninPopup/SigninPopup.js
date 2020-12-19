@@ -28,7 +28,7 @@ function SigninPopup(props) {
   }
 
   function onSubmit() {
-    props.onSubmit();
+    props.onSubmit(email, password);
   }
 
   return (

@@ -1,5 +1,3 @@
-import { base } from "../../../api/models/user";
-
 const baseUrl = 'https://www.api.alvin.students.nomoreparties.site/';
 
 const register = (email, password, name) => {
@@ -9,24 +7,46 @@ const register = (email, password, name) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ email, password, name })
-  }).then((res) => {
-      console.log("response")
-    console.log(res);
+  }).then((data) => {
+    console.log('response');
+    console.log(data);
 
-    if (res.ok) {
-      return res.json();
+    if (data.ok) {
+      return data.json();
     }
   });
+  // .catch((err) => {
+  //   console.log('failed to create user');
+  // });
 };
 
-
 const login = (email, password) => {
-    return fetch(`${baseUrl}signin`, {
-        method:"GET",
-        headers:{
-            
-        }
-    })
-}
+  return fetch(`${baseUrl}signin`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
+  })
+    .then((res) => {
+      console.log('res', res);
 
-export { register };
+      if (res.ok) {
+        console.log('res', res);
+        return res.json();
+      }
+    })
+    .then((data) => {
+      console.log('data', data);
+      if (data) {
+        localStorage.setItem('token', data.token);
+        return data;
+      }
+    });
+  // .catch((err) => {
+  //   console.log('failed to login');
+  // });
+};
+
+export { register, login };

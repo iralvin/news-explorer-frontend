@@ -72,13 +72,16 @@ function SignupPopup(props) {
           inputType='name'
           type='text'
           placeholder='Enter name'
+          minLength='2'
           checkInputValidity={checkNameInputValidity}
           onChange={onNameChange}
         />
 
         <button
           className={`popup__submit ${
-            emailvalidity && passwordValidity && nameValidity ? '' : 'popup__submit_disabled'
+            emailvalidity && passwordValidity && nameValidity
+              ? ''
+              : 'popup__submit_disabled'
           }`}
           disabled={!emailvalidity && passwordValidity && nameValidity}
         >

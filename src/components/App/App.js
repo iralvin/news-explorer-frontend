@@ -45,24 +45,43 @@ function App() {
       closePopups();
     }
   }
-  function onLogin() {
+  function onLogin(email, password) {
     console.log('app form submit');
-    setIsLoggedIn(true);
-    closePopups();
+    auth
+      .login(email, password)
+      .then((data) => {
+        console.log('data', data);
+        if (data) {
+          console.log('successful login');
+          console.log('data', data);
+          setCurrentUser(data.user);
+          setIsLoggedIn(true);
+          closePopups();
+          return;
+        }
+        return Promise.reject();
+      })
+      .catch((err) => {
+        console.log('error logging in');
+      });
   }
+
   function onRegister(email, password, name) {
     auth
       .register(email, password, name)
-      .then((user) => {
-        setCurrentUser(user)
-        setIsLoggedIn(true);
-        closePopups();
-        console.log('new user', user);
+      .then((data) => {
+        if (data) {
+          setCurrentUser(data.user);
+          setIsLoggedIn(true);
+          closePopups();
+          console.log('new user', data);
+          return;
+        }
+        return Promise.reject();
       })
       .catch((err) => {
         console.log('failed to create user');
       });
-
   }
 
   function onLogout() {
@@ -100,7 +119,9 @@ function App() {
     <div className='App'>
       <CurrentUserContext.Provider value={currentUser}>
         <SigninPopup
-          onSubmit={onLogin}
+          onSubmit={(email, password) => {
+            onLogin(email, password);
+          }}
           isOpened={signinPopupIsOpen}
           closePopup={closePopups}
           flairTextClick={switchSigninSignup}
