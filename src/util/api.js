@@ -1,8 +1,10 @@
 const newsApiKey = "66c76d6a626b4e74a20ef60d3c03128a";
 
 class Api {
-  constructor(baseUrl) {
-    this._baseUrl = baseUrl;
+  constructor() {
+    this._baseUrl = "https://www.api.alvin.students.nomoreparties.site/";
+    this._newsTopUrl = "http://newsapi.org/v2/top-headlines?";
+    this._newsSearchUrl = "http://newsapi.org/v2/everything?";
   }
 
   getSavedArticles(token, user) {
@@ -19,6 +21,22 @@ class Api {
     });
   }
 
+  getNewsSearchedArticles(query) {
+    console.log(`search for query ${query}`);
+    return fetch(`${this._newsSearchUrl}q=${query}`, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer 66c76d6a626b4e74a20ef60d3c03128a",
+      },
+    }).then((res) => {
+      console.log("search articles res", res);
+      // return res.json()
+      if (res.ok) {
+        return res.json();
+      }
+    });
+  }
+
   // GET user data after logged in
   // GET user saved articles
 
@@ -27,6 +45,8 @@ class Api {
   // GET news articles
 }
 
-const api = new Api("https://www.api.alvin.students.nomoreparties.site/");
+const api = new Api();
 
 export default api;
+
+// http://newsapi.org/v2/everything?q=Apple&from=2020-12-19&sortBy=popularity&apiKey=66c76d6a626b4e74a20ef60d3c03128a

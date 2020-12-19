@@ -90,8 +90,8 @@ function App() {
       const token = localStorage.getItem("token");
       auth.checkToken(token).then((user) => {
         if (user) {
-          setCurrentUser(user)
-          setIsLoggedIn(true)
+          setCurrentUser(user);
+          setIsLoggedIn(true);
           console.log("user", user);
         }
       });
@@ -99,7 +99,7 @@ function App() {
   }
 
   function onLogout() {
-    localStorage.removeItem("token")
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
   }
 
@@ -124,15 +124,20 @@ function App() {
     setSavedArticles(tempSavedArticles);
   }
 
-  function getInitialSavedArticles(){
+  function getInitialSavedArticles() {
     if (localStorage.getItem("token")) {
       const token = localStorage.getItem("token");
-      api.getSavedArticles(token, currentUser).then(articles => {
-        if (articles){
+      api.getSavedArticles(token, currentUser).then((articles) => {
+        if (articles) {
           setSavedArticles(articles);
         }
-      })
+      });
     }
+  }
+  function onSearch(query) {
+    api.getNewsSearchedArticles(query).then(res => {
+      console.log(res)
+    });
   }
 
   React.useEffect(() => {
@@ -140,7 +145,7 @@ function App() {
     onPageLoad();
     setSearchedArticles(searchedArticlesData);
     // setSavedArticles(savedArticlesData);
-    getInitialSavedArticles()
+    getInitialSavedArticles();
   }, []);
 
   return (
@@ -166,6 +171,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Main
+              onSearch={(query) => {
+                onSearch(query);
+              }}
               isPopupOpened={signinPopupIsOpen || signupPopupIsOpen}
               closePopups={closePopups}
               onLogout={onLogout}
