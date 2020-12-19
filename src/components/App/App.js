@@ -84,6 +84,13 @@ function App() {
       });
   }
 
+  function onPageLoad(){
+    if (localStorage.getItem("token")){
+      const token = localStorage.getItem("token");
+      auth.checkToken(token)
+    }
+  }
+
   function onLogout() {
     setIsLoggedIn(false);
   }
@@ -111,6 +118,7 @@ function App() {
 
   React.useEffect(() => {
     window.addEventListener('keyup', escapeKeyPressed);
+    onPageLoad();
     setSearchedArticles(searchedArticlesData);
     setSavedArticles(savedArticlesData);
   }, []);
