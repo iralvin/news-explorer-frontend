@@ -83,16 +83,16 @@ function NewsCard(props) {
 
         <div className='news-card__text-container'>
           <p className='news-card__date news-card__text news-card__text_date'>
-            {props.article.date}
+            {props.article.publishedAt}
           </p>
           <p className='news-card__title news-card__text news-card__text_title'>
             {props.article.title}
           </p>
           <p className='news-card__abstract news-card__text news-card__text_abstract'>
-            {props.article.abstract}
+            {props.article.description}
           </p>
           <p className='news-card__source news-card__text news-card__text_source'>
-            {props.article.source}
+            {props.article.source.name}
           </p>
         </div>
       </div>

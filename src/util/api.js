@@ -29,7 +29,7 @@ class Api {
         Authorization: "Bearer 66c76d6a626b4e74a20ef60d3c03128a",
       },
     }).then((res) => {
-      console.log("search articles res", res);
+      // console.log("search articles res", res);
       // return res.json()
       if (res.ok) {
         return res.json();

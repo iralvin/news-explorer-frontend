@@ -16,6 +16,8 @@ function NewsCardsList(props) {
   }
 
   React.useEffect(() => {
+    // setDisplayedArticleCards(props.data);
+
     displayThreeArticles();
     if (props.data.length > 3) {
       setShowMoreButtonDisabled(false);

@@ -1,18 +1,18 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import SavedNews from "../SavedNews/SavedNews";
-import Main from "../Main/Main";
-import Footer from "../Footer/Footer";
-import SigninPopup from "../SigninPopup/SigninPopup";
-import SignupPopup from "../SignupPopup/SignupPopup";
-import * as auth from "../../util/auth";
-import api from "../../util/api";
+import SavedNews from '../SavedNews/SavedNews';
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
+import SigninPopup from '../SigninPopup/SigninPopup';
+import SignupPopup from '../SignupPopup/SignupPopup';
+import * as auth from '../../util/auth';
+import api from '../../util/api';
 
-import searchedArticlesData from "../../constants/searched-articles.json";
-import savedArticlesData from "../../constants/saved-articles.json";
+import searchedArticlesData from '../../constants/searched-articles.json';
+import savedArticlesData from '../../constants/saved-articles.json';
 
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function App() {
   const [signinPopupIsOpen, setSigninPopupIsOpen] = React.useState(false);
@@ -21,6 +21,8 @@ function App() {
   const [isViewingSavedArticles, setIsViewingSavedArticles] = React.useState(
     false
   );
+  const [isSearching, setIsSearching] = React.useState(false);
+  const [noArticlesFound, setNoArticlesFound] = React.useState(false);
   const [searchedArticles, setSearchedArticles] = React.useState([]);
   const [savedArticles, setSavedArticles] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({});
@@ -30,7 +32,7 @@ function App() {
   }
 
   function switchSigninSignup() {
-    console.log("swapped sign in / sign up");
+    console.log('swapped sign in / sign up');
     setSigninPopupIsOpen(!signinPopupIsOpen);
     setSignupPopupIsOpen(!signupPopupIsOpen);
   }
@@ -41,20 +43,20 @@ function App() {
   }
 
   function escapeKeyPressed(e) {
-    if (e.key === "Escape") {
-      console.log("pressed escape key");
+    if (e.key === 'Escape') {
+      console.log('pressed escape key');
       closePopups();
     }
   }
   function onLogin(email, password) {
-    console.log("app form submit");
+    console.log('app form submit');
     auth
       .login(email, password)
       .then((data) => {
-        console.log("data", data);
+        console.log('data', data);
         if (data) {
-          console.log("successful login");
-          console.log("data", data);
+          console.log('successful login');
+          console.log('data', data);
           setCurrentUser(data.user);
           setIsLoggedIn(true);
           closePopups();
@@ -63,7 +65,7 @@ function App() {
         return Promise.reject();
       })
       .catch((err) => {
-        console.log("error logging in");
+        console.log('error logging in');
       });
   }
 
@@ -75,31 +77,31 @@ function App() {
           setCurrentUser(data.user);
           setIsLoggedIn(true);
           closePopups();
-          console.log("new user", data);
+          console.log('new user', data);
           return;
         }
         return Promise.reject();
       })
       .catch((err) => {
-        console.log("failed to create user");
+        console.log('failed to create user');
       });
   }
 
   function onPageLoad() {
-    if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
       auth.checkToken(token).then((user) => {
         if (user) {
           setCurrentUser(user);
           setIsLoggedIn(true);
-          console.log("user", user);
+          console.log('user', user);
         }
       });
     }
   }
 
   function onLogout() {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     setIsLoggedIn(false);
   }
 
@@ -125,8 +127,8 @@ function App() {
   }
 
   function getInitialSavedArticles() {
-    if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
       api.getSavedArticles(token, currentUser).then((articles) => {
         if (articles) {
           setSavedArticles(articles);
@@ -135,21 +137,35 @@ function App() {
     }
   }
   function onSearch(query) {
-    api.getNewsSearchedArticles(query).then(res => {
-      console.log(res)
-    });
+    setIsSearching(true);
+    setNoArticlesFound(false);
+    api
+      .getNewsSearchedArticles(query)
+      .then((data) => {
+        console.log(data);
+        if (data && data.articles.length <= 0) {
+          setNoArticlesFound(true);
+        }
+        setSearchedArticles(data.articles);
+        setIsSearching(false);
+      })
+      .catch((err) => {
+        setIsSearching(false);
+        setNoArticlesFound(true);
+        console.log('error searching for articles');
+      });
   }
 
   React.useEffect(() => {
-    window.addEventListener("keyup", escapeKeyPressed);
+    window.addEventListener('keyup', escapeKeyPressed);
     onPageLoad();
-    setSearchedArticles(searchedArticlesData);
+    // setSearchedArticles(searchedArticlesData);
     // setSavedArticles(savedArticlesData);
     getInitialSavedArticles();
   }, []);
 
   return (
-    <div className="App">
+    <div className='App'>
       <CurrentUserContext.Provider value={currentUser}>
         <SigninPopup
           onSubmit={(email, password) => {
@@ -169,8 +185,10 @@ function App() {
         />
 
         <Switch>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Main
+              isSearching={isSearching}
+              noArticlesFound={noArticlesFound}
               onSearch={(query) => {
                 onSearch(query);
               }}
@@ -192,7 +210,7 @@ function App() {
             />
           </Route>
 
-          <Route path="/saved">
+          <Route path='/saved'>
             <SavedNews
               isPopupOpened={signinPopupIsOpen || signupPopupIsOpen}
               closePopups={closePopups}
