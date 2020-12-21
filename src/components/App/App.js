@@ -17,13 +17,17 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 function App() {
   const [signinPopupIsOpen, setSigninPopupIsOpen] = React.useState(false);
   const [signupPopupIsOpen, setSignupPopupIsOpen] = React.useState(false);
+
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isViewingSavedArticles, setIsViewingSavedArticles] = React.useState(
     false
   );
+
+  const [query, setQuery] = React.useState('');
   const [isSearching, setIsSearching] = React.useState(false);
   const [noArticlesFound, setNoArticlesFound] = React.useState(false);
   const [searchedArticles, setSearchedArticles] = React.useState([]);
+
   const [savedArticles, setSavedArticles] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({});
 
@@ -114,29 +118,56 @@ function App() {
   }
 
   function onSaveArticleClick(article) {
-    setSavedArticles([article, ...savedArticles]);
+    console.log('article saved', article);
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      api
+        .saveArticle(article, currentUser, token)
+        .then((articleSaved) => {
+          console.log(articleSaved);
+          setSavedArticles([articleSaved, ...savedArticles]);
+        })
+        .catch((err) => {
+          console.log('err saving card');
+        });
+    }
   }
 
   function onDeleteSavedArticle(articleToDelete) {
-    const tempSavedArticles = savedArticles.filter((article) => {
-      if (article !== articleToDelete) {
-        return article;
-      }
-    });
-    setSavedArticles(tempSavedArticles);
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      api
+        .deleteArticle(articleToDelete, currentUser, token)
+        .then((res) => {
+          const tempSavedArticles = savedArticles.filter((article) => {
+            if (article._id !== articleToDelete._id) {
+              return article;
+            }
+          });
+          setSavedArticles(tempSavedArticles);
+        })
+        .catch((err) => {
+          console.log('error deleting article');
+        });
+    }
   }
 
   function getInitialSavedArticles() {
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
-      api.getSavedArticles(token, currentUser).then((articles) => {
+      api.getSavedArticles(currentUser, token).then((articles) => {
         if (articles) {
           setSavedArticles(articles);
         }
       });
     }
   }
-  function onSearch(query) {
+
+  function onInputQueryChange(e) {
+    setQuery(e.target.value);
+  }
+
+  function onSearch() {
     setIsSearching(true);
     setNoArticlesFound(false);
     api
@@ -187,6 +218,9 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <Main
+              onInputQueryChange={(e) => {
+                onInputQueryChange(e);
+              }}
               isSearching={isSearching}
               noArticlesFound={noArticlesFound}
               onSearch={(query) => {

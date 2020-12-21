@@ -11,6 +11,7 @@ function NewsCardsList(props) {
     setDisplayedArticleCards(props.data);
     setShowMoreButtonDisabled(true);
   }
+
   function displayThreeArticles() {
     setDisplayedArticleCards(props.data.slice(0, 3));
   }
@@ -40,8 +41,8 @@ function NewsCardsList(props) {
                 }}
                 isSavedArticle={() => {
                   if (props.isLoggedIn) {
-                    return props.savedArticles.some((savedArticle) => {
-                      if (article._id === savedArticle._id) {
+                    return props.savedArticles.find((savedArticle) => {
+                      if (article.title === savedArticle.title) {
                         return true;
                       }
                     });

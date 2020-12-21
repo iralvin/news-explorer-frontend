@@ -15,13 +15,13 @@ function SavedNews(props) {
   function setKeywords() {
     keywordsSet = new Set();
 
-    props.data.forEach((article) => {
-      if (!keywordsSet.has(article.keyword)) {
-        keywordsSet.add(
-          article.keyword.charAt(0).toUpperCase() + article.keyword.substr(1)
-        );
-      }
-    });
+    // props.data.forEach((article) => {
+    //   if (!keywordsSet.has(article.keyword)) {
+    //     keywordsSet.add(
+    //       article.keyword.charAt(0).toUpperCase() + article.keyword.substr(1)
+    //     );
+    //   }
+    // });
 
     keywordsArray = Array.from(keywordsSet);
   }

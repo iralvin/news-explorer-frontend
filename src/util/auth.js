@@ -63,4 +63,24 @@ const checkToken = (token) => {
   });
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export { register, login, checkToken };

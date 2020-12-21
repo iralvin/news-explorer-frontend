@@ -7,15 +7,9 @@ import NewsCardsList from '../NewsCardsList/NewsCardsList';
 import About from '../About/About';
 
 function Main(props) {
-  const [query, setQuery] = React.useState('');
-
   function onSubmit(e) {
     e.preventDefault();
-    props.onSearch(query);
-  }
-
-  function onInputQueryChange(e) {
-    setQuery(e.target.value);
+    props.onSearch();
   }
 
   return (
@@ -40,7 +34,9 @@ function Main(props) {
         <div className='main__search-container'>
           <form action='' className='main__search-form' onSubmit={onSubmit}>
             <input
-              onChange={onInputQueryChange}
+              onChange={(e) => {
+                props.onInputQueryChange(e);
+              }}
               type='text'
               className='main__search-input'
               placeholder='Enter topic'

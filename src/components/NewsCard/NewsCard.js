@@ -2,6 +2,22 @@ import React from 'react';
 
 function NewsCard(props) {
   const [isCardFlagActive, setIsCardFlagActive] = React.useState(false);
+  const [dateString, setDateString] = React.useState('');
+
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
 
   function checkLoginState() {
     if (!props.isLoggedIn) {
@@ -9,6 +25,20 @@ function NewsCard(props) {
     } else if (props.isLoggedIn && props.isViewingSavedArticles) {
       setIsCardFlagActive(true);
     }
+  }
+
+  function disableSignInFlag() {
+    setIsCardFlagActive(false);
+  }
+
+  function onSaveArticle() {
+    if (props.isLoggedIn && !props.isSavedArticle()) {
+      props.onSaveArticle(props.article);
+    }
+  }
+
+  function onDeleteArticle() {
+    props.onDeleteSavedArticle(props.article);
   }
 
   function setCardButton() {
@@ -60,41 +90,52 @@ function NewsCard(props) {
     }
   }
 
-  function disableSignInFlag() {
-    setIsCardFlagActive(false);
-  }
-
-  function onSaveArticle() {
-    if (props.isLoggedIn) {
-      props.onSaveArticle(props.article);
+  React.useEffect(() => {
+    function convertDate() {
+      const publishedDate = props.article.publishedAt || props.article.date;
+      const date = new Date(publishedDate);
+      setDateString(
+        `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+      );
+      console.log('datestring', dateString);
+      console.log('publisheddate', publishedDate);
     }
-  }
-
-  function onDeleteArticle() {
-    props.onDeleteSavedArticle(props.article);
-  }
+    convertDate();
+  }, []);
 
   return (
     <li className='news-card__item'>
       <div className='news-card'>
-        <div className='news-card__image'></div>
-
         {setCardButton()}
+        <a
+          className='news-card__article-link'
+          href={props.article.url || props.article.link}
+          target='_blank'
+        >
+          <div
+            className='news-card__image'
+            style={{
+              backgroundImage: `url(${
+                props.article.urlToImage || props.article.image
+              })`
+            }}
+          ></div>
 
-        <div className='news-card__text-container'>
-          <p className='news-card__date news-card__text news-card__text_date'>
-            {props.article.publishedAt}
-          </p>
-          <p className='news-card__title news-card__text news-card__text_title'>
-            {props.article.title}
-          </p>
-          <p className='news-card__abstract news-card__text news-card__text_abstract'>
-            {props.article.description}
-          </p>
-          <p className='news-card__source news-card__text news-card__text_source'>
-            {props.article.source.name}
-          </p>
-        </div>
+          <div className='news-card__text-container'>
+            <p className='news-card__date news-card__text news-card__text_date'>
+              {dateString}
+            </p>
+            <p className='news-card__title news-card__text news-card__text_title'>
+              {props.article.title}
+            </p>
+            <p className='news-card__abstract news-card__text news-card__text_abstract'>
+              {props.article.description || props.article.text}
+            </p>
+            <p className='news-card__source news-card__text news-card__text_source'>
+              {props.article.source.name || props.article.source}
+            </p>
+          </div>
+        </a>
       </div>
     </li>
   );

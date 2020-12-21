@@ -1,48 +1,92 @@
-const newsApiKey = "66c76d6a626b4e74a20ef60d3c03128a";
+const newsApiKey = '66c76d6a626b4e74a20ef60d3c03128a';
 
 class Api {
   constructor() {
-    this._baseUrl = "https://www.api.alvin.students.nomoreparties.site/";
-    this._newsTopUrl = "http://newsapi.org/v2/top-headlines?";
-    this._newsSearchUrl = "http://newsapi.org/v2/everything?";
-  }
+    this._baseUrl = 'https://www.api.alvin.students.nomoreparties.site/';
+    this._newsTopUrl = 'http://newsapi.org/v2/top-headlines?';
+    this._newsSearchUrl = 'http://newsapi.org/v2/everything?language=en&';
 
-  getSavedArticles(token, user) {
-    return fetch(`${this._baseUrl}articles/${user._id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
+    this._formatter = new Intl.DateTimeFormat('en-us', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: true,
+      timeZone: 'UTC'
     });
   }
-
   getNewsSearchedArticles(query) {
     console.log(`search for query ${query}`);
     return fetch(`${this._newsSearchUrl}q=${query}`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        Authorization: "Bearer 66c76d6a626b4e74a20ef60d3c03128a",
-      },
+        Authorization: 'Bearer 66c76d6a626b4e74a20ef60d3c03128a'
+      }
     }).then((res) => {
-      // console.log("search articles res", res);
-      // return res.json()
       if (res.ok) {
         return res.json();
       }
     });
   }
 
-  // GET user data after logged in
-  // GET user saved articles
+  getSavedArticles(user, token) {
+    return fetch(`${this._baseUrl}articles/${user._id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    });
+  }
 
-  // POST saved article to user data
+  saveArticle(article, user, token) {
+    console.log('article to be saved is ', article);
+    console.log('user', user);
+    return fetch(`${this._baseUrl}articles/${user._id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        keyword: 'tech',
+        title: article.title,
+        text: article.description,
+        link: article.url,
+        image: !article.urlToImage
+          ? 'https://s3.amazonaws.com/speedsport-news/speedsport-news/wp-content/uploads/2018/07/01082232/image-not-found.png'
+          : article.urlToImage,
+        source: article.source.name,
+        date: new Date(article.publishedAt)
+      })
+    }).then((res) => {
+      if (res.ok) {
+        console.log('saved article', res);
+        return res.json();
+      }
+    });
+  }
 
-  // GET news articles
+  deleteArticle(article, user, token) {
+    return fetch(`${this._baseUrl}articles/${user._id}/${article._id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    });
+  }
 }
 
 const api = new Api();
