@@ -3,11 +3,11 @@ import React from 'react';
 function About(props) {
   return (
     <div className='about section'>
-      <div className='about-container'>
+      <div className='about__container'>
         <div className='about__image'></div>
         <div className='about__text-container'>
-          <p className='about__subtitle'>About the author</p>
-          <p className='about__description'>
+          <p className='about__text about__text_subtitle'>About the author</p>
+          <p className='about__text about__text_description'>
             This block describes the project author. Here you should indicate
             your name, what you do, and which development technologies you know.
             <br/>

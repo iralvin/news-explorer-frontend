@@ -1,7 +1,7 @@
 .about {
   max-height: 624px;
 }
-.about-container {
+.about__container {
   width: 85%;
   margin: 0 auto;
   display: flex;
@@ -11,7 +11,7 @@
   min-width: 464px;
   height: 464px;
   border-radius: 1000px;
-  background-image: url('../../images/georgia-bg.png');
+  background-image: url("../../images/georgia-bg.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -22,21 +22,22 @@
   text-align: left;
 }
 
-.about__subtitle {
-  font-family: Roboto-Slab;
+.about__text {
   font-style: normal;
   font-weight: normal;
-  font-size: 40px;
-  line-height: 46px;
   color: #1a1b22;
 }
-.about__description {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
+
+.about__text_subtitle {
+  font-family: Roboto-Slab, Helvetica, Arial, sans-serif;
+  font-size: 40px;
+  line-height: 46px;
+}
+
+.about__text_description {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 24px;
-  color: #1a1b22;
 }
 
 @media screen and (max-width: 800px) {
@@ -45,18 +46,18 @@
     min-width: 232px;
     height: 232px;
   }
-  .about__subtitle {
+  .about__text_subtitle {
     margin: 0;
     font-size: 30px;
     line-height: 40px;
   }
-  .about__description {
+  .about__text_description {
     margin-top: 16px;
   }
 }
 
 @media screen and (max-width: 590px) {
-  .about-container {
+  .about__container {
     flex-direction: column;
     width: 288px;
   }

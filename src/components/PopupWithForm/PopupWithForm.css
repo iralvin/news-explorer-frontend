@@ -10,7 +10,7 @@
   z-index: 1;
   visibility: hidden;
 }
-.popup__opened {
+.popup_opened {
   display: flex;
   transition: opacity 1s, visibility 1s;
   visibility: visible;

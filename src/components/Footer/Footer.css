@@ -2,7 +2,7 @@
   height: 80px;
 }
 
-.footer-container {
+.footer__container {
   width: 85%;
   margin: auto;
   display: flex;
@@ -18,7 +18,7 @@
   color: #b6bcbf;
 }
 
-.footer__nav-menu_list {
+.footer__nav-menu-list {
   list-style: none;
   display: flex;
   font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -42,7 +42,7 @@
   display: flex;
 }
 
-.footer__nav-menu_button {
+.footer__nav-menu-button {
   margin: 0 0 0 25px;
   padding: 0;
   cursor: pointer;
@@ -52,7 +52,7 @@
   color: #000;
 }
 
-.footer__nav-menu_icon {
+.footer__nav-menu-icon {
   display: block;
   width: 20px;
   height: 20px;
@@ -60,10 +60,10 @@
   background-repeat: no-repeat;
 }
 
-.footer__nav-menu_icon_facebook {
+.footer__nav-menu-icon_facebook {
   background-image: url('../../images/facebook-icon.png');
 }
-.footer__nav-menu_icon_github {
+.footer__nav-menu-icon_github {
   background-image: url('../../images/github-icon.png');
 }
 
@@ -74,16 +74,16 @@
   .footer__copyright {
     margin: auto;
   }
-  .footer-container {
+  .footer__container {
     flex-direction: column-reverse;
     justify-content: center;
   }
-  .footer__nav-menu_list {
+  .footer__nav-menu-list {
     padding: 0;
     display: flex;
     justify-content: space-between;
   }
-  .footer__nav-menu_item:first-of-type {
+  .footer__nav-menu-item:first-of-type {
     margin-left: -25px;
   }
 

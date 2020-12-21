@@ -2,23 +2,16 @@ const newsApiKey = '66c76d6a626b4e74a20ef60d3c03128a';
 
 class Api {
   constructor() {
+    this._searchFromDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
     this._baseUrl = 'https://www.api.alvin.students.nomoreparties.site/';
     this._newsTopUrl = 'http://newsapi.org/v2/top-headlines?';
-    this._newsSearchUrl = 'http://newsapi.org/v2/everything?language=en&';
+    this._newsSearchUrl = `http://newsapi.org/v2/everything?language=en&pageSize=100&sortBy=publishedAt&from=${this._searchFromDate}&`;
 
-    this._formatter = new Intl.DateTimeFormat('en-us', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      hour12: true,
-      timeZone: 'UTC'
-    });
+
   }
+
   getNewsSearchedArticles(query) {
+    console.log(this._searchFromDate)
     console.log(`search for query ${query}`);
     return fetch(`${this._newsSearchUrl}q=${query}`, {
       method: 'GET',
