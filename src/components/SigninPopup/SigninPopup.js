@@ -33,7 +33,7 @@ function SigninPopup(props) {
 
   return (
     <PopupWithForm
-      className='popup__sign-in'
+      className='popup_sign-in'
       onSubmit={onSubmit}
       isOpened={props.isOpened}
       onClose={closePopup}
@@ -62,7 +62,7 @@ function SigninPopup(props) {
         className={`popup__submit ${
           emailvalidity && passwordValidity ? '' : 'popup__submit_disabled'
         }`}
-        disabled={!emailvalidity && passwordValidity}
+        disabled={!emailvalidity || !passwordValidity}
       >
         Sign In
       </button>

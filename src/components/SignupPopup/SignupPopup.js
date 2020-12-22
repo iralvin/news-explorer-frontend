@@ -42,62 +42,61 @@ function SignupPopup(props) {
   }
 
   return (
-    <div className='popup__form_sign-up'>
-      <PopupWithForm
-        onSubmit={onSubmit}
-        isOpened={props.isOpened}
-        onClose={closePopup}
-        popupTitle='Sign Up'
-        buttonText='Sign Up'
-        flairText='Sign In'
-        flairTextClick={props.flairTextClick}
-        isFormValid={emailvalidity && passwordValidity && nameValidity}
-      >
-        <InputField
-          inputType='email'
-          type='email'
-          placeholder='Enter email'
-          checkInputValidity={checkEmailInputValidity}
-          onChange={onEmailChange}
-        />
-        <InputField
-          inputType='password'
-          type='password'
-          placeholder='Enter password'
-          minLength='8'
-          checkInputValidity={checkPasswordInputValidity}
-          onChange={onPasswordChange}
-        />
-        <InputField
-          inputType='name'
-          type='text'
-          placeholder='Enter name'
-          minLength='2'
-          checkInputValidity={checkNameInputValidity}
-          onChange={onNameChange}
-        />
+    <PopupWithForm
+      className='popup_sign-up'
+      onSubmit={onSubmit}
+      isOpened={props.isOpened}
+      onClose={closePopup}
+      popupTitle='Sign Up'
+      buttonText='Sign Up'
+      flairText='Sign In'
+      flairTextClick={props.flairTextClick}
+      isFormValid={emailvalidity && passwordValidity && nameValidity}
+    >
+      <InputField
+        inputType='email'
+        type='email'
+        placeholder='Enter email'
+        checkInputValidity={checkEmailInputValidity}
+        onChange={onEmailChange}
+      />
+      <InputField
+        inputType='password'
+        type='password'
+        placeholder='Enter password'
+        minLength='8'
+        checkInputValidity={checkPasswordInputValidity}
+        onChange={onPasswordChange}
+      />
+      <InputField
+        inputType='name'
+        type='text'
+        placeholder='Enter name'
+        minLength='2'
+        checkInputValidity={checkNameInputValidity}
+        onChange={onNameChange}
+      />
 
-        <button
-          className={`popup__submit ${
-            emailvalidity && passwordValidity && nameValidity
-              ? ''
-              : 'popup__submit_disabled'
-          }`}
-          disabled={!emailvalidity && passwordValidity && nameValidity}
+      <button
+        className={`popup__submit ${
+          emailvalidity && passwordValidity && nameValidity
+            ? ''
+            : 'popup__submit_disabled'
+        }`}
+        disabled={!emailvalidity || !passwordValidity || !nameValidity}
+      >
+        Sign Up
+      </button>
+      <p className='popup__flair-text'>
+        or{' '}
+        <span
+          className='popup__flair-text popup__flair-text_button'
+          onClick={props.flairTextClick}
         >
-          Sign Up
-        </button>
-        <p className='popup__flair-text'>
-          or{' '}
-          <span
-            className='popup__flair-text popup__flair-text_button'
-            onClick={props.flairTextClick}
-          >
-            Sign In
-          </span>
-        </p>
-      </PopupWithForm>
-    </div>
+          Sign In
+        </span>
+      </p>
+    </PopupWithForm>
   );
 }
 
