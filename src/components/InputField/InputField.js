@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 function InputField(props) {
   const [inputValidity, setInputValidity] = React.useState(false);
-  const [errorMessage, setErrorMessage] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   function handleInputChange(e) {
     console.log(e.target.value);
@@ -14,7 +14,7 @@ function InputField(props) {
       setErrorMessage(e.target.validationMessage);
     } else {
       setInputValidity(true);
-      setErrorMessage("");
+      setErrorMessage('');
     }
   }
 
@@ -30,15 +30,11 @@ function InputField(props) {
   }, [inputValidity, errorMessage]);
 
   return (
-    <div className="popup__input-container">
-      <label
-        className={`popup__input-title popup__input-title_type_${props.inputType}`}
-      >
-        {props.inputType}
-      </label>
+    <div className='popup__input-container'>
+      <label className={`popup__input-title`}>{props.inputType}</label>
       <input
-        className={`popup__input popup__input_type_${props.inputType}`}
-        autoComplete="false"
+        className={`popup__input`}
+        autoComplete='false'
         // ref={props.refs}
         // id={props.id}
         type={props.type}
@@ -50,8 +46,8 @@ function InputField(props) {
         onChange={handleInputChange}
       />
       <span
-        className={`popup__input-error ${props.spanClassName} ${
-          inputValidity ? "" : "popup__input-error_visible"
+        className={`popup__input-error ${
+          inputValidity ? '' : 'popup__input-error_visible'
         }`}
         id={props.spanId}
       >

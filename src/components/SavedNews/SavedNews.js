@@ -57,15 +57,15 @@ function SavedNews(props) {
           onHomeClick={props.onHomeClick}
         />
         <div className='saved-news__subheader-container'>
-          <p className='saved-news__subheader_text saved-news__subheader_text_title'>
+          <p className='saved-news__subheader saved-news__subheader_text_title'>
             Saved articles
           </p>
-          <p className='saved-news__subheader_text saved-news__subheader_text_descriptor'>
+          <p className='saved-news__subheader saved-news__subheader_text_descriptor'>
             {`${currentUser.name}, you have ${props.data.length} articles saved`}
           </p>
-          <p className='saved-news__subheader_text saved-news__subheader_text_keywords'>
+          <p className='saved-news__subheader saved-news__subheader_text_keywords'>
             By keywords:{' '}
-            <span className='saved-news__subheader_text_keywords_bold'>
+            <span className='saved-news__subheader saved-news__subheader_text_keywords_bold'>
               {keywordsToPrint}
             </span>
           </p>

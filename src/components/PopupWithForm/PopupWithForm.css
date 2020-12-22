@@ -113,6 +113,15 @@
 
 .popup__flair-text {
   margin: 16px auto 28px;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+
+  color: #000000;
 }
 .popup__flair-text_button {
   cursor: pointer;
@@ -137,5 +146,4 @@
   .popup__submit {
     max-width: 100%;
   }
-
 }

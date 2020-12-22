@@ -29,7 +29,7 @@ function NewsCardsList(props) {
     <div className='news-list section'>
       <div className='news-list__container'>
         <h2 className='news-list__title'>Search results</h2>
-        <ul className='news-list__cards_list'>
+        <ul className='news-list__cards-list'>
           {displayedArticleCards.map((article, index) => {
             return (
               <NewsCard

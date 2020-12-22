@@ -44,14 +44,8 @@
   right: 70px;
 }
 
-.news-card__flag_sign-in {
-}
-
 .news-card__flag_active {
   display: block;
-}
-.news-card__flag_sign-in_active {
-  /* display: block; */
 }
 
 .news-card__button {
@@ -158,7 +152,7 @@
   color: #b6bcbf;
 }
 
-.news-card__keyword_container {
+.news-card__keyword-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -170,7 +164,9 @@
   left: 24px;
   background: #ffffff;
   border-radius: 10px;
+}
 
+.news-card__keyword-text {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: 500;

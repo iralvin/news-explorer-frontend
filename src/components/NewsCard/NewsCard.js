@@ -45,13 +45,13 @@ function NewsCard(props) {
     if (props.isViewingSavedArticles) {
       return (
         <>
-          <div className='news-card__keyword_container'>
-            <p className='news-card__keyword_text'>{props.article.keyword}</p>
+          <div className='news-card__keyword-container'>
+            <p className='news-card__keyword-text'>{props.article.keyword}</p>
           </div>
           <div
-            className={`news-card__flag news-card__flag_trash ${
+            className={`news-card__flag news-card__flag_type_trash ${
               isCardFlagActive
-                ? 'news-card__flag_active news-card__flag_trash_active'
+                ? 'news-card__flag_active'
                 : ''
             }`}
           >
@@ -69,9 +69,9 @@ function NewsCard(props) {
       return (
         <>
           <div
-            className={`news-card__flag news-card__flag_sign-in ${
+            className={`news-card__flag news-card__flag_type_sign-in ${
               isCardFlagActive
-                ? 'news-card__flag_active news-card__flag_sign-in_active'
+                ? 'news-card__flag_active'
                 : ''
             }`}
           >

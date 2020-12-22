@@ -21,7 +21,7 @@
   text-align: left;
 }
 
-.news-list__cards_list {
+.news-list__cards-list {
   width: 100%;
   margin: 64px auto 0;
   padding: 0;
@@ -67,7 +67,7 @@
   .news-list__container {
     width: 90%;
   }
-  .news-list__cards_list {
+  .news-list__cards-list {
     margin-top: 32px;
     grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
     gap: 8px 8px;
@@ -79,11 +79,9 @@
 }
 
 @media screen and (max-width: 590px) {
-  .news-list__cards_list {
-    margin-top: 58px;
-  }
-  .news-list__cards_list {
+  .news-list__cards-list {
     grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
+    margin-top: 58px;
 
     gap: 10px 10px;
   }
