@@ -21,7 +21,7 @@
 .navigation__menu-item:last-of-type {
 }
 
-.navigation__menu-item_button {
+.navigation__menu-item-button {
   cursor: pointer;
   background: none;
   border: none;
@@ -34,7 +34,7 @@
   line-height: 24px;
 }
 
-.navigation__menu-item_button_user {
+.navigation__menu-item-button_user {
   display: flex;
   justify-content: space-between;
 }
@@ -47,15 +47,10 @@
   background-image: url('../../images/logout-white.png');
 }
 
-.navigation__menu-item_account {
-  color: #b6bcbf;
-}
-
-.navigation__menu-item_active {
+.navigation__menu-item_active-white {
   border-bottom: 3px solid #fff;
-  display: flex;
 }
-.navigation__menu-item_active_black {
+.navigation__menu-item_active-black {
   border-bottom: 3px solid #000;
 }
 
@@ -70,7 +65,7 @@
   min-width: fit-content;
 }
 
-.navigation__menu-item_button_saved-news {
+.navigation__menu-item-button_saved-news {
   color: #000;
 }
 
@@ -115,7 +110,7 @@
   .navigation__menu-item {
     margin-right: 20px;
   }
-  .navigation__menu-item_button {
+  .navigation__menu-item-button {
     font-size: 16px;
     line-height: 24px;
   }
@@ -160,8 +155,7 @@
     margin-top: 16px;
   }
 
-  .navigation__menu-item_account {
-  }
+
 
   .navigation__menu-item_active {
     border: none;

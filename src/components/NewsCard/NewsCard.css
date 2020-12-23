@@ -167,6 +167,8 @@
 }
 
 .news-card__keyword-text {
+  margin: auto;
+  width: 80%;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -174,7 +176,9 @@
   line-height: 24px;
   text-align: center;
   color: #000000;
-}
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;}
 
 @media screen and (max-width: 800px) {
   .news-card {

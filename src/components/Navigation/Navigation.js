@@ -30,12 +30,10 @@ function Navigation(props) {
   function createLoginButton() {
     return (
       <li
-        className={`navigation__menu-item ${
-          props.isLoggedIn ? "navigation__menu-item_account" : ""
-        }`}
+        className={`navigation__menu-item`}
       >
         <button
-          className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass} circle-border`}
+          className={`navigation__menu-item-button circle-border`}
           onClick={onLogin}
         >
           Sign In
@@ -48,16 +46,14 @@ function Navigation(props) {
     return (
       <NavLink
         to="/saved"
-        activeClassName="navigation__menu-item_active navigation__menu-item_active_black"
+        activeClassName="navigation__menu-item_active navigation__menu-item_active-black"
         style={{ textDecoration: "none", display: "flex" }}
       >
         <li
-          className={`navigation__menu-item ${
-            props.isLoggedIn ? "navigation__menu-item_account" : ""
-          }`}
+          className={`navigation__menu-item`}
         >
           <button
-            className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
+            className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}`}
             onClick={props.onSavedArticlesClick}
           >
             Saved articles
@@ -81,9 +77,9 @@ function Navigation(props) {
             }`}
           >
             <button
-              className={`navigation__menu-item_button navigation__menu-item_button_${
+              className={`navigation__menu-item-button navigation__menu-item-button_${
                 props.savedNewsClass
-              } navigation__menu-item_button_user ${
+              } navigation__menu-item-button_user ${
                 props.isLoggedIn
                   ? `circle-border circle-border_logged-in circle-border_${props.savedNewsClass}`
                   : ""
@@ -113,13 +109,13 @@ function Navigation(props) {
         <NavLink
           exact
           to="/"
-          activeClassName="navigation__menu-item_active"
+          activeClassName="navigation__menu-item_active navigation__menu-item_active-white"
           style={{ textDecoration: "none", display: "flex" }}
         >
           <li className="navigation__menu-item navigation__menu-item_home ">
             {" "}
             <button
-              className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
+              className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}`}
               onClick={props.onHomeClick}
             >
               Home
@@ -166,10 +162,10 @@ function Navigation(props) {
                   style={{ textDecoration: "none", display: "flex" }}
                 >
                   <button
-                    className={`navigation__menu-item_button navigation__menu-item_button_${
+                    className={`navigation__menu-item-button navigation__menu-item-button_${
                       props.savedNewsClass
                     }
-                    navigation__menu-item_button_${
+                    navigation__menu-item-button_${
                       props.isMobileMenuOpen ? "mobile" : ""
                     }`}
                     onClick={props.onHomeClick}

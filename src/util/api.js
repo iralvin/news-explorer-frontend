@@ -39,7 +39,7 @@ class Api {
     });
   }
 
-  saveArticle(article, user, token) {
+  saveArticle(keyword, article, user, token) {
     console.log('article to be saved is ', article);
     console.log('user', user);
     return fetch(`${this._baseUrl}articles/${user._id}`, {
@@ -49,7 +49,7 @@ class Api {
         Authorization: `Bearer ${token}`
       },
       body: JSON.stringify({
-        keyword: 'tech',
+        keyword: keyword.charAt(0).toUpperCase() + keyword.slice(1),
         title: article.title,
         text: article.description,
         link: article.url,
