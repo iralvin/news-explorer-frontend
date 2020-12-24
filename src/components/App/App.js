@@ -109,6 +109,9 @@ function App() {
         }
       });
     }
+    if (localStorage.getItem("searchedArticles")){
+      setSearchedArticles(JSON.parse(localStorage.getItem("searchedArticles")))
+    }
   }
 
   function onLogout() {
