@@ -55,12 +55,23 @@ function Main(props) {
 
             <button className="main__search-button">Search</button>
           </form>
-            <span>{errorMessage}</span>
+          <span>{errorMessage}</span>
         </div>
       </div>
 
       {props.isSearching && <Preloader />}
-      {props.noArticlesFound && <NothingFound />}
+      {props.noArticlesFound && (
+        <NothingFound
+          title="Nothing found"
+          text="Sorry, but nothing matched your search terms."
+        />
+      )}
+      {props.searchError && (
+        <NothingFound
+          title="Search error"
+          text="Sorry, something went wrong during the request. There may be a connection issue or the server may be down. Please try again later."
+        />
+      )}
 
       {props.data.length > 0 && (
         <NewsCardsList
