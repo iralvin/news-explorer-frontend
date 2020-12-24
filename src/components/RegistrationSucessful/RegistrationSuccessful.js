@@ -1,21 +1,19 @@
-import React from "react";
+import React from 'react';
 
-import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function RegistrationSuccessful(props) {
   return (
     <PopupWithForm
-      popupTitle="Registration successfully completed"
+      popupTitle='Registration successfully completed'
       isOpened={props.isOpened}
       onClose={props.closePopup}
     >
-      <p className="popup__flair-text">
-        <span
-          className="popup__flair-text popup__flair-text_button"
-          onClick={props.flairTextClick}
-        >
-          Sign In
-        </span>
+      <p
+        className='popup__flair-text  popup__flair-text_registration-success popup__flair-text_button'
+        onClick={props.flairTextClick}
+      >
+        Sign In
       </p>
     </PopupWithForm>
   );
