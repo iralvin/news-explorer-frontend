@@ -12,9 +12,11 @@ function SavedNews(props) {
   let keywordsArray;
   let slicedKeywordsArray;
 
-  function setKeywords() {
-    keywordsSet = new Set();
+  let prevValue;
+  let objectCounts = {}
 
+  function setKeywords() {
+    // keywordsSet = new Set();
     // props.data.forEach((article) => {
     //   if (!keywordsSet.has(article.keyword)) {
     //     keywordsSet.add(
@@ -22,28 +24,86 @@ function SavedNews(props) {
     //     );
     //   }
     // });
+    // keywordsArray = Array.from(keywordsSet);
 
-    keywordsArray = Array.from(keywordsSet);
+    props.data.forEach((article) => {
+      if (!objectCounts.hasOwnProperty(article.keyword)) {
+        objectCounts[article.keyword] = 1;
+      }
+      else {
+        objectCounts[article.keyword]++;
+      }
+    })
+
+    return objectCounts;
   }
 
   function displayKeywords() {
-    if (keywordsArray.length > 2) {
-      slicedKeywordsArray = keywordsArray.slice(0, 2);
+    // if (keywordsArray.length > 2) {
+    //   slicedKeywordsArray = keywordsArray.slice(0, 2);
 
+    //   setKeywordsToPrint(
+    //     `${slicedKeywordsArray.join(', ')}, and ${keywordsArray.length - 2
+    //     } others`
+    //   );
+    // } else {
+    //   setKeywordsToPrint(`${keywordsArray.join(' and ')}`);
+    // }
+
+    if (Object.keys(objectCounts).length > 2) {
+      slicedKeywordsArray = Object.keys(objectCounts).slice(0, 2);
       setKeywordsToPrint(
-        `${slicedKeywordsArray.join(', ')}, and ${
-          keywordsArray.length - 2
+        `${slicedKeywordsArray.join(', ')}, and ${Object.keys(objectCounts).length - 2
         } others`
       );
+
     } else {
-      setKeywordsToPrint(`${keywordsArray.join(' and ')}`);
+      setKeywordsToPrint(`${Object.keys(objectCounts).join(' and ')}`);
     }
+
+
   }
 
   React.useEffect(() => {
     setKeywords();
     displayKeywords();
   }, [props.data]);
+
+
+
+
+
+  // React.useEffect(() => {
+  //   const testAlphaArray = [
+  //     'asdf',
+  //     'fdsa',
+  //     'fdsa',
+  //     'asdf',
+  //     'sdfa',
+  //     'dsaf',
+  //     'asdf',
+  //     'dsaf',
+  //     'sdfa',
+  //     'sdfa',
+  //     'sdfa',
+
+  //   ];
+  //   const sortedAlphaArray = testAlphaArray.sort();
+
+  //   function arrayCount() {
+  //     for (let i = 0; i < sortedAlphaArray.length; i++) {
+  //       if (!objectCounts.hasOwnProperty(sortedAlphaArray[i])) {
+  //         objectCounts[sortedAlphaArray[i]] = 1;
+  //       }
+  //       else {
+  //         objectCounts[sortedAlphaArray[i]]++
+  //       }
+  //     }
+  //     return objectCounts
+  //   }
+  //   console.log("arrayCount", arrayCount())
+
+  // }, []);
 
   return (
     <>
