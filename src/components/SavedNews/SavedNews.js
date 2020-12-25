@@ -1,77 +1,95 @@
-import React from 'react';
+import React from "react";
 
-import Header from '../Header/Header';
-import NewsCardsList from '../NewsCardsList/NewsCardsList';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+import Header from "../Header/Header";
+import NewsCardsList from "../NewsCardsList/NewsCardsList";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function SavedNews(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  const [keywordsToPrint, setKeywordsToPrint] = React.useState('');
+  const [keywordsToPrint, setKeywordsToPrint] = React.useState("");
 
   let keywordsSet;
   let keywordsArray;
-  let slicedKeywordsArray;
+  let slicedKeywordsArray = [];
 
   let prevValue;
-  let objectCounts = {}
+  let objectCounts = {};
+  let arrayCounts = [];
 
   function setKeywords() {
-    // keywordsSet = new Set();
-    // props.data.forEach((article) => {
-    //   if (!keywordsSet.has(article.keyword)) {
-    //     keywordsSet.add(
-    //       article.keyword.charAt(0).toUpperCase() + article.keyword.substr(1)
-    //     );
-    //   }
-    // });
-    // keywordsArray = Array.from(keywordsSet);
-
+    arrayCounts = [{}];
     props.data.forEach((article) => {
-      if (!objectCounts.hasOwnProperty(article.keyword)) {
-        objectCounts[article.keyword] = 1;
-      }
-      else {
-        objectCounts[article.keyword]++;
-      }
-    })
+      // console.log("test test test")
+      // arrayCounts.push({
+      //   keyword: article.keyword,
+      //   count: 1,
+      // });
+      arrayCounts.map((keywordGroup) => {
+        console.log("test testing");
+        console.log("");
+        console.log("keywordgroup", keywordGroup.keyword)
+        console.log("articlekeyword", article.keyword)
+        if (keywordGroup.keyword === article.keyword) {
+          keywordGroup.count++;
+        } else {
+          arrayCounts.push({
+            keyword: article.keyword,
+            count: 1,
+          });
+        }
+        console.log("arracy counts", arrayCounts);
+      });
 
+      // if (!objectCounts.hasOwnProperty(article.keyword)) {
+      //   objectCounts[article.keyword] = 1;
+      // } else {
+      //   objectCounts[article.keyword]++;
+      // }
+    });
+    // console.log("array counts", arrayCounts)
+    // return arrayCounts;
     return objectCounts;
   }
 
   function displayKeywords() {
-    // if (keywordsArray.length > 2) {
-    //   slicedKeywordsArray = keywordsArray.slice(0, 2);
+    // arrayCounts.sort((a, b) => {
+    //   return b.count - a.count;
+    // });
 
+    // if (arrayCounts > 2) {
+    //   for (let i = 0; i < 2; i++) {
+    //     slicedKeywordsArray.push(arrayCounts[i].keyword);
+    //   }
+    //   // slicedKeywordsArray = arrayCounts.slice(0, 2);
     //   setKeywordsToPrint(
-    //     `${slicedKeywordsArray.join(', ')}, and ${keywordsArray.length - 2
+    //     `${slicedKeywordsArray.join(", ")}, and ${
+    //       arrayCounts.length - 2
     //     } others`
     //   );
     // } else {
-    //   setKeywordsToPrint(`${keywordsArray.join(' and ')}`);
+    //   for (let i = 0; i < arrayCounts.length; i++) {
+    //     slicedKeywordsArray.push(arrayCounts[i].keyword);
+    //   }
+    //   console.log(slicedKeywordsArray)
+    //   setKeywordsToPrint(`${slicedKeywordsArray.join(" and ")}`);
     // }
 
     if (Object.keys(objectCounts).length > 2) {
       slicedKeywordsArray = Object.keys(objectCounts).slice(0, 2);
       setKeywordsToPrint(
-        `${slicedKeywordsArray.join(', ')}, and ${Object.keys(objectCounts).length - 2
+        `${slicedKeywordsArray.join(", ")}, and ${
+          Object.keys(objectCounts).length - 2
         } others`
       );
-
     } else {
-      setKeywordsToPrint(`${Object.keys(objectCounts).join(' and ')}`);
+      setKeywordsToPrint(`${Object.keys(objectCounts).join(" and ")}`);
     }
-
-
   }
 
   React.useEffect(() => {
     setKeywords();
     displayKeywords();
   }, [props.data]);
-
-
-
-
 
   // React.useEffect(() => {
   //   const testAlphaArray = [
@@ -107,25 +125,25 @@ function SavedNews(props) {
 
   return (
     <>
-      <div className='saved-news'>
+      <div className="saved-news">
         <Header
           isPopupOpened={props.isPopupOpened}
           closePopups={props.closePopups}
           onLogout={props.onLogout}
-          savedNewsClass='saved-news'
+          savedNewsClass="saved-news"
           isLoggedIn={props.isLoggedIn}
           onHomeClick={props.onHomeClick}
         />
-        <div className='saved-news__subheader-container'>
-          <p className='saved-news__subheader saved-news__subheader_text_title'>
+        <div className="saved-news__subheader-container">
+          <p className="saved-news__subheader saved-news__subheader_text_title">
             Saved articles
           </p>
-          <p className='saved-news__subheader saved-news__subheader_text_descriptor'>
+          <p className="saved-news__subheader saved-news__subheader_text_descriptor">
             {`${currentUser.name}, you have ${props.data.length} articles saved`}
           </p>
-          <p className='saved-news__subheader saved-news__subheader_text_keywords'>
-            By keywords:{' '}
-            <span className='saved-news__subheader saved-news__subheader_text_keywords_bold'>
+          <p className="saved-news__subheader saved-news__subheader_text_keywords">
+            By keywords:{" "}
+            <span className="saved-news__subheader saved-news__subheader_text_keywords_bold">
               {keywordsToPrint}
             </span>
           </p>
