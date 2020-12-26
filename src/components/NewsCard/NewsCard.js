@@ -50,9 +50,7 @@ function NewsCard(props) {
           </div>
           <div
             className={`news-card__flag news-card__flag_type_trash ${
-              isCardFlagActive
-                ? 'news-card__flag_active'
-                : ''
+              isCardFlagActive ? 'news-card__flag_active' : ''
             }`}
           >
             Remove from saved
@@ -70,9 +68,7 @@ function NewsCard(props) {
         <>
           <div
             className={`news-card__flag news-card__flag_type_sign-in ${
-              isCardFlagActive
-                ? 'news-card__flag_active'
-                : ''
+              isCardFlagActive ? 'news-card__flag_active' : ''
             }`}
           >
             Sign in to save articles
@@ -97,8 +93,6 @@ function NewsCard(props) {
       setDateString(
         `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
       );
-      console.log('datestring', dateString);
-      console.log('publisheddate', publishedDate);
     }
     convertDate();
   }, []);

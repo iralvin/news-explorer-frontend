@@ -5,8 +5,6 @@ function InputField(props) {
   const [errorMessage, setErrorMessage] = React.useState('');
 
   function handleInputChange(e) {
-    console.log(e.target.value);
-    console.log(e.target.validity.valid);
     props.onChange(e);
 
     if (!e.target.validity.valid) {
@@ -18,13 +16,6 @@ function InputField(props) {
     }
   }
 
-  //   React.useEffect(() => {
-  //     if (props.value !== "") {
-  //       setInputValidity(true);
-  //       setErrorMessage("");
-  //     }
-  //   }, []);
-
   React.useEffect(() => {
     props.checkInputValidity(inputValidity);
   }, [inputValidity, errorMessage]);
@@ -35,15 +26,15 @@ function InputField(props) {
       <input
         className={`popup__input`}
         autoComplete='false'
-        // ref={props.refs}
-        // id={props.id}
         type={props.type}
         name={props.inputType}
         placeholder={props.placeholder}
         minLength={props.minLength}
         required
-        // value={props.value}
         onChange={handleInputChange}
+        // ref={props.refs}
+        // id={props.id}
+        // value={props.value}
       />
       <span
         className={`popup__input-error ${

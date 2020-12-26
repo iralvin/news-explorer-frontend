@@ -40,12 +40,11 @@ function App() {
     setSigninPopupIsOpen(true);
   }
 
-  function openSignupPopup() {
-    setSignupPopupIsOpen(true);
-  }
+  // function openSignupPopup() {
+  //   setSignupPopupIsOpen(true);
+  // }
 
   function switchSigninSignup() {
-    console.log('swapped sign in / sign up');
     setSigninPopupIsOpen(!signinPopupIsOpen);
     setSignupPopupIsOpen(!signupPopupIsOpen);
   }
@@ -58,19 +57,14 @@ function App() {
 
   function escapeKeyPressed(e) {
     if (e.key === 'Escape') {
-      console.log('pressed escape key');
       closePopups();
     }
   }
   function onLogin(email, password) {
-    console.log('app form submit');
     auth
       .login(email, password)
       .then((data) => {
-        console.log('data', data);
         if (data) {
-          console.log('successful login');
-          console.log('data', data);
           setCurrentUser(data.user);
           setIsLoggedIn(true);
           closePopups();
@@ -89,11 +83,8 @@ function App() {
       .then((data) => {
         if (data) {
           setCurrentUser(data.user);
-          // setIsLoggedIn(true);
-          // closePopups();
           setSignupPopupIsOpen(false);
           setRegistrationSuccessPopupIsOpen(true);
-          console.log('new user', data);
           return;
         }
         return Promise.reject();
@@ -112,7 +103,6 @@ function App() {
           if (user) {
             setCurrentUser(user);
             setIsLoggedIn(true);
-            console.log('user', user);
           }
         })
         .catch((err) => {
@@ -140,13 +130,11 @@ function App() {
   }
 
   function onSaveArticleClick(article) {
-    console.log('article saved', article);
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
       api
         .saveArticle(query, article, currentUser, token)
         .then((articleSaved) => {
-          console.log(articleSaved);
           setSavedArticles([articleSaved, ...savedArticles]);
         })
         .catch((err) => {
@@ -202,7 +190,6 @@ function App() {
     api
       .getNewsSearchedArticles(query)
       .then((data) => {
-        console.log(data);
         if (data && data.articles.length <= 0) {
           setNoArticlesFound(true);
         }
@@ -220,8 +207,6 @@ function App() {
   function storeSearchedArticles(articles) {
     localStorage.setItem('searchedArticles', JSON.stringify(articles));
     localStorage.setItem('keyword', query);
-    // console.log(localStorage.getItem('searchedArticles'));
-    // console.log(articles)
   }
 
   React.useEffect(() => {
@@ -233,69 +218,6 @@ function App() {
   React.useEffect(() => {
     storeSearchedArticles(searchedArticles);
   }, [searchedArticles]);
-
-  // React.useEffect(() => {
-  //   let multiArray = [[], []];
-  //   function testSortByCount() {
-  //     const testNumArray = [1, 6, 20, 3, 3, 3, 20, 6, 4, 2, 6];
-  //     const sortedNumArray = testNumArray.sort();
-  //     console.log('sortedNumArray', sortedNumArray);
-
-  //     const testAlphaArray = [
-  //       'asdf',
-  //       'fdsa',
-  //       'fdsa',
-  //       'asdf',
-  //       'sdfa',
-  //       'dsaf',
-  //       'asdf',
-  //       'dsaf',
-  //       'sdfa',
-  //       'sdfa',
-  //       'sdfa',
-
-  //     ];
-  //     const sortedAlphaArray = testAlphaArray.sort();
-  //     console.log('sortedAlphaArray', sortedAlphaArray);
-
-  //     let temp;
-  //     let count = 0;
-  //     function foo(arr) {
-  //       var a = [],
-  //         b = [],
-  //         prev;
-
-  //       arr.sort();
-  //       for (var i = 0; i < arr.length; i++) {
-  //         if (arr[i] !== prev) {
-  //           a.push(arr[i]);
-  //           b.push(1);
-  //         } else {
-  //           b[b.length - 1]++;
-  //         }
-  //         prev = arr[i];
-  //       }
-  //       return [a, b];
-  //     }
-  //     console.log(foo(testAlphaArray));
-
-  //     let prevValue;
-  //     let objectCounts = {}
-  //     function arrayCount() {
-  //       for (let i = 0; i < sortedAlphaArray.length; i++) {
-  //         if (!objectCounts.hasOwnProperty(sortedAlphaArray[i])){
-  //           objectCounts[sortedAlphaArray[i]] = 1;
-  //         }
-  //         else {
-  //           objectCounts[sortedAlphaArray[i]]++
-  //         }
-  //       }
-  //       return objectCounts
-  //     }
-  //     console.log("arrayCount", arrayCount())
-  //   }
-  //   testSortByCount();
-  // }, []);
 
   return (
     <div className='App'>
@@ -380,23 +302,6 @@ function App() {
           <Route path='*'>
             <Redirect to='/' />
           </Route>
-          {/* <Route path="/saved">
-            <SavedNews
-              isPopupOpened={signinPopupIsOpen || signupPopupIsOpen}
-              closePopups={closePopups}
-              onLogout={onLogout}
-              isLoggedIn={isLoggedIn}
-              onHomeClick={viewHomePage}
-              data={savedArticles}
-              isViewingSavedArticles={isViewingSavedArticles}
-              onSaveArticle={(article) => {
-                onSaveArticleClick(article);
-              }}
-              onDeleteSavedArticle={(article) => {
-                onDeleteSavedArticle(article);
-              }}
-            />
-          </Route> */}
         </Switch>
 
         <Footer onHomeClick={viewHomePage} />

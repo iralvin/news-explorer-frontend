@@ -11,52 +11,27 @@ function SavedNews(props) {
   const [sortedKeywordsArray, setSortedKeywordsArray] = React.useState([]);
   const [keyCounts, setKeyCounts] = React.useState([]);
   const [sortedKeyCounts, setSortedKeyCounts] = React.useState([]);
-  // let keywordsSet;
-  // let sortedKeywordsArray;
 
-  // let prevValue;
   let keywordsArray = [];
   let slicedKeywordsArray = [];
-  let objectCounts = {};
   let keywordCounts = [];
 
   function setKeywords() {
-    // arrayCounts = [{}];
-
     props.data.forEach((article) => {
       keywordsArray.push(article.keyword);
-
-      // if (!objectCounts.hasOwnProperty(article.keyword)) {
-      //   objectCounts[article.keyword] = 1;
-      // } else {
-      //   objectCounts[article.keyword]++;
-      // }
     });
     setSortedKeywordsArray(keywordsArray.sort());
-
-    // return objectCounts;
   }
 
   function countKeywords() {
     sortedKeywordsArray.forEach((keyword) => {
-      console.log('BEGIN - iterating through keywords', keyword);
       let currentIndex;
       const foundIndex = keywordCounts.some((e, index) => {
-        console.log('MIDDLE - iterating through object', e);
-        console.log(
-          'Object.values(e).includes(keyword)',
-          Object.values(e).includes(keyword)
-        );
         if (Object.values(e).includes(keyword)) {
-          console.log('keyword MATCHED in array');
           currentIndex = index;
-          console.log('currentIndex MATCHED', currentIndex, index);
-
           return true;
         }
       });
-      console.log('MIDDLE - check if keyword found');
-      console.log(foundIndex);
 
       if (foundIndex) {
         keywordCounts[currentIndex].count++;
@@ -79,19 +54,6 @@ function SavedNews(props) {
   }
 
   function displayKeywords() {
-    // if (Object.keys(objectCounts).length > 2) {
-    //   slicedKeywordsArray = Object.keys(objectCounts).slice(0, 2);
-    //   setKeywordsToPrint(
-    //     `${slicedKeywordsArray.join(', ')}, and ${
-    //       Object.keys(objectCounts).length - 2
-    //     } others`
-    //   );
-    // } else {
-    //   setKeywordsToPrint(`${Object.keys(objectCounts).join(' and ')}`);
-    // }
-
-
-
     if (sortedKeyCounts.length > 3) {
       for (let i = 0; i < 2; i++) {
         slicedKeywordsArray.push(sortedKeyCounts[i].keyword);
@@ -107,9 +69,7 @@ function SavedNews(props) {
       for (let i = 0; i < sortedKeyCounts.length; i++) {
         slicedKeywordsArray.push(sortedKeyCounts[i].keyword);
       }
-      // setKeywordsToPrint(`${slicedKeywordsArray.join(' and ')}`);
       setKeywordsToPrint(`${lf.format(slicedKeywordsArray)}`);
-
     }
   }
 

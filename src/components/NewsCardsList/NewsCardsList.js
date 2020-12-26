@@ -6,13 +6,12 @@ function NewsCardsList(props) {
   const [showMoreButtonDisabled, setShowMoreButtonDisabled] = React.useState(
     false
   );
-  const [pageCount, setPageCount] = React.useState(1);
+  const [pageNum, setPageCount] = React.useState(1);
 
   const pageSize = 3;
 
-  // function to show an additional 3 articles
   function showMoreArticles() {
-    const tempPageCount = pageCount;
+    const tempPageCount = pageNum;
     setPageCount(tempPageCount + 1);
   }
 
@@ -28,15 +27,13 @@ function NewsCardsList(props) {
   }, [props.data]);
 
   React.useEffect(() => {
-    console.log("current pagesize * pagecount = ", pageSize * pageCount);
-    if (pageSize * pageCount > props.data.length) {
-      console.log("reached end of search");
+    if (pageSize * pageNum > props.data.length) {
       setDisplayedArticleCards(props.data);
       setShowMoreButtonDisabled(true);
     } else {
-      setDisplayedArticleCards(props.data.slice(0, pageSize * pageCount));
+      setDisplayedArticleCards(props.data.slice(0, pageSize * pageNum));
     }
-  }, [pageCount]);
+  }, [pageNum]);
 
   return (
     <div className="news-list section">
