@@ -1,44 +1,30 @@
-import React from "react";
+import React from 'react';
 
-import Header from "../Header/Header";
-import NewsCardsList from "../NewsCardsList/NewsCardsList";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import Header from '../Header/Header';
+import NewsCardsList from '../NewsCardsList/NewsCardsList';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function SavedNews(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  const [keywordsToPrint, setKeywordsToPrint] = React.useState("");
+  const [keywordsToPrint, setKeywordsToPrint] = React.useState('');
 
-  let keywordsSet;
-  let keywordsArray;
+  const [sortedKeywordsArray, setSortedKeywordsArray] = React.useState([]);
+  const [keyCounts, setKeyCounts] = React.useState([]);
+  const [sortedKeyCounts, setSortedKeyCounts] = React.useState([]);
+  // let keywordsSet;
+  // let sortedKeywordsArray;
+
+  // let prevValue;
+  let keywordsArray = [];
   let slicedKeywordsArray = [];
-
-  let prevValue;
   let objectCounts = {};
-  let arrayCounts = [];
+  let keywordCounts = [];
 
   function setKeywords() {
-    arrayCounts = [{}];
+    // arrayCounts = [{}];
+
     props.data.forEach((article) => {
-      // console.log("test test test")
-      // arrayCounts.push({
-      //   keyword: article.keyword,
-      //   count: 1,
-      // });
-      arrayCounts.map((keywordGroup) => {
-        console.log("test testing");
-        console.log("");
-        console.log("keywordgroup", keywordGroup.keyword)
-        console.log("articlekeyword", article.keyword)
-        if (keywordGroup.keyword === article.keyword) {
-          keywordGroup.count++;
-        } else {
-          arrayCounts.push({
-            keyword: article.keyword,
-            count: 1,
-          });
-        }
-        console.log("arracy counts", arrayCounts);
-      });
+      keywordsArray.push(article.keyword);
 
       // if (!objectCounts.hasOwnProperty(article.keyword)) {
       //   objectCounts[article.keyword] = 1;
@@ -46,104 +32,126 @@ function SavedNews(props) {
       //   objectCounts[article.keyword]++;
       // }
     });
-    // console.log("array counts", arrayCounts)
-    // return arrayCounts;
-    return objectCounts;
+    setSortedKeywordsArray(keywordsArray.sort());
+
+    // return objectCounts;
+  }
+
+  function countKeywords() {
+    sortedKeywordsArray.forEach((keyword) => {
+      console.log('BEGIN - iterating through keywords', keyword);
+      let currentIndex;
+      const foundIndex = keywordCounts.some((e, index) => {
+        console.log('MIDDLE - iterating through object', e);
+        console.log(
+          'Object.values(e).includes(keyword)',
+          Object.values(e).includes(keyword)
+        );
+        if (Object.values(e).includes(keyword)) {
+          console.log('keyword MATCHED in array');
+          currentIndex = index;
+          console.log('currentIndex MATCHED', currentIndex, index);
+
+          return true;
+        }
+      });
+      console.log('MIDDLE - check if keyword found');
+      console.log(foundIndex);
+
+      if (foundIndex) {
+        keywordCounts[currentIndex].count++;
+      } else {
+        keywordCounts.push({
+          keyword: keyword,
+          count: 1
+        });
+      }
+    });
+    setKeyCounts(keywordCounts);
+  }
+
+  function sortCountedKeywords() {
+    setSortedKeyCounts(
+      keyCounts.sort((a, b) => {
+        return b.count - a.count;
+      })
+    );
   }
 
   function displayKeywords() {
-    // arrayCounts.sort((a, b) => {
-    //   return b.count - a.count;
-    // });
-
-    // if (arrayCounts > 2) {
-    //   for (let i = 0; i < 2; i++) {
-    //     slicedKeywordsArray.push(arrayCounts[i].keyword);
-    //   }
-    //   // slicedKeywordsArray = arrayCounts.slice(0, 2);
+    // if (Object.keys(objectCounts).length > 2) {
+    //   slicedKeywordsArray = Object.keys(objectCounts).slice(0, 2);
     //   setKeywordsToPrint(
-    //     `${slicedKeywordsArray.join(", ")}, and ${
-    //       arrayCounts.length - 2
+    //     `${slicedKeywordsArray.join(', ')}, and ${
+    //       Object.keys(objectCounts).length - 2
     //     } others`
     //   );
     // } else {
-    //   for (let i = 0; i < arrayCounts.length; i++) {
-    //     slicedKeywordsArray.push(arrayCounts[i].keyword);
-    //   }
-    //   console.log(slicedKeywordsArray)
-    //   setKeywordsToPrint(`${slicedKeywordsArray.join(" and ")}`);
+    //   setKeywordsToPrint(`${Object.keys(objectCounts).join(' and ')}`);
     // }
 
-    if (Object.keys(objectCounts).length > 2) {
-      slicedKeywordsArray = Object.keys(objectCounts).slice(0, 2);
+
+
+    if (sortedKeyCounts.length > 3) {
+      for (let i = 0; i < 2; i++) {
+        slicedKeywordsArray.push(sortedKeyCounts[i].keyword);
+      }
       setKeywordsToPrint(
-        `${slicedKeywordsArray.join(", ")}, and ${
-          Object.keys(objectCounts).length - 2
+        `${slicedKeywordsArray.join(', ')}, and ${
+          sortedKeyCounts.length - 2
         } others`
       );
     } else {
-      setKeywordsToPrint(`${Object.keys(objectCounts).join(" and ")}`);
+      const lf = new Intl.ListFormat('en');
+
+      for (let i = 0; i < sortedKeyCounts.length; i++) {
+        slicedKeywordsArray.push(sortedKeyCounts[i].keyword);
+      }
+      // setKeywordsToPrint(`${slicedKeywordsArray.join(' and ')}`);
+      setKeywordsToPrint(`${lf.format(slicedKeywordsArray)}`);
+
     }
   }
 
   React.useEffect(() => {
     setKeywords();
-    displayKeywords();
   }, [props.data]);
 
-  // React.useEffect(() => {
-  //   const testAlphaArray = [
-  //     'asdf',
-  //     'fdsa',
-  //     'fdsa',
-  //     'asdf',
-  //     'sdfa',
-  //     'dsaf',
-  //     'asdf',
-  //     'dsaf',
-  //     'sdfa',
-  //     'sdfa',
-  //     'sdfa',
+  React.useEffect(() => {
+    countKeywords();
+  }, [sortedKeywordsArray]);
 
-  //   ];
-  //   const sortedAlphaArray = testAlphaArray.sort();
+  React.useEffect(() => {
+    sortCountedKeywords();
+  }, [keyCounts]);
 
-  //   function arrayCount() {
-  //     for (let i = 0; i < sortedAlphaArray.length; i++) {
-  //       if (!objectCounts.hasOwnProperty(sortedAlphaArray[i])) {
-  //         objectCounts[sortedAlphaArray[i]] = 1;
-  //       }
-  //       else {
-  //         objectCounts[sortedAlphaArray[i]]++
-  //       }
-  //     }
-  //     return objectCounts
-  //   }
-  //   console.log("arrayCount", arrayCount())
-
-  // }, []);
+  React.useEffect(() => {
+    if (sortedKeyCounts.length > 0) {
+      displayKeywords();
+    }
+  }, [sortedKeyCounts]);
 
   return (
     <>
-      <div className="saved-news">
+      <div className='saved-news'>
         <Header
           isPopupOpened={props.isPopupOpened}
           closePopups={props.closePopups}
           onLogout={props.onLogout}
-          savedNewsClass="saved-news"
+          savedNewsClass='saved-news'
           isLoggedIn={props.isLoggedIn}
           onHomeClick={props.onHomeClick}
         />
-        <div className="saved-news__subheader-container">
-          <p className="saved-news__subheader saved-news__subheader_text_title">
+        <div className='saved-news__subheader-container'>
+          <p className='saved-news__subheader saved-news__subheader_text_title'>
             Saved articles
           </p>
-          <p className="saved-news__subheader saved-news__subheader_text_descriptor">
+          <p className='saved-news__subheader saved-news__subheader_text_descriptor'>
             {`${currentUser.name}, you have ${props.data.length} articles saved`}
           </p>
-          <p className="saved-news__subheader saved-news__subheader_text_keywords">
-            By keywords:{" "}
-            <span className="saved-news__subheader saved-news__subheader_text_keywords_bold">
+          <p className='saved-news__subheader saved-news__subheader_text_keywords'>
+            By keywords:{' '}
+            <span className='saved-news__subheader saved-news__subheader_text_keywords_bold'>
               {keywordsToPrint}
             </span>
           </p>

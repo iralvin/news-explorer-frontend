@@ -32,7 +32,7 @@ function NewsCard(props) {
   }
 
   function onSaveArticle() {
-    if (props.isLoggedIn && !props.isSavedArticle()) {
+    if (!props.isSavedArticle()) {
       props.onSaveArticle(props.article);
     }
   }
