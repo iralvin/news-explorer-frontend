@@ -5,7 +5,7 @@ class Api {
       Date.now() - 7 * 24 * 60 * 60 * 1000
     ).toISOString();
     this._currentDate = new Date(Date.now()).toISOString();
-    this._baseUrl = 'https://www.api.alvin.students.nomoreparties.site/';
+    this._baseUrl = 'https://api.y-alvin.students.nomoreparties.site/';
     this._newsTopUrl = 'http://newsapi.org/v2/top-headlines?';
     this._newsSearchUrl = `http://newsapi.org/v2/everything?language=en&pageSize=100&sortBy=publishedAt&from=${this._searchFromDate}&to=${this._currentDate}&`;
   }
