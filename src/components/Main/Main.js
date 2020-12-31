@@ -8,6 +8,8 @@ import About from '../About/About';
 
 function Main(props) {
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [inputValidity, setInputValidity] = React.useState(false)
+
   const inputRef = React.createRef();
 
   function onSubmit(e) {
@@ -18,6 +20,18 @@ function Main(props) {
       setErrorMessage('');
       props.onSearch();
     }
+  }
+
+  function handleOnInputChange(e){
+    if (inputRef.current.value.length <= 0){
+      setInputValidity(false)
+    }
+    else if(inputRef.current.value.length > 0){
+      setInputValidity(true)
+    }
+
+    props.onInputQueryChange(e);
+
   }
 
   return (
@@ -43,15 +57,13 @@ function Main(props) {
           <form action='' className='main__search-form' onSubmit={onSubmit}>
             <input
               ref={inputRef}
-              onChange={(e) => {
-                props.onInputQueryChange(e);
-              }}
+              onChange={handleOnInputChange}
               type='text'
               className='main__search-input'
               placeholder='Enter topic'
             />
 
-            <button className='main__search-button'>Search</button>
+            <button className={`main__search-button ${inputValidity ? "" : "main__search-button_disabled"}`} disabled={!inputValidity}>Search</button>
           </form>
           <span>{errorMessage}</span>
         </div>

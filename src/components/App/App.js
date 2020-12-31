@@ -1,33 +1,38 @@
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import React from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import SavedNews from '../SavedNews/SavedNews';
-import Main from '../Main/Main';
-import Footer from '../Footer/Footer';
-import SigninPopup from '../SigninPopup/SigninPopup';
-import SignupPopup from '../SignupPopup/SignupPopup';
-import RegistrationSuccessful from '../RegistrationSucessful/RegistrationSuccessful';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import SavedNews from "../SavedNews/SavedNews";
+import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
+import SigninPopup from "../SigninPopup/SigninPopup";
+import SignupPopup from "../SignupPopup/SignupPopup";
+import RegistrationSuccessful from "../RegistrationSucessful/RegistrationSuccessful";
+import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
+import * as auth from "../../util/auth";
+import api from "../../util/api";
 
-import * as auth from '../../util/auth';
-import api from '../../util/api';
-
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
   const [signinPopupIsOpen, setSigninPopupIsOpen] = React.useState(false);
   const [signupPopupIsOpen, setSignupPopupIsOpen] = React.useState(false);
   const [
     registrationSuccessPopupIsOpen,
-    setRegistrationSuccessPopupIsOpen
+    setRegistrationSuccessPopupIsOpen,
   ] = React.useState(false);
+  const [
+    confirmDeletePopupIsOpen,
+    setConfirmDeletePopupIsOpen,
+  ] = React.useState(false);
+  const [articleToDelete, setArticleToDelete] = React.useState({})
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isViewingSavedArticles, setIsViewingSavedArticles] = React.useState(
     false
   );
 
-  const [query, setQuery] = React.useState('');
+  const [query, setQuery] = React.useState("");
   const [isSearching, setIsSearching] = React.useState(false);
   const [noArticlesFound, setNoArticlesFound] = React.useState(false);
   const [searchError, setSearchError] = React.useState(false);
@@ -53,10 +58,11 @@ function App() {
     setSigninPopupIsOpen(false);
     setSignupPopupIsOpen(false);
     setRegistrationSuccessPopupIsOpen(false);
+    setConfirmDeletePopupIsOpen(false)
   }
 
   function escapeKeyPressed(e) {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       closePopups();
     }
   }
@@ -73,7 +79,7 @@ function App() {
         return Promise.reject();
       })
       .catch((err) => {
-        console.log('error logging in');
+        console.log("error logging in");
       });
   }
 
@@ -90,13 +96,13 @@ function App() {
         return Promise.reject();
       })
       .catch((err) => {
-        console.log('failed to create user');
+        console.log("failed to create user");
       });
   }
 
   function onPageLoad() {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
       auth
         .checkToken(token)
         .then((user) => {
@@ -106,18 +112,18 @@ function App() {
           }
         })
         .catch((err) => {
-          console.log('failed to get user');
+          console.log("failed to get user");
         });
     }
 
-    if (localStorage.getItem('searchedArticles')) {
-      setSearchedArticles(JSON.parse(localStorage.getItem('searchedArticles')));
-      setQuery(localStorage.getItem('keyword'));
+    if (localStorage.getItem("searchedArticles")) {
+      setSearchedArticles(JSON.parse(localStorage.getItem("searchedArticles")));
+      setQuery(localStorage.getItem("keyword"));
     }
   }
 
   function onLogout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
   }
 
@@ -130,22 +136,32 @@ function App() {
   }
 
   function onSaveArticleClick(article) {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
       api
         .saveArticle(query, article, currentUser, token)
         .then((articleSaved) => {
           setSavedArticles([articleSaved, ...savedArticles]);
         })
         .catch((err) => {
-          console.log('err saving card');
+          console.log("err saving card");
         });
     }
   }
 
-  function onDeleteSavedArticle(articleToDelete) {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
+
+  // let articleToDelete;
+  function confirmDeleteArticle(article) {
+    setConfirmDeletePopupIsOpen(true);
+    setArticleToDelete(article) ;
+    console.log(articleToDelete)
+    console.log(currentUser)
+
+  }
+
+  function onDeleteSavedArticle() {
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
       api
         .deleteArticle(articleToDelete, currentUser, token)
         .then((res) => {
@@ -155,16 +171,17 @@ function App() {
             }
           });
           setSavedArticles(tempSavedArticles);
+          closePopups()
         })
         .catch((err) => {
-          console.log('error deleting article');
+          console.log("error deleting article");
         });
     }
   }
 
   function getInitialSavedArticles() {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
       api
         .getSavedArticles(currentUser, token)
         .then((articles) => {
@@ -173,7 +190,7 @@ function App() {
           }
         })
         .catch((err) => {
-          console.log('failed to get saved articles');
+          console.log("failed to get saved articles");
         });
     }
   }
@@ -200,17 +217,17 @@ function App() {
         setIsSearching(false);
         setNoArticlesFound(false);
         setSearchError(true);
-        console.log('error searching for articles');
+        console.log("error searching for articles");
       });
   }
 
   function storeSearchedArticles(articles) {
-    localStorage.setItem('searchedArticles', JSON.stringify(articles));
-    localStorage.setItem('keyword', query);
+    localStorage.setItem("searchedArticles", JSON.stringify(articles));
+    localStorage.setItem("keyword", query);
   }
 
   React.useEffect(() => {
-    window.addEventListener('keyup', escapeKeyPressed);
+    window.addEventListener("keyup", escapeKeyPressed);
     onPageLoad();
     getInitialSavedArticles();
   }, []);
@@ -220,7 +237,7 @@ function App() {
   }, [searchedArticles]);
 
   return (
-    <div className='App'>
+    <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
         <SigninPopup
           onSubmit={(email, password) => {
@@ -248,9 +265,15 @@ function App() {
           }}
         />
 
+        <ConfirmDelete
+          isOpened={confirmDeletePopupIsOpen}
+          closePopup={closePopups}
+          onSubmit={onDeleteSavedArticle}
+        />
+
         <Switch>
           <ProtectedRoute
-            path='/saved'
+            path="/saved"
             openSigninPopup={openSigninPopup}
             component={SavedNews}
             isPopupOpened={signinPopupIsOpen || signupPopupIsOpen}
@@ -264,11 +287,11 @@ function App() {
               onSaveArticleClick(article);
             }}
             onDeleteSavedArticle={(article) => {
-              onDeleteSavedArticle(article);
+              confirmDeleteArticle(article);
             }}
           />
 
-          <Route exact path='/'>
+          <Route exact path="/">
             <Main
               onInputQueryChange={(e) => {
                 onInputQueryChange(e);
@@ -299,8 +322,8 @@ function App() {
               }}
             />
           </Route>
-          <Route path='*'>
-            <Redirect to='/' />
+          <Route path="*">
+            <Redirect to="/" />
           </Route>
         </Switch>
 
