@@ -50,7 +50,7 @@ function NewsCardsList(props) {
                   props.onSaveArticle(article);
                 }}
                 isSavedArticle={() => {
-                  if (props.isLoggedIn) {
+                  if (props.isLoggedIn && props.savedArticles) {
                     return props.savedArticles.find((savedArticle) => {
                       if (article.title === savedArticle.title) {
                         return true;
