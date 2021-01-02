@@ -78,7 +78,7 @@ function SignupPopup(props) {
       />
 
       <button
-        className={`popup__submit ${
+        className={`popup__submit popup__submit_type_signup ${
           emailvalidity && passwordValidity && nameValidity
             ? ''
             : 'popup__submit_disabled'

@@ -249,7 +249,7 @@ function App() {
             isLoggedIn={isLoggedIn}
             onHomeClick={viewHomePage}
             data={savedArticles}
-            isViewingSavedArticles={isViewingSavedArticles}
+            isViewingSavedArticles={true}
             onSaveArticle={(article) => {
               onSaveArticleClick(article);
             }}
@@ -269,7 +269,7 @@ function App() {
               onSearch={(query) => {
                 onSearch(query);
               }}
-              isPopupOpened={signinPopupIsOpen || signupPopupIsOpen}
+              isPopupOpened={signinPopupIsOpen || signupPopupIsOpen || registrationSuccessPopupIsOpen || confirmDeletePopupIsOpen}
               closePopups={closePopups}
               onLogout={onLogout}
               onSignInClick={openSigninPopup}

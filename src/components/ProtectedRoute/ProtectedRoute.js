@@ -3,10 +3,10 @@ import { Route, Redirect } from 'react-router-dom';
 
 function ProtectedRoute({ component: Component, ...props }) {
   React.useEffect(() => {
-    if (!props.isLoggedIn) {
+    if (!localStorage.getItem('token')) {
       props.openSigninPopup();
     }
-  }, [props.isLoggedIn]);
+  }, [localStorage.getItem('token')]);
 
   return (
     <Route>

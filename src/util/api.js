@@ -1,8 +1,9 @@
+import {apiKey, fromNumberDays} from "../constants/constants"
 
 class Api {
   constructor() {
     this._searchFromDate = new Date(
-      Date.now() - 7 * 24 * 60 * 60 * 1000
+      Date.now() - fromNumberDays * 24 * 60 * 60 * 1000
     ).toISOString();
     this._currentDate = new Date(Date.now()).toISOString();
     this._baseUrl = 'https://api.y-alvin.students.nomoreparties.site/';
@@ -14,7 +15,7 @@ class Api {
     return fetch(`${this._newsSearchUrl}q=${query}`, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer 66c76d6a626b4e74a20ef60d3c03128a'
+        Authorization: `Bearer ${apiKey}`
       }
     }).then((res) => {
       if (res.ok) {

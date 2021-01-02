@@ -104,6 +104,10 @@
   color: #fff;
 }
 
+.popup__submit_type_delete{
+margin: 40px 0;
+}
+
 .popup__submit_disabled {
   background: #e6e8eb;
   color: #b6bcbf;

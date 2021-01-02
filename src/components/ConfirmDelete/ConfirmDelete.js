@@ -13,12 +13,13 @@ function ConfirmDelete(props) {
 
   return (
     <PopupWithForm
+      className="popup_delete"
       isOpened={props.isOpened}
       onClose={closePopup}
       popupTitle="Delete article"
       onSubmit={onSubmit}
     >
-      <button className={`popup__submit`}>Delete</button>
+      <button className="popup__submit popup__submit_type_delete">Delete</button>
     </PopupWithForm>
   );
 }

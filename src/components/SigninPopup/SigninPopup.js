@@ -59,7 +59,7 @@ function SigninPopup(props) {
         onChange={onPasswordChange}
       />
       <button
-        className={`popup__submit ${
+        className={`popup__submit popup__submit_type_signin ${
           emailvalidity && passwordValidity ? '' : 'popup__submit_disabled'
         }`}
         disabled={!emailvalidity || !passwordValidity}
