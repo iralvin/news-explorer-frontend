@@ -240,7 +240,7 @@ function App() {
       <div className='App'>
         <Switch>
           <ProtectedRoute
-            path='/saved'
+            path='/saved-news'
             openSigninPopup={openSigninPopup}
             component={SavedNews}
             isPopupOpened={signinPopupIsOpen || signupPopupIsOpen}

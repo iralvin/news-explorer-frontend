@@ -63,7 +63,7 @@ function Main(props) {
               placeholder='Enter topic'
             />
 
-            <button className={`main__search-button ${inputValidity ? "" : "main__search-button_disabled"}`} disabled={!inputValidity}>Search</button>
+            <button className={`main__search-button ${!props.isSearching || inputValidity   ? "" : "main__search-button_disabled"}`} disabled={!inputValidity || props.isSearching}>Search</button>
           </form>
           <span>{errorMessage}</span>
         </div>

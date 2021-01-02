@@ -41,7 +41,7 @@ function Navigation(props) {
   function createSavedArticlesButton() {
     return (
       <NavLink
-        to='/saved'
+        to='/saved-news'
         activeClassName='navigation__menu-item_active navigation__menu-item_active-black'
         style={{ textDecoration: 'none', display: 'flex' }}
       >
