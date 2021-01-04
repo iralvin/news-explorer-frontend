@@ -7,8 +7,31 @@ import NewsCardsList from '../NewsCardsList/NewsCardsList';
 import About from '../About/About';
 
 function Main(props) {
+  const [errorMessage, setErrorMessage] = React.useState('');
+  const [inputValidity, setInputValidity] = React.useState(false)
+
+  const inputRef = React.createRef();
+
   function onSubmit(e) {
     e.preventDefault();
+    if (inputRef.current.value.length === 0) {
+      setErrorMessage('Please enter keyword');
+    } else {
+      setErrorMessage('');
+      props.onSearch();
+    }
+  }
+
+  function handleOnInputChange(e){
+    if (inputRef.current.value.length <= 0){
+      setInputValidity(false)
+    }
+    else if(inputRef.current.value.length > 0){
+      setInputValidity(true)
+    }
+
+    props.onInputQueryChange(e);
+
   }
 
   return (
@@ -33,29 +56,47 @@ function Main(props) {
         <div className='main__search-container'>
           <form action='' className='main__search-form' onSubmit={onSubmit}>
             <input
+              ref={inputRef}
+              onChange={handleOnInputChange}
               type='text'
               className='main__search-input'
               placeholder='Enter topic'
             />
-            <button className='main__search-button'>Search</button>
+
+            <button className={`main__search-button ${!props.isSearching || inputValidity   ? "" : "main__search-button_disabled"}`} disabled={!inputValidity || props.isSearching}>Search</button>
           </form>
+          <span>{errorMessage}</span>
         </div>
       </div>
 
-      {/* <Preloader />
-      <NothingFound /> */}
+      {props.isSearching && <Preloader />}
+      {props.noArticlesFound && (
+        <NothingFound
+          title='Nothing found'
+          text='Sorry, but nothing matched your search terms.'
+        />
+      )}
+      {props.searchError && (
+        <NothingFound
+          title='Search error'
+          text='Sorry, something went wrong during the request. There may be a connection issue or the server may be down. Please try again later.'
+        />
+      )}
 
-      <NewsCardsList
-        data={props.data}
-        isLoggedIn={props.isLoggedIn}
-        savedArticles={props.savedArticles}
-        onSaveArticle={(article) => {
-          props.onSaveArticle(article);
-        }}
-        onDeleteSavedArticle={(article) => {
-          props.onDeleteSavedArticle(article);
-        }}
-      />
+      {props.data.length > 0 && (
+        <NewsCardsList
+          data={props.data}
+          isLoggedIn={props.isLoggedIn}
+          savedArticles={props.savedArticles}
+          onSaveArticle={(article) => {
+            props.onSaveArticle(article);
+          }}
+          onDeleteSavedArticle={(article) => {
+            props.onDeleteSavedArticle(article);
+          }}
+        />
+      )}
+
       <About />
     </>
   );

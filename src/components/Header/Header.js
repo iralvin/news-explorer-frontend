@@ -5,20 +5,21 @@ function Header(props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   function enableMobileMenu() {
-    console.log('setting mobile true');
     setIsMobileMenuOpen(true);
   }
 
   function disableMobileMenu() {
-    console.log('setting mobile false');
     setIsMobileMenuOpen(false);
   }
 
   return (
     <header
-      className={`header header__${isMobileMenuOpen || props.isPopupOpened ? 'mobile' : ''} header__${
-        isMobileMenuOpen || props.isPopupOpened ? 'mobile' : ''
-      }_${props.savedNewsClass} header__${props.savedNewsClass}`}
+      className={`header 
+      header_${isMobileMenuOpen || props.isPopupOpened ? 'mobile' : ''} 
+      header_${isMobileMenuOpen || props.isPopupOpened ? 'mobile' : ''}_${
+        props.savedNewsClass
+      } 
+      header_${props.savedNewsClass}`}
     >
       <div className='header__container'>
         <p className='header__logo'>NewsExplorer</p>

@@ -23,7 +23,7 @@
   line-height: 24px;
 }
 
-.header__saved-news {
+.header_saved-news {
   position: relative;
   color: #000;
   background: #ffffff;
@@ -46,13 +46,14 @@
     height: 56px;
   }
 
-  .header__mobile {
+  .header_mobile {
     position: fixed;
     top:0;
     z-index: 1;
     background-color: #1a1b22;
   }
-  .header__mobile_saved-news {
+
+  .header_mobile_saved-news {
     background-color: #fff;
   }
 

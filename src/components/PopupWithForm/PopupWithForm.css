@@ -1,25 +1,24 @@
 .popup {
-  display: none;
-  opacity: 0;
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  opacity: 0;
+  z-index: 2;
   visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
 }
-.popup__opened {
-  display: flex;
-  transition: opacity 1s, visibility 1s;
+.popup_opened {
   visibility: visible;
   opacity: 1;
 }
 
 .popup__dialog-window {
+  position: relative;
   width: 430px;
-  /* min-height: 380px; */
   margin: auto;
   background: #ffffff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
@@ -33,9 +32,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0);
-  position: relative;
-  left: 50%;
-  transform: translate(50%, -100%);
+  position: absolute;
+  left: 100%;
+  transform: translate(0, -100%);
   border: none;
   cursor: pointer;
 }
@@ -49,6 +48,7 @@
   justify-content: flex-start;
   text-align: left;
 }
+
 .popup__title {
   margin: 0;
   padding: 0;
@@ -61,7 +61,6 @@
 }
 
 .popup__input {
-  /* margin-top: 10px; */
   padding: 10px 0;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -77,7 +76,6 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-
   color: #2f71e5;
 }
 
@@ -88,9 +86,9 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-
   color: #ff0000;
 }
+
 .popup__input-error_visible {
   display: block;
 }
@@ -106,6 +104,10 @@
   color: #fff;
 }
 
+.popup__submit_type_delete{
+margin: 40px 0;
+}
+
 .popup__submit_disabled {
   background: #e6e8eb;
   color: #b6bcbf;
@@ -113,10 +115,23 @@
 
 .popup__flair-text {
   margin: 16px auto 28px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #000000;
 }
+
 .popup__flair-text_button {
   cursor: pointer;
   color: #2f71e5;
+}
+
+.popup__flair-text_registration-success {
+  text-align: left;
+  margin: 16px 0 28px;
 }
 
 @media screen and (max-width: 590px) {
@@ -124,10 +139,12 @@
     position: fixed;
     top: 56px;
   }
+
   .popup__dialog-window {
     height: 100vh;
     width: 100vw;
   }
+
   .popup__close-button {
     display: none;
     transform: translate(-70%, -120%);
@@ -137,5 +154,4 @@
   .popup__submit {
     max-width: 100%;
   }
-
 }

@@ -8,42 +8,88 @@ function SavedNews(props) {
   const currentUser = React.useContext(CurrentUserContext);
   const [keywordsToPrint, setKeywordsToPrint] = React.useState('');
 
-  let keywordsSet;
-  let keywordsArray;
-  let slicedKeywordsArray;
+  const [sortedKeywordsArray, setSortedKeywordsArray] = React.useState([]);
+  const [keyCounts, setKeyCounts] = React.useState([]);
+  const [sortedKeyCounts, setSortedKeyCounts] = React.useState([]);
+
+  let keywordsArray = [];
+  let slicedKeywordsArray = [];
+  let keywordCounts = [];
 
   function setKeywords() {
-    keywordsSet = new Set();
-
     props.data.forEach((article) => {
-      if (!keywordsSet.has(article.keyword)) {
-        keywordsSet.add(
-          article.keyword.charAt(0).toUpperCase() + article.keyword.substr(1)
-        );
+      keywordsArray.push(article.keyword);
+    });
+    setSortedKeywordsArray(keywordsArray.sort());
+  }
+
+  function countKeywords() {
+    sortedKeywordsArray.forEach((keyword) => {
+      let currentIndex;
+      const foundIndex = keywordCounts.some((e, index) => {
+        if (Object.values(e).includes(keyword)) {
+          currentIndex = index;
+          return true;
+        }
+      });
+
+      if (foundIndex) {
+        keywordCounts[currentIndex].count++;
+      } else {
+        keywordCounts.push({
+          keyword: keyword,
+          count: 1
+        });
       }
     });
+    setKeyCounts(keywordCounts);
+  }
 
-    keywordsArray = Array.from(keywordsSet);
+  function sortCountedKeywords() {
+    setSortedKeyCounts(
+      keyCounts.sort((a, b) => {
+        return b.count - a.count;
+      })
+    );
   }
 
   function displayKeywords() {
-    if (keywordsArray.length > 2) {
-      slicedKeywordsArray = keywordsArray.slice(0, 2);
-
+    if (sortedKeyCounts.length > 3) {
+      for (let i = 0; i < 2; i++) {
+        slicedKeywordsArray.push(sortedKeyCounts[i].keyword);
+      }
       setKeywordsToPrint(
         `${slicedKeywordsArray.join(', ')}, and ${
-          keywordsArray.length - 2
+          sortedKeyCounts.length - 2
         } others`
       );
     } else {
-      setKeywordsToPrint(`${keywordsArray.join(' and ')}`);
+      const lf = new Intl.ListFormat('en');
+
+      for (let i = 0; i < sortedKeyCounts.length; i++) {
+        slicedKeywordsArray.push(sortedKeyCounts[i].keyword);
+      }
+      setKeywordsToPrint(`${lf.format(slicedKeywordsArray)}`);
     }
   }
 
   React.useEffect(() => {
     setKeywords();
-    displayKeywords();
   }, [props.data]);
+
+  React.useEffect(() => {
+    countKeywords();
+  }, [sortedKeywordsArray]);
+
+  React.useEffect(() => {
+    sortCountedKeywords();
+  }, [keyCounts]);
+
+  React.useEffect(() => {
+    if (sortedKeyCounts.length > 0) {
+      displayKeywords();
+    }
+  }, [sortedKeyCounts]);
 
   return (
     <>
@@ -57,15 +103,15 @@ function SavedNews(props) {
           onHomeClick={props.onHomeClick}
         />
         <div className='saved-news__subheader-container'>
-          <p className='saved-news__subheader_text saved-news__subheader_text_title'>
+          <p className='saved-news__subheader saved-news__subheader_text_title'>
             Saved articles
           </p>
-          <p className='saved-news__subheader_text saved-news__subheader_text_descriptor'>
+          <p className='saved-news__subheader saved-news__subheader_text_descriptor'>
             {`${currentUser.name}, you have ${props.data.length} articles saved`}
           </p>
-          <p className='saved-news__subheader_text saved-news__subheader_text_keywords'>
+          <p className='saved-news__subheader saved-news__subheader_text_keywords'>
             By keywords:{' '}
-            <span className='saved-news__subheader_text_keywords_bold'>
+            <span className='saved-news__subheader saved-news__subheader_text_keywords_bold'>
               {keywordsToPrint}
             </span>
           </p>

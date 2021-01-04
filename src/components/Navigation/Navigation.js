@@ -5,8 +5,6 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function Navigation(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  const [mobile, setMobile] = React.useState(false);
-  // const [windowWidth, setWindowWidth] = React.useState()
 
   function onLogin() {
     props.disableMobileMenu();
@@ -29,13 +27,9 @@ function Navigation(props) {
 
   function createLoginButton() {
     return (
-      <li
-        className={`navigation__menu-item ${
-          props.isLoggedIn ? 'navigation__menu-item_account' : ''
-        }`}
-      >
+      <li className={`navigation__menu-item`}>
         <button
-          className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass} circle-border`}
+          className={`navigation__menu-item-button circle-border`}
           onClick={onLogin}
         >
           Sign In
@@ -47,17 +41,13 @@ function Navigation(props) {
   function createSavedArticlesButton() {
     return (
       <NavLink
-        to='/saved'
-        activeClassName='navigation__menu-item_active navigation__menu-item_active_black'
+        to='/saved-news'
+        activeClassName='navigation__menu-item_active navigation__menu-item_active-black'
         style={{ textDecoration: 'none', display: 'flex' }}
       >
-        <li
-          className={`navigation__menu-item ${
-            props.isLoggedIn ? 'navigation__menu-item_account' : ''
-          }`}
-        >
+        <li className={`navigation__menu-item`}>
           <button
-            className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
+            className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}`}
             onClick={props.onSavedArticlesClick}
           >
             Saved articles
@@ -81,9 +71,9 @@ function Navigation(props) {
             }`}
           >
             <button
-              className={`navigation__menu-item_button navigation__menu-item_button_${
+              className={`navigation__menu-item-button navigation__menu-item-button_${
                 props.savedNewsClass
-              } navigation__menu-item_button_user ${
+              } navigation__menu-item-button_user ${
                 props.isLoggedIn
                   ? `circle-border circle-border_logged-in circle-border_${props.savedNewsClass}`
                   : ''
@@ -113,13 +103,13 @@ function Navigation(props) {
         <NavLink
           exact
           to='/'
-          activeClassName='navigation__menu-item_active'
+          activeClassName='navigation__menu-item_active navigation__menu-item_active-white'
           style={{ textDecoration: 'none', display: 'flex' }}
         >
           <li className='navigation__menu-item navigation__menu-item_home '>
             {' '}
             <button
-              className={`navigation__menu-item_button navigation__menu-item_button_${props.savedNewsClass}`}
+              className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}`}
               onClick={props.onHomeClick}
             >
               Home
@@ -145,18 +135,10 @@ function Navigation(props) {
         {props.isMobileMenuOpen && (
           <div className='navigation__menu_mobile-underlay'>
             <ul
-              className={`navigation__menu-list navigation__menu-list_${
-                props.isMobileMenuOpen ? 'mobile' : ''
-              } navigation__menu-list_${
-                props.isMobileMenuOpen ? 'mobile' : ''
-              }_${props.savedNewsClass}`}
+              className={`navigation__menu-list navigation__menu-list_mobile navigation__menu-list_mobile_${props.savedNewsClass}`}
             >
               <li
-                className={`navigation__menu-item navigation__menu-item_${
-                  props.isMobileMenuOpen ? 'mobile' : ''
-                } navigation__menu-item_home navigation__menu-item_home_${
-                  props.isMobileMenuOpen ? 'mobile' : ''
-                }`}
+                className={`navigation__menu-item navigation__menu-item_mobile navigation__menu-item_home navigation__menu-item_home_mobile`}
               >
                 {' '}
                 <NavLink
@@ -165,12 +147,8 @@ function Navigation(props) {
                   style={{ textDecoration: 'none', display: 'flex' }}
                 >
                   <button
-                    className={`navigation__menu-item_button navigation__menu-item_button_${
-                      props.savedNewsClass
-                    }
-                    navigation__menu-item_button_${
-                      props.isMobileMenuOpen ? 'mobile' : ''
-                    }`}
+                    className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}
+                    navigation__menu-item-button_mobile`}
                     onClick={props.onHomeClick}
                   >
                     Home

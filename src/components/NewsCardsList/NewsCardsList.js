@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { articlesIncrement } from '../../constants/constants';
 import NewsCard from '../NewsCard/NewsCard';
 
 function NewsCardsList(props) {
@@ -6,13 +8,15 @@ function NewsCardsList(props) {
   const [showMoreButtonDisabled, setShowMoreButtonDisabled] = React.useState(
     false
   );
+  const [pageNum, setPageCount] = React.useState(1);
 
   function showMoreArticles() {
-    setDisplayedArticleCards(props.data);
-    setShowMoreButtonDisabled(true);
+    const tempPageCount = pageNum;
+    setPageCount(tempPageCount + 1);
   }
+
   function displayThreeArticles() {
-    setDisplayedArticleCards(props.data.slice(0, 3));
+    setDisplayedArticleCards(props.data.slice(0, articlesIncrement));
   }
 
   React.useEffect(() => {
@@ -22,11 +26,22 @@ function NewsCardsList(props) {
     }
   }, [props.data]);
 
+  React.useEffect(() => {
+    if (articlesIncrement * pageNum > props.data.length) {
+      setDisplayedArticleCards(props.data);
+      setShowMoreButtonDisabled(true);
+    } else {
+      setDisplayedArticleCards(
+        props.data.slice(0, articlesIncrement * pageNum)
+      );
+    }
+  }, [pageNum]);
+
   return (
     <div className='news-list section'>
       <div className='news-list__container'>
         <h2 className='news-list__title'>Search results</h2>
-        <ul className='news-list__cards_list'>
+        <ul className='news-list__cards-list'>
           {displayedArticleCards.map((article, index) => {
             return (
               <NewsCard
@@ -37,9 +52,9 @@ function NewsCardsList(props) {
                   props.onSaveArticle(article);
                 }}
                 isSavedArticle={() => {
-                  if (props.isLoggedIn) {
-                    return props.savedArticles.some((savedArticle) => {
-                      if (article._id === savedArticle._id) {
+                  if (props.isLoggedIn && props.savedArticles) {
+                    return props.savedArticles.find((savedArticle) => {
+                      if (article.title === savedArticle.title) {
                         return true;
                       }
                     });

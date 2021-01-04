@@ -28,12 +28,12 @@ function SigninPopup(props) {
   }
 
   function onSubmit() {
-    props.onSubmit();
+    props.onSubmit(email, password);
   }
 
   return (
     <PopupWithForm
-      className='popup__sign-in'
+      className='popup_sign-in'
       onSubmit={onSubmit}
       isOpened={props.isOpened}
       onClose={closePopup}
@@ -59,10 +59,10 @@ function SigninPopup(props) {
         onChange={onPasswordChange}
       />
       <button
-        className={`popup__submit ${
+        className={`popup__submit popup__submit_type_signin ${
           emailvalidity && passwordValidity ? '' : 'popup__submit_disabled'
         }`}
-        disabled={!emailvalidity && passwordValidity}
+        disabled={!emailvalidity || !passwordValidity}
       >
         Sign In
       </button>

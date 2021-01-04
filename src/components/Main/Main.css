@@ -1,6 +1,6 @@
 .main {
   min-height: 576px;
-  background-image: url('../../images/georgia-bg.png');
+  background-image: url("../../images/georgia-bg.png");
   background-repeat: no-repeat;
   background-position: center;
   color: #fff;
@@ -89,7 +89,6 @@
   box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
   border: 0;
   border-radius: 100px;
-  cursor: pointer;
 
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-style: normal;
@@ -101,10 +100,20 @@
 
 .main__search-button:hover {
   background: #347eff;
+  cursor: pointer;
 }
 
 .main__search-button:active {
   background: #2a65cc;
+}
+
+.main__search-button_disabled {
+  background: #a0a0a0;
+}
+
+.main__search-button_disabled:hover {
+  background: #8a8a8a;
+  cursor: default;
 }
 
 @media screen and (max-width: 800px) {
@@ -133,7 +142,7 @@
 }
 
 @media screen and (max-width: 590px) {
-  .main{
+  .main {
     min-height: 536px;
     background-image: url("../../images/georgia-bg-mobile.png");
     background-size: cover;
