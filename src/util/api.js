@@ -7,8 +7,8 @@ class Api {
     ).toISOString();
     this._currentDate = new Date(Date.now()).toISOString();
     this._baseUrl = 'https://api.y-alvin.students.nomoreparties.site/';
-    this._newsTopUrl = 'http://newsapi.org/v2/top-headlines?';
-    this._newsSearchUrl = `http://newsapi.org/v2/everything?language=en&pageSize=100&sortBy=publishedAt&from=${this._searchFromDate}&to=${this._currentDate}&`;
+    this._newsTopUrl = 'https://newsapi.org/v2/top-headlines?';
+    this._newsSearchUrl = `https://newsapi.org/v2/everything?language=en&pageSize=100&sortBy=publishedAt&from=${this._searchFromDate}&to=${this._currentDate}&`;
   }
 
   getNewsSearchedArticles(query) {
