@@ -31,7 +31,7 @@ function Footer(props) {
             <li className='footer__nav-menu-item'>
               <div className='footer__nav-menu-container footer__nav-menu-container_type_icons'>
                 <a
-                  href='https://github.com/'
+                  href='https://github.com/iralvin'
                   target='_blank'
                   className='footer__nav-menu-button footer__nav-menu-button_github'
                 >
