@@ -8,7 +8,7 @@ import About from '../About/About';
 
 function Main(props) {
   const [errorMessage, setErrorMessage] = React.useState('');
-  const [inputValidity, setInputValidity] = React.useState(false)
+  const [inputValidity, setInputValidity] = React.useState(false);
 
   const inputRef = React.createRef();
 
@@ -22,16 +22,14 @@ function Main(props) {
     }
   }
 
-  function handleOnInputChange(e){
-    if (inputRef.current.value.length <= 0){
-      setInputValidity(false)
-    }
-    else if(inputRef.current.value.length > 0){
-      setInputValidity(true)
+  function handleOnInputChange(e) {
+    if (inputRef.current.value.length <= 0) {
+      setInputValidity(false);
+    } else if (inputRef.current.value.length > 0) {
+      setInputValidity(true);
     }
 
     props.onInputQueryChange(e);
-
   }
 
   return (
@@ -63,7 +61,14 @@ function Main(props) {
               placeholder='Enter topic'
             />
 
-            <button className={`main__search-button ${!props.isSearching || inputValidity   ? "" : "main__search-button_disabled"}`} disabled={!inputValidity || props.isSearching}>Search</button>
+            <button
+              className={`main__search-button ${
+                inputValidity ? '' : 'main__search-button_disabled'
+              }`}
+              disabled={!inputValidity}
+            >
+              Search
+            </button>
           </form>
           <span>{errorMessage}</span>
         </div>
