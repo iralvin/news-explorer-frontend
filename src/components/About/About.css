@@ -1,6 +1,3 @@
-.about {
-  max-height: 624px;
-}
 .about__container {
   width: 85%;
   margin: 0 auto;
@@ -11,7 +8,7 @@
   min-width: 464px;
   height: 464px;
   border-radius: 1000px;
-  background-image: url("../../images/georgia-bg.png");
+  background-image: url('../../images/georgia-bg.png');
   background-repeat: no-repeat;
   background-position: center;
 }
