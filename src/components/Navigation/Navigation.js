@@ -27,7 +27,12 @@ function Navigation(props) {
 
   function createLoginButton() {
     return (
-      <li className={`navigation__menu-item`}>
+      <li
+        className={`
+        navigation__menu-item 
+        navigation__menu-item_${props.isMobileMenuOpen ? 'mobile' : ''}
+      `}
+      >
         <button
           className={`navigation__menu-item-button circle-border`}
           onClick={onLogin}
@@ -40,35 +45,35 @@ function Navigation(props) {
 
   function createSavedArticlesButton() {
     return (
-      <NavLink
-        to='/saved-news'
-        activeClassName='navigation__menu-item_active navigation__menu-item_active-black'
-        style={{ textDecoration: 'none', display: 'flex' }}
-      >
-        <li className={`navigation__menu-item`}>
+      <li>
+        <NavLink
+          className={`navigation__menu-item navigation__menu-item_${
+            props.isMobileMenuOpen ? 'mobile' : ''
+          }`}
+          activeClassName='navigation__menu-item_active navigation__menu-item_active-black'
+          to='/saved-news'
+        >
           <button
             className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}`}
             onClick={props.onSavedArticlesClick}
           >
             Saved articles
-          </button>{' '}
-        </li>
-      </NavLink>
+          </button>
+        </NavLink>
+      </li>
     );
   }
 
   function createLogoutButton() {
     if (props.isLoggedIn) {
       return (
-        <NavLink
-          exact
-          to='/'
-          style={{ textDecoration: 'none', display: 'flex' }}
-        >
-          <li
+        <li>
+          <NavLink
             className={`navigation__menu-item navigation__menu-item_${
               props.isMobileMenuOpen ? 'mobile' : ''
             }`}
+            exact
+            to='/'
           >
             <button
               className={`navigation__menu-item-button navigation__menu-item-button_${
@@ -85,8 +90,8 @@ function Navigation(props) {
                 className={`navigation__menu-item_logout navigation__menu-item_logout_${props.savedNewsClass}`}
               ></span>
             </button>
-          </li>{' '}
-        </NavLink>
+          </NavLink>
+        </li>
       );
     }
   }
@@ -100,13 +105,13 @@ function Navigation(props) {
   return (
     <>
       <ul className='navigation__menu-list'>
-        <NavLink
-          exact
-          to='/'
-          activeClassName='navigation__menu-item_active navigation__menu-item_active-white'
-          style={{ textDecoration: 'none', display: 'flex' }}
-        >
-          <li className='navigation__menu-item navigation__menu-item_home '>
+        <li>
+          <NavLink
+            className='navigation__menu-item navigation__menu-item_home '
+            activeClassName='navigation__menu-item_active navigation__menu-item_active-white'
+            exact
+            to='/'
+          >
             {' '}
             <button
               className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}`}
@@ -114,8 +119,8 @@ function Navigation(props) {
             >
               Home
             </button>{' '}
-          </li>
-        </NavLink>
+          </NavLink>
+        </li>
 
         {props.isLoggedIn ? createSavedArticlesButton() : createLoginButton()}
 
@@ -124,11 +129,17 @@ function Navigation(props) {
 
       <>
         <button
-          className={`navigation__menu_mobile_button navigation__menu_mobile_button_${
-            props.savedNewsClass
-          } navigation__menu_mobile_button_${
-            props.isMobileMenuOpen || props.isPopupOpened ? 'opened' : ''
-          }`}
+          className={`
+            navigation__menu_mobile_button 
+            navigation__menu_mobile_button_${props.savedNewsClass}
+            navigation__menu_mobile_button_${
+              props.isMobileMenuOpen || props.isPopupOpened ? 'opened' : ''
+            }
+            navigation__menu_mobile_button_${
+              props.isMobileMenuOpen || props.isPopupOpened ? 'opened' : ''
+            }_${props.savedNewsClass} 
+
+          `}
           onClick={onMenuClick}
         ></button>
 
@@ -137,15 +148,14 @@ function Navigation(props) {
             <ul
               className={`navigation__menu-list navigation__menu-list_mobile navigation__menu-list_mobile_${props.savedNewsClass}`}
             >
-              <li
-                className={`navigation__menu-item navigation__menu-item_mobile navigation__menu-item_home navigation__menu-item_home_mobile`}
-              >
-                {' '}
+              <li>
                 <NavLink
-                  to='/'
+                  className={`navigation__menu-item navigation__menu-item_mobile navigation__menu-item_home navigation__menu-item_home_mobile`}
                   activeClassName='navigation__menu-item_active'
-                  style={{ textDecoration: 'none', display: 'flex' }}
+                  exact
+                  to='/'
                 >
+                  {' '}
                   <button
                     className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}
                     navigation__menu-item-button_mobile`}

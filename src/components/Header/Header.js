@@ -14,12 +14,12 @@ function Header(props) {
 
   return (
     <header
-      className={`header 
-      header_${isMobileMenuOpen || props.isPopupOpened ? 'mobile' : ''} 
-      header_${isMobileMenuOpen || props.isPopupOpened ? 'mobile' : ''}_${
-        props.savedNewsClass
-      } 
-      header_${props.savedNewsClass}`}
+      className={`
+        header 
+        header_${props.savedNewsClass}
+        header_${isMobileMenuOpen || props.isPopupOpened ? 'mobile' : ''} 
+        header_${isMobileMenuOpen || props.isPopupOpened ? 'mobile' : ''}_${props.savedNewsClass} 
+      `}
     >
       <div className='header__container'>
         <p className='header__logo'>NewsExplorer</p>
