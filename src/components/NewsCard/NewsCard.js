@@ -1,4 +1,5 @@
 import React from 'react';
+import imageNotFound from "../../images/image-not-found.png";
 
 function NewsCard(props) {
   const [isCardFlagActive, setIsCardFlagActive] = React.useState(false);
@@ -112,7 +113,7 @@ function NewsCard(props) {
             className='news-card__image'
             style={{
               backgroundImage: `url(${
-                props.article.urlToImage || props.article.image
+                props.article.urlToImage || props.article.image || imageNotFound
               })`
             }}
           ></div>
