@@ -114,7 +114,7 @@
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 775px) {
   .navigation__menu_mobile_button {
     display: block;
     width: 24px;
@@ -153,8 +153,6 @@
     margin: 0 0 16px 0;
     padding: 0;
     text-decoration: none;
-    align-items: start;
-    
   }
 
   .navigation__menu-item_active {

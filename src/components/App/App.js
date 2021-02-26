@@ -243,7 +243,7 @@ function App() {
             path='/saved-news'
             openSigninPopup={openSigninPopup}
             component={SavedNews}
-            isPopupOpened={signinPopupIsOpen || signupPopupIsOpen}
+            isPopupOpened={signinPopupIsOpen || signupPopupIsOpen || confirmDeletePopupIsOpen}
             closePopups={closePopups}
             onLogout={onLogout}
             isLoggedIn={isLoggedIn}

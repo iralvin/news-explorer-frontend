@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function ConfirmDelete(props) {
   function closePopup(e) {
@@ -13,13 +13,15 @@ function ConfirmDelete(props) {
 
   return (
     <PopupWithForm
-      className="popup_delete"
+      className='popup_delete'
       isOpened={props.isOpened}
       onClose={closePopup}
-      popupTitle="Delete article"
+      popupTitle='Delete article'
       onSubmit={onSubmit}
     >
-      <button className="popup__submit popup__submit_type_delete">Delete</button>
+      <button className='popup__submit popup__submit_type_delete'>
+        Delete
+      </button>
     </PopupWithForm>
   );
 }

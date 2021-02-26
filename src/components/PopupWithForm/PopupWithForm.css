@@ -96,7 +96,7 @@
 .popup__submit {
   width: 360px;
   height: 64px;
-  margin-top: 39px;
+  margin: 39px auto 0;
   background: #2f71e5;
   box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
   border: none;
@@ -134,7 +134,7 @@ margin: 40px 0;
   margin: 16px 0 28px;
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 500px) {
   .popup {
     position: fixed;
     top: 56px;
@@ -147,8 +147,6 @@ margin: 40px 0;
 
   .popup__close-button {
     display: none;
-    transform: translate(-70%, -120%);
-    color: red;
   }
 
   .popup__submit {

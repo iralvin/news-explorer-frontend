@@ -25,6 +25,33 @@ function Navigation(props) {
     }
   }
 
+  function createHomeButton() {
+    return (
+      <li>
+        <NavLink
+          className={`
+            navigation__menu-item 
+            navigation__menu-item_${
+              props.isMobileMenuOpen ? 'mobile' : ''
+            } 
+          `}
+          activeClassName='navigation__menu-item_active navigation__menu-item_active-white'
+          exact
+          to='/'
+        >
+          {' '}
+          <button
+            className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}
+                    navigation__menu-item-button_mobile`}
+            onClick={props.onHomeClick}
+          >
+            Home
+          </button>{' '}
+        </NavLink>
+      </li>
+    );
+  }
+
   function createLoginButton() {
     return (
       <li
@@ -105,22 +132,7 @@ function Navigation(props) {
   return (
     <>
       <ul className='navigation__menu-list'>
-        <li>
-          <NavLink
-            className='navigation__menu-item navigation__menu-item_home '
-            activeClassName='navigation__menu-item_active navigation__menu-item_active-white'
-            exact
-            to='/'
-          >
-            {' '}
-            <button
-              className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}`}
-              onClick={props.onHomeClick}
-            >
-              Home
-            </button>{' '}
-          </NavLink>
-        </li>
+        {createHomeButton()}
 
         {props.isLoggedIn ? createSavedArticlesButton() : createLoginButton()}
 
@@ -148,23 +160,7 @@ function Navigation(props) {
             <ul
               className={`navigation__menu-list navigation__menu-list_mobile navigation__menu-list_mobile_${props.savedNewsClass}`}
             >
-              <li>
-                <NavLink
-                  className={`navigation__menu-item navigation__menu-item_mobile navigation__menu-item_home navigation__menu-item_home_mobile`}
-                  activeClassName='navigation__menu-item_active'
-                  exact
-                  to='/'
-                >
-                  {' '}
-                  <button
-                    className={`navigation__menu-item-button navigation__menu-item-button_${props.savedNewsClass}
-                    navigation__menu-item-button_mobile`}
-                    onClick={props.onHomeClick}
-                  >
-                    Home
-                  </button>{' '}
-                </NavLink>
-              </li>
+              {createHomeButton()}
 
               {props.isLoggedIn
                 ? createSavedArticlesButton()
