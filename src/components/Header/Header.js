@@ -1,8 +1,10 @@
 import React from 'react';
 import Navigation from '../Navigation/Navigation';
+import {useHistory} from "react-router-dom"
 
 function Header(props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const history = useHistory()
 
   function enableMobileMenu() {
     setIsMobileMenuOpen(true);
@@ -10,6 +12,11 @@ function Header(props) {
 
   function disableMobileMenu() {
     setIsMobileMenuOpen(false);
+  }
+
+  function handleLogoClick(){
+    console.log("clicked logo")
+    history.push("/")
   }
 
   return (
@@ -22,7 +29,7 @@ function Header(props) {
       `}
     >
       <div className='header__container'>
-        <p className='header__logo'>NewsExplorer</p>
+        <p className='header__logo' onClick={handleLogoClick}>NewsExplorer</p>
 
         <Navigation
           isPopupOpened={props.isPopupOpened}

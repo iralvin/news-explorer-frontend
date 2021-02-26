@@ -15,6 +15,7 @@
   margin: auto;
 }
 .header__logo {
+  cursor: pointer;
   margin: auto 0;
   font-family: Roboto-Slab, Helvetica, Arial, sans-serif;
   font-style: normal;
