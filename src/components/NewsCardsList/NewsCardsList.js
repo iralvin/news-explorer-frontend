@@ -64,7 +64,7 @@ function NewsCardsList(props) {
                 isViewingSavedArticles={props.isViewingSavedArticles}
                 isLoggedIn={props.isLoggedIn}
                 article={article}
-                key={index}
+                key={article._id ? article._id : `article_${index}`}
               />
             );
           })}
