@@ -36,6 +36,7 @@ function Main(props) {
     <>
       <div className='main'>
         <Header
+          onHomeClick={props.onHomeClick}
           isPopupOpened={props.isPopupOpened}
           closePopups={props.closePopups}
           onLogout={props.onLogout}

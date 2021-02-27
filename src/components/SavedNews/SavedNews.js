@@ -95,6 +95,7 @@ function SavedNews(props) {
     <>
       <div className='saved-news'>
         <Header
+          onHomeClick={props.onHomeClick}
           isPopupOpened={props.isPopupOpened}
           closePopups={props.closePopups}
           onLogout={props.onLogout}

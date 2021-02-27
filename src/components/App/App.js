@@ -132,6 +132,7 @@ function App() {
   }
 
   function viewHomePage() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setIsViewingSavedArticles(false);
   }
 
@@ -149,7 +150,6 @@ function App() {
     }
   }
 
-  // let articleToDelete;
   function confirmDeleteArticle(article) {
     setConfirmDeletePopupIsOpen(true);
     setArticleToDelete(article);
@@ -260,6 +260,7 @@ function App() {
 
           <Route exact path='/'>
             <Main
+              onHomeClick={viewHomePage}
               onInputQueryChange={(e) => {
                 onInputQueryChange(e);
               }}

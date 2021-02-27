@@ -15,8 +15,8 @@ function Header(props) {
   }
 
   function handleLogoClick(){
-    console.log("clicked logo")
-    history.push("/")
+    props.onHomeClick();
+    history.push("/");
   }
 
   return (
