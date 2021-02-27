@@ -1,11 +1,11 @@
-import {apiKey, fromNumberDays} from "../constants/constants"
+import { apiKey, fromNumberDays } from '../constants/constants';
+import moment from "moment"
 
 class Api {
   constructor() {
-    this._searchFromDate = new Date(
-      Date.now() - fromNumberDays * 24 * 60 * 60 * 1000
-    ).toISOString();
-    this._currentDate = new Date(Date.now()).toISOString();
+    this._dateFormat = "YYYY-MM-DD";
+    this._searchFromDate = moment().subtract(fromNumberDays, "days").format(this._dateFormat);
+    this._currentDate = moment().format(this._dateFormat)
     this._baseUrl = 'https://api.y-alvin.students.nomoreparties.site/';
     this._newsTopUrl = 'https://newsapi.org/v2/top-headlines?';
     this._newsSearchUrl = `https://nomoreparties.co/news/v2/everything?language=en&pageSize=100&sortBy=publishedAt&from=${this._searchFromDate}&to=${this._currentDate}&apiKey=${apiKey}&`;
@@ -13,10 +13,7 @@ class Api {
 
   getNewsSearchedArticles(query) {
     return fetch(`${this._newsSearchUrl}q=${query}`, {
-      method: 'GET',
-      // headers: {
-      //   Authorization: `Bearer ${apiKey}`,
-      // }
+      method: 'GET'
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -81,5 +78,3 @@ class Api {
 const api = new Api();
 
 export default api;
-
-// http://newsapi.org/v2/everything?q=Apple&from=2020-12-19&sortBy=popularity&apiKey=66c76d6a626b4e74a20ef60d3c03128a
