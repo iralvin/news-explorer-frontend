@@ -6,7 +6,7 @@ class Api {
     this._dateFormat = "YYYY-MM-DD";
     this._searchFromDate = moment().subtract(fromNumberDays, "days").format(this._dateFormat);
     this._currentDate = moment().format(this._dateFormat)
-    this._baseUrl = 'https://api.y-alvin.students.nomoreparties.site/';
+    this._baseUrl = 'https://api.awong-news.students.nomoreparties.site/';
     // this._newsTopUrl = 'https://newsapi.org/v2/top-headlines?';
     this._newsSearchUrl = `https://nomoreparties.co/news/v2/everything?language=en&pageSize=100&sortBy=publishedAt&from=${this._searchFromDate}&to=${this._currentDate}&apiKey=${apiKey}&`;
   }
