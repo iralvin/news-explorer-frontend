@@ -4,4 +4,4 @@ This is the frontend portion of my news search engine. Users can navigate to sea
 
 The frontend was developed using ReactJS and requests are sent to NewsAPI (https://newsapi.org/) for news articles. User account related requests are handled by a custom built API; this includes signup/signin and storing a users' saved articles.
 
-LIVE: https://www.y-alvin.students.nomoreparties.site/
+LIVE: https://awong-news.students.nomoreparties.site
